@@ -1,6 +1,7 @@
 page-equipment-list {
-  ion-title{
-    margin-right: 48px;
+  //Android标题右间距
+  .toolbar-content-md {
+    margin-right: 44px;
   }
 
   .card-header-md {

@@ -32,7 +32,15 @@ ion-header ion-icon.back-button-icon.icon {
 .back-button-text{
   color: transparent;
 }
-
+.back-button{
+  margin: 0%;
+}
+.bar-button{
+  padding: 0px 3px;
+}
+.button-inner{
+  margin-left:auto;
+}
 //分割线
 .divider{
   margin-left: 16px;
@@ -54,12 +62,9 @@ ion-header ion-icon.back-button-icon.icon {
 .card{
   border-radius: 6px;
 }
-//Android标题右间距
-.toolbar-content-md {
-  margin-right: 48px;
-}
+
 //标题栏右侧字体颜色
-.bar-button-default-ios, .bar-button-clear-md-default, .bar-button-md-default{
+.bar-button-default-ios, .bar-button-md{
   color: white;
   margin-right: 10px;
 }

@@ -15,14 +15,14 @@
 
 <ion-content>
 
-  <div class="item" (click)="doClick($event)">
-    <div style="width: 10%;">
-      <img class="next_arrow" src="assets/icon/th-list.png">
+  <div style="display: flex;margin-top: 10px;" (click)="doClick($event)">
+    <div style="width: 60%;display: flex;padding-left: 16px">
+      <img src="assets/icon/th-list.png" style="text-align: right;height: 18px;margin-top: 9px">
+      <label style="padding: 8px;">备件列表</label>
     </div>
-    <label style="width: 40%;padding-left: 8px">备件列表</label>
-    <span style="width: 40%;padding-left: 10%">总共{{num}}个备件</span>
-    <div style="width: 10%;">
-      <img class="next_arrow" src="assets/icon/next.png">
+    <div style="width: 40%;display: flex;">
+      <span style="text-align: right;padding-top: 8px;color: #a5a5a5;width: 70%;">总共{{num}}个备件</span>
+      <img src="assets/icon/next.png" style="text-align: right;height: 18px;margin-top: 9px">
     </div>
   </div>
 

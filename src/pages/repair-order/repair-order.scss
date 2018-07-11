@@ -1,4 +1,10 @@
 page-repair-order {
+
+  //Android标题右间距
+  .toolbar-content-md {
+    margin-right: 44px;
+  }
+
   ion-footer {
     height: 48px;
     text-align: center;
@@ -6,10 +12,6 @@ page-repair-order {
     background: #1e70ab;
     vertical-align: middle;
     padding-top: 10px;
-  }
-
-  .toolbar-md{
-    padding: 0%;
   }
 
   .segment-md .segment-button.segment-activated {//横线
@@ -25,16 +27,11 @@ page-repair-order {
 
   .item{
     margin: 0px;
-  }
-
-  .item-md{
+    min-height: 3.4rem;
     padding-left: 10px;
     padding-right: 10px;
   }
 
-  .item-block{
-    min-height: 3.4rem
-  }
 
   .bar-button-default-md{
     color: white;
@@ -44,7 +41,6 @@ page-repair-order {
     margin-left: 0%;
     margin-right: 10px;
   }
-
 
   span{
     margin-left: 25%;

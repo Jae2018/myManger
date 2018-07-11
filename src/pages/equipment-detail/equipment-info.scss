@@ -1,11 +1,19 @@
 page-equipment-info {
-  ion-title{
-    margin-right: 48px;
+
+  //Android标题右间距
+  .toolbar-content-md {
+    margin-right: 44px;
   }
+
   .item{
+    margin: 0%;
     min-height: 3.4rem;
+    padding-left: 10px;
+    padding-right: 10px;
   }
+
   span{
-    margin-right: 20%;
+    float: right;
   }
+
 }
