@@ -1,0 +1,8 @@
+{
+  "name": "manger",
+  "app_id": "431f9811",
+  "type": "ionic-angular",
+  "integrations": {
+    "cordova": {}
+  }
+}
