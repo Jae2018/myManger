@@ -40,10 +40,6 @@ export class StorePage implements OnInit {
     }
   }
 
-  goOrder(event) {
-    this.navCtrl.push(RepairOrderPage);
-  }
-
   getStoreList() {
     // this.http.jsonp("",)
   }
@@ -66,6 +62,26 @@ export class StorePage implements OnInit {
       ]
     });
     actionSheet.present();
+  }
+
+  goEquipmentList(event){
+
+  }
+
+  goReportPage(event){
+
+  }
+
+  goRepairPage(){
+
+  }
+
+  goAuditPage(){
+
+  }
+
+  goAddPage(){
+
   }
 
 }
