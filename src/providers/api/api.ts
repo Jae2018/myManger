@@ -1,4 +1,4 @@
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 /**
@@ -7,6 +7,7 @@ import { Injectable } from '@angular/core';
 @Injectable()
 export class Api {
   url: string = 'https://example.com/api/v1';
+  public access_token: string = '';
 
   constructor(public http: HttpClient) {
   }
@@ -14,7 +15,7 @@ export class Api {
   get(endpoint: string, params?: any, reqOpts?: any) {
     if (!reqOpts) {
       reqOpts = {
-        params: new HttpParams()
+        headers : new HttpHeaders().set('Authorization',''),
       };
     }
 
@@ -29,7 +30,12 @@ export class Api {
     return this.http.get(this.url + '/' + endpoint, reqOpts);
   }
 
+  getToken(endpoint: string, body: any, reqOpts?: any) {
+    return this.http.post(this.url + '/' + endpoint, body, reqOpts);
+  }
+
   post(endpoint: string, body: any, reqOpts?: any) {
+
     return this.http.post(this.url + '/' + endpoint, body, reqOpts);
   }
 
@@ -44,4 +50,5 @@ export class Api {
   patch(endpoint: string, body: any, reqOpts?: any) {
     return this.http.patch(this.url + '/' + endpoint, body, reqOpts);
   }
+
 }

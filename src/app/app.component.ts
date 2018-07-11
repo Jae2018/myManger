@@ -3,56 +3,81 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 import { TranslateService } from '@ngx-translate/core';
 import { Config, Nav, Platform } from 'ionic-angular';
+import { Storage } from "@ionic/storage";
 
-import { FirstRunPage } from '../pages';
-import { Settings } from '../providers';
+import { MainPage, FirstRunPage } from '../pages';
 
 @Component({
-  template: `<ion-menu [content]="content">
-    <ion-header>
-      <ion-toolbar>
-        <ion-title>Pages</ion-title>
-      </ion-toolbar>
-    </ion-header>
+  template:
+  // `<ion-menu [content]="content">
+    // <ion-header>
+    //   <ion-toolbar>
+    //     <ion-title>Pages</ion-title>
+    //   </ion-toolbar>
+    // </ion-header>
 
-    <ion-content>
-      <ion-list>
-        <button menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)">
-          {{p.title}}
-        </button>
-      </ion-list>
-    </ion-content>
+    // <ion-content>
+    //   <ion-list>
+    //     <button menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)">
+    //       {{p.title}}
+    //     </button>
+    //   </ion-list>
+    // </ion-content>
+    // </ion-menu>
+`<ion-nav #content [root]="rootPage"></ion-nav>`
+  // templateUrl:'app.html'
 
-  </ion-menu>
-  <ion-nav #content [root]="rootPage"></ion-nav>`
 })
 export class MyApp {
-  rootPage = FirstRunPage;
+  rootPage: any;
+  tabsPage: any;
 
   @ViewChild(Nav) nav: Nav;
 
-  pages: any[] = [
-    { title: 'Tutorial', component: 'TutorialPage' },
-    { title: 'Welcome', component: 'WelcomePage' },
-    { title: 'Tabs', component: 'TabsPage' },
-    { title: 'Cards', component: 'CardsPage' },
-    { title: 'Content', component: 'ContentPage' },
-    { title: 'Login', component: 'LoginPage' },
-    { title: 'Signup', component: 'SignupPage' },
-    { title: 'Master Detail', component: 'ListMasterPage' },
-    { title: 'Menu', component: 'MenuPage' },
-    { title: 'Settings', component: 'SettingsPage' },
-    { title: 'Search', component: 'SearchPage' }
-  ]
-
-  constructor(private translate: TranslateService, platform: Platform, settings: Settings, private config: Config, private statusBar: StatusBar, private splashScreen: SplashScreen) {
+  constructor(private translate: TranslateService, platform: Platform, storage: Storage,
+    private config: Config, private statusBar: StatusBar, private splashScreen: SplashScreen) {
+    storage.get('firstIn').then((result) => {
+      result = false;
+      if (result) {
+        this.rootPage = MainPage;
+      } else {
+        storage.set('firstIn', true);
+        this.rootPage = FirstRunPage;
+      }
+    });
     platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
       this.statusBar.styleDefault();
       this.splashScreen.hide();
+
+      this.tabsPage = MainPage;
+      document.addEventListener('backbutton', () => {
+        let activeVC = this.nav.getActive();
+        let page = activeVC.instance;
+
+        if (!(page instanceof this.tabsPage)) {
+          if (!this.nav.canGoBack()) {
+            return platform.exitApp();
+          }
+          return this.nav.pop();
+        }
+
+        let tabs = page.tabs;
+        let activeNav = tabs.getSelected();
+
+        if (!activeNav.canGoBack()) {
+          console.log('检测到在 tab 页面的顶层点击了返回按钮。');
+          return platform.exitApp();
+        }
+
+        console.log('检测到当前 tab 弹出层的情况下点击了返回按钮。');
+        return activeNav.pop();
+
+      }, false);
     });
     this.initTranslate();
+
   }
 
   initTranslate() {

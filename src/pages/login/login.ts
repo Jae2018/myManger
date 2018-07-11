@@ -12,15 +12,15 @@ import { MainPage } from '../';
 })
 export class LoginPage {
   // The account fields for the login form.
-  // If you're using the username field with or without email, make
+  // If you're using the tel field with or without email, make
   // sure to add it to the type
-  account: { email: string, password: string } = {
-    email: 'test@example.com',
-    password: 'test'
+  account: { tel: string, password: string } = {
+    tel: ' ',
+    password: ''
   };
 
   // Our translated text strings
-  private loginErrorString: string;
+  // private loginErrorString: string;
 
   constructor(public navCtrl: NavController,
     public user: User,
@@ -28,23 +28,16 @@ export class LoginPage {
     public translateService: TranslateService) {
 
     this.translateService.get('LOGIN_ERROR').subscribe((value) => {
-      this.loginErrorString = value;
+      // this.loginErrorString = value;
     })
   }
 
   // Attempt to login in through our User service
   doLogin() {
-    this.user.login(this.account).subscribe((resp) => {
-      this.navCtrl.push(MainPage);
-    }, (err) => {
-      this.navCtrl.push(MainPage);
-      // Unable to log in
-      let toast = this.toastCtrl.create({
-        message: this.loginErrorString,
-        duration: 3000,
-        position: 'top'
-      });
-      toast.present();
+    let currentIndex = this.navCtrl.getActive().index;
+    this.navCtrl.push(MainPage).then(() => {
+      this.navCtrl.remove(currentIndex);
     });
   }
+
 }

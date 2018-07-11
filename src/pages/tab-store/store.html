@@ -1,0 +1,103 @@
+<!--
+  Generated template for the StorePage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>{{title}}</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+
+  <div style="display: flex;margin-top: 5%;padding-left: 16px;padding-right: 16px">
+    <div style="width: 84%;height: 50%;z-index: 1;">
+      <img  src="assets/icon/location.png">
+    </div>
+    <div style="margin-left: -10px;margin-top: 20px">
+      <img src="assets/icon/span_bg.png">
+      <span style="position: absolute;margin-top: -30px;margin-left: 15%">当前店铺：{{title}}</span>
+    </div>
+    <div style="margin-top: 20px">
+      <img src="assets/icon/change.png" (click)="location($event)">
+    </div>
+  </div>
+
+  <br>
+
+  <ion-list no-border>
+
+    <div style="display: flex;">
+      <div style="width: 40%;display: flex;">
+        <img src="assets/icon/dlist.png" style="width: 36px;height: 36px;margin-left: 16px">
+        <label style="padding: 8px;">设备列表</label>
+      </div>
+      <div style="width: 60%;display: flex;">
+        <span style="text-align: right;padding-top: 8px;color: #a5a5a5;width: 88%;">共有{{num}}台设备</span>
+        <img src="assets/icon/next.png" style="width: 18px;height: 18px;margin-top: 9px">
+      </div>
+    </div>
+
+    <hr class="divider">
+
+    <div style="display: flex;">
+      <div style="width: 40%;display: flex;">
+        <img src="assets/icon/dreport.png" style="width: 36px;height: 36px;margin-left: 16px">
+        <label style="padding: 8px;">设备列表</label>
+      </div>
+      <div style="width: 60%;display: flex;">
+        <span style="text-align: right;padding-top: 8px;color: #a5a5a5;width: 88%;">报修</span>
+        <img src="assets/icon/next.png" style="width: 18px;height: 18px;margin-top: 9px">
+      </div>
+    </div>
+
+    <hr class="divider">
+
+    <div style="display: flex;">
+      <div style="width: 40%;display: flex;">
+        <img src="assets/icon/order.png" style="width: 36px;height: 36px;margin-left: 16px">
+        <label style="padding: 8px;">设备列表</label>
+      </div>
+      <div style="width: 60%;display: flex;">
+        <span style="text-align: right;padding-top: 8px;color: #a5a5a5;width: 88%;">维修</span>
+        <img src="assets/icon/next.png" style="width: 18px;height: 18px;margin-top: 9px">
+      </div>
+    </div>
+
+    <hr class="divider">
+
+    <div style="display: flex;">
+      <div style="width: 40%;display: flex;">
+        <!-- <ion-icon style="width: 36px;height: 36px;margin-left: 16px" name="repairAudit"></ion-icon> -->
+        <img src="assets/icon/repair-audit.png" style="width: 36px;height: 36px;margin-left: 16px">
+        <label style="padding: 8px;">设备列表</label>
+      </div>
+      <div style="width: 60%;display: flex;">
+        <span style="text-align: right;padding-top: 8px;color: #a5a5a5;width: 88%;">验证</span>
+        <!-- <ion-icon style="text-align: right;height: 18px;margin-top: 9px" name="next"></ion-icon> -->
+        <img src="assets/icon/next.png" style="width: 18px;height: 18px;margin-top: 9px">
+      </div>
+    </div>
+
+    <hr class="divider">
+
+    <div style="display: flex;">
+      <div style="width: 40%;display: flex;">
+        <img src="assets/icon/add.png" style="width: 36px;height: 36px;margin-left: 16px">
+        <label style="padding: 8px;">设备列表</label>
+      </div>
+      <div style="width: 60%;display: flex;">
+        <span style="text-align: right;padding-top: 8px;color: #a5a5a5;width: 88%;">添加</span>
+        <img src="assets/icon/next.png" style="width: 18px;height: 18px;margin-top: 9px">
+      </div>
+    </div>
+
+  </ion-list>
+
+
+</ion-content>

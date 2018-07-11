@@ -1,0 +1,92 @@
+<!--
+  Generated template for the MinePage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>我的</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+  <div style="padding-left: 16px;padding-right: 16px">
+    <img style="width: 80px;height: 80px;z-index: 1;" class="center-horizontal" src="/assets/img/appicon.png">
+    <ion-item>
+      <label item-left style="color: white;margin-left: 10%">123</label>
+      <button item-right class="btn" (click)="doLoginOut($event)">注销</button>
+    </ion-item>
+  </div>
+
+  <ion-list style="margin-top: 40px">
+    <div style="display: flex;" (click)="goMyreport($event)">
+      <div style="width: 60%;display: flex;padding-left: 16px">
+        <img src="assets/icon/repair-audit.png" style="text-align: right;height: 18px;margin-top: 9px">
+        <label style="padding: 8px;">我的报修申请</label>
+      </div>
+      <div style="width: 40%;display: flex;">
+        <span style="text-align: right;padding-top: 8px;color: #a5a5a5;width: 70%;"></span>
+        <img src="assets/icon/next.png" style="text-align: right;height: 18px;margin-top: 9px">
+      </div>
+    </div>
+
+    <hr class="divider">
+
+    <div style="display: flex;" (click)="goMyRepair($event)">
+      <div style="width: 60%;display: flex;padding-left: 16px">
+        <img src="assets/icon/repair-audit.png" style="text-align: right;height: 18px;margin-top: 9px">
+        <label style="padding: 8px;">我的维修记录</label>
+      </div>
+      <div style="width: 40%;display: flex;">
+        <span style="text-align: right;padding-top: 8px;color: #a5a5a5;width: 70%;"></span>
+        <img src="assets/icon/next.png" style="text-align: right;height: 18px;margin-top: 9px">
+      </div>
+    </div>
+
+    <hr class="divider">
+
+    <div style="display: flex;" (click)="changePwd($event)">
+      <div style="width: 60%;display: flex;padding-left: 16px">
+        <img src="assets/icon/repair-audit.png" style="text-align: right;height: 18px;margin-top: 9px">
+        <label style="padding: 8px;">密码修改</label>
+      </div>
+      <div style="width: 40%;display: flex;">
+        <span style="text-align: right;padding-top: 8px;color: #a5a5a5;width: 70%;"></span>
+        <img src="assets/icon/next.png" style="text-align: right;height: 18px;margin-top: 9px">
+      </div>
+    </div>
+
+    <hr class="divider">
+
+    <div style="display: flex;" (click)="update($event)">
+      <div style="width: 60%;display: flex;padding-left: 16px">
+        <img src="assets/icon/repair-audit.png" style="text-align: right;height: 18px;margin-top: 9px">
+        <label style="padding: 8px;">检查更新</label>
+      </div>
+      <div style="width: 40%;display: flex;">
+        <span style="text-align: right;padding-top: 8px;color: #a5a5a5;width: 70%;"></span>
+        <img src="assets/icon/next.png" style="text-align: right;height: 18px;margin-top: 9px">
+      </div>
+    </div>
+
+    <hr class="divider">
+
+    <div style="display: flex;" (click)="aboutus($event)">
+      <div style="width: 60%;display: flex;padding-left: 16px">
+        <img src="assets/icon/repair-audit.png" style="text-align: right;height: 18px;margin-top: 9px">
+        <label style="padding: 8px;">关于我们</label>
+      </div>
+      <div style="width: 40%;display: flex;">
+        <span style="text-align: right;padding-top: 8px;color: #a5a5a5;width: 70%;"></span>
+        <img src="assets/icon/next.png" style="text-align: right;height: 18px;margin-top: 9px">
+      </div>
+    </div>
+
+    <hr class="divider">
+  </ion-list>
+
+</ion-content>

@@ -1,0 +1,27 @@
+page-inspect {
+  .lable-md{
+    float: left;
+  }
+
+  .item{
+    margin: 0%;
+  }
+
+  .item-block {
+    min-height: 3.4rem;
+  }
+
+  .center-vertical{
+    position: relative;
+    top:50%;
+    left: 30%;
+    transform:translateY(-50%);
+  }
+
+  .center-horizontal{
+    position: relative;
+    left:50%;
+    transform:translateX(-50%);
+  }
+}
+

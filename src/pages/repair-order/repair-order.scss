@@ -1,0 +1,52 @@
+page-repair-order {
+  ion-footer {
+    height: 48px;
+    text-align: center;
+    color: white;
+    background: #1e70ab;
+    vertical-align: middle;
+    padding-top: 10px;
+  }
+
+  .toolbar-md{
+    padding: 0%;
+  }
+
+  .segment-md .segment-button.segment-activated {//横线
+    border-color: transparent;
+  }
+
+  .segment-md .segment-button {//切换按钮内部
+    color: #1e70ab;
+    padding: 0%;
+    margin: 0 10px;
+    background: url('assets/icon/add.png');
+  }
+
+  .item{
+    margin: 0px;
+  }
+
+  .item-md{
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+
+  .item-block{
+    min-height: 3.4rem
+  }
+
+  .bar-button-default-md{
+    color: white;
+  }
+
+  .bar-button-md:first-child{
+    margin-left: 0%;
+    margin-right: 10px;
+  }
+
+
+  span{
+    margin-left: 25%;
+  }
+}

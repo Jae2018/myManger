@@ -1,2 +1,47 @@
 page-login {
+
+  // .content-md{
+  //   background-image: url('../../assets/imgs/bg.jpg');
+  //   background-color: transparent;
+  //   background-repeat: no-repeat;
+  //   background-size: contain;
+  // }
+
+  .scroll-content{
+    text-align: center;
+    background-image: url('../../assets/imgs/bg.jpg');
+    background-color: transparent;
+    background-repeat: no-repeat;
+    background-size: contain;
+  }
+
+  img{
+    width: auto;
+    height: 8%;
+    margin-top: 15%;
+    margin-bottom: 20%;
+  }
+
+  .item{
+    min-height: 3.4rem;
+    margin: 0%;
+    background: #fffffff5;
+    border-radius: 25px;
+    margin-top: 20px;
+    width: 70%;
+    left: 15%;
+  }
+
+  .input-has-focus{}
+
+  .input-wrapper{
+    padding-left: 24px;
+  }
+
+  .button{
+    margin-top: 30%;
+    width: 70%;
+    left: 15%;
+  }
+
 }

@@ -1,0 +1,110 @@
+<!--
+  Generated template for the MyBugReportPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>故障报修</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+  <ion-list>
+    <div class="item">
+      <label style="width: 40%;padding-left: 8px">设备名称</label>
+      <span style="width: 40%;padding-left: 10%">点餐机</span>
+      <span style="width: 20%;padding-right: 8px"></span>
+    </div>
+
+    <hr class="divider">
+
+    <div class="item">
+      <label style="width: 40%;padding-left: 8px">设备型号</label>
+      <span style="width: 40%;padding-left: 10%">点餐机</span>
+      <span style="width: 20%;padding-right: 8px"></span>
+    </div>
+
+    <hr class="divider">
+
+    <div class="item">
+      <label style="width: 40%;padding-left: 8px">设备位置</label>
+      <span style="width: 40%;padding-left: 10%">点餐机</span>
+      <span style="width: 20%;padding-right: 8px"></span>
+    </div>
+
+    <hr class="divider">
+
+    <div class="item">
+      <label style="width: 40%;padding-left: 8px">故障描述（语音）</label>
+      <span style="width: 40%;padding-left: 10%">点餐机</span>
+      <span style="width: 20%;padding-right: 8px"></span>
+    </div>
+
+    <hr class="divider">
+    <div class="item" (click)="textDes($event)">
+      <label style="width: 40%;padding-left: 8px">故障描述</label>
+      <span style="width: 40%;padding-left: 10%">{{opinion}}</span>
+      <div style="width: 20%;">
+        <img class="next_arrow" src="assets/icon/next.png">
+      </div>
+    </div>
+
+    <hr class="divider">
+
+    <div class="item" (click)="getImage($event)">
+      <label style="width: 40%;padding-left: 8px">故障图片</label>
+      <span style="width: 40%;padding-left: 10%">{{size}}张</span>
+      <div style="width: 20%;">
+        <img class="next_arrow" src="assets/icon/next.png">
+      </div>
+    </div>
+
+    <hr class="divider">
+
+    <div class="item">
+      <label style="width: 40%;padding-left: 8px">处理状态</label>
+      <span style="width: 40%;padding-left: 10%">点餐机</span>
+      <span style="width: 20%;padding-right: 8px"></span>
+    </div>
+
+    <hr class="divider">
+
+    <div class="item">
+      <label style="width: 40%;padding-left: 8px">审核时间</label>
+      <span style="width: 40%;padding-left: 10%">点餐机</span>
+      <span style="width: 20%;padding-right: 8px"></span>
+    </div>
+
+    <hr class="divider">
+
+    <div class="item" (click)="setOpinion($event)">
+      <label style="width: 40%;padding-left: 8px">处理意见</label>
+      <span style="width: 40%;padding-left: 10%">{{description}}</span>
+      <div style="width: 20%;">
+        <img class="next_arrow" src="assets/icon/next.png">
+      </div>
+    </div>
+
+    <hr class="divider">
+    <div class="item">
+      <label style="width: 40%;padding-left: 8px">发现时间</label>
+      <span style="width: 40%;padding-left: 10%">点餐机</span>
+      <span style="width: 20%;padding-right: 8px"></span>
+    </div>
+
+    <hr class="divider">
+
+    <div class="item">
+      <label style="width: 40%;padding-left: 8px">故障等级</label>
+      <span style="width: 40%;padding-left: 10%">点餐机</span>
+      <span style="width: 20%;padding-right: 8px"></span>
+    </div>
+
+  </ion-list>
+
+</ion-content>

@@ -3,8 +3,8 @@
 
   "NAME": "姓名",
   "EMAIL": "郵箱",
-  "USERNAME": "登錄名",
-  "PASSWORD": "口令",
+  "USERNAME": "賬 號",
+  "PASSWORD": "密 碼",
   "LOGIN": "登 錄",
   "SIGNUP": "註 冊",
 

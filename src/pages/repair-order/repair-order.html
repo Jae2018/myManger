@@ -1,0 +1,134 @@
+<!-- 未提交维修单，先产生的维修单详情 -->
+
+<ion-header>
+  <ion-navbar no-border-bottom>
+    <ion-title>
+      维修单
+    </ion-title>
+  </ion-navbar>
+
+
+</ion-header>
+
+<ion-content>
+  <div>
+    <ion-segment [(ngModel)]="type">
+      <ion-segment-button value="1">
+        故障信息
+      </ion-segment-button>
+      <ion-segment-button value="2">
+        处理意见
+      </ion-segment-button>
+      <ion-segment-button value="3">
+        工作量
+      </ion-segment-button>
+      <ion-segment-button value="4">
+        更换配件
+      </ion-segment-button>
+    </ion-segment>
+  </div>
+
+  <div [ngSwitch]="type">
+    <ion-list *ngSwitchCase="'1'">
+      <ion-item>
+        <label>设备名称</label>
+        <span>item.title</span>
+      </ion-item>
+      <ion-item>
+        <label>设备编码</label>
+        <span>item.title</span>
+      </ion-item>
+      <ion-item>
+        <label>设备型号</label>
+        <span>item.title</span>
+      </ion-item>
+      <ion-item>
+        <label>设备位置 </label>
+        <span>item.title</span>
+      </ion-item>
+      <ion-item>
+        <label>设备状态 </label>
+        <span>item.title</span>
+      </ion-item>
+      <ion-item>
+        <label>发现时间 </label>
+        <span>item.title</span>
+      </ion-item>
+      <ion-item>
+        <label>维修单号 </label>
+        <span>item.title</span>
+      </ion-item>
+      <ion-item>
+        <label style="width: 100px;">操作人</label>
+        <span style="margin-left: 28%">item.title</span>
+      </ion-item>
+      <ion-item>
+        <label>操作人电话</label>
+        <span style="margin-left: 20%">item.title</span>
+      </ion-item>
+      <ion-item>
+        <label>故障描述 </label>
+        <span>item.title</span>
+      </ion-item>
+    </ion-list>
+
+    <ion-list *ngSwitchCase="'2'">
+      <ion-item>
+        <label>设备名称</label>
+        <span>item.title</span>
+      </ion-item>
+      <ion-item>
+        <label>设备编码</label>
+        <span>item.title</span>
+      </ion-item>
+      <ion-item>
+        <label>设备型号</label>
+        <span>item.title</span>
+      </ion-item>
+      <ion-item>
+        <label>设备位置 </label>
+        <span>item.title</span>
+      </ion-item>
+      <ion-item>
+        <label>设备状态 </label>
+        <span>item.title</span>
+      </ion-item>
+      <ion-item>
+        <label>发现时间 </label>
+        <span>item.title</span>
+      </ion-item>
+      <ion-item>
+        <label>维修单号 </label>
+        <span>item.title</span>
+      </ion-item>
+      <ion-item>
+        <label style="width: 100px;">操 作 人</label>
+        <span style="margin-left: 28%">item.title</span>
+      </ion-item>
+      <ion-item>
+        <label>操作人电话</label>
+        <span style="margin-left: 20%">item.title</span>
+      </ion-item>
+      <ion-item>
+        <label>故障描述 </label>
+        <span>item.title</span>
+      </ion-item>
+    </ion-list>
+
+    <ion-list *ngSwitchCase="'3'">
+      <ion-item>
+        <ion-input type="text" placeholder="text"></ion-input>
+      </ion-item>
+    </ion-list>
+
+    <ion-list *ngSwitchCase="'4'">
+      <ion-item>
+        <ion-input type="text" placeholder="text"></ion-input>
+      </ion-item>
+    </ion-list>
+  </div>
+</ion-content>
+
+<ion-footer (click)="cancle($event)">
+  {{type==="1"?"撤单，我不去了":"立即修理"}}
+</ion-footer>

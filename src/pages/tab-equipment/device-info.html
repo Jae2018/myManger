@@ -1,0 +1,46 @@
+<!--
+  Generated template for the DeviceInfoPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>设备管理</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+
+  <div class="item" (click)="doClick($event)">
+    <div style="width: 10%;">
+      <img class="next_arrow" src="assets/icon/th-list.png">
+    </div>
+    <label style="width: 40%;padding-left: 8px">备件列表</label>
+    <span style="width: 40%;padding-left: 10%">总共{{num}}个备件</span>
+    <div style="width: 10%;">
+      <img class="next_arrow" src="assets/icon/next.png">
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <br>
+
+  <ion-grid>
+
+    <ion-row *ngFor="let item of items; let i=index">
+      <ion-col (click)="goDetail1($event)">
+        <div>水槽</div>
+      </ion-col>
+      <ion-col (click)="goDetail2($event)">
+        <div>水杯</div>
+      </ion-col>
+    </ion-row>
+
+  </ion-grid>
+
+</ion-content>

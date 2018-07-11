@@ -14,3 +14,67 @@
 // To declare rules for a specific mode, create a child rule
 // for the .md, .ios, or .wp mode classes. The mode class is
 // automatically applied to the <body> element in the app.
+//导航栏渐变，IOS直接包括状态栏，Android不行
+.toolbar-background {
+  color: -webkit-gradient(linear, 0% 0%, 100% 0%, from(#16b2ff), to(#0e87f9)) !important;
+  background: -webkit-gradient(linear, 0% 0%, 100% 0%, from(#16b2ff), to(#0e87f9)) !important;
+}
+//标题居中，颜色
+.toolbar-title{
+  color:#fff;
+  text-align: center;
+}
+//返回键颜色
+ion-header ion-icon.back-button-icon.icon {
+  color: map-get($colors, dark);
+}
+//返回键字体颜色，由于iOS没变化，加上这句
+.back-button-text{
+  color: transparent;
+}
+
+//分割线
+.divider{
+  margin-left: 16px;
+  margin-right: 16px;
+}
+
+.next_arrow{
+  float: right;
+  width: 18px;
+  height: 18px;
+}
+
+//card 头样式
+.card-header{
+  padding: 5px;
+  vertical-align: middle;
+}
+//card圆角度
+.card{
+  border-radius: 6px;
+}
+//Android标题右间距
+.toolbar-content-md {
+  margin-right: 48px;
+}
+//标题栏右侧字体颜色
+.bar-button-default-ios, .bar-button-clear-md-default, .bar-button-md-default{
+  color: white;
+  margin-right: 10px;
+}
+//tab按钮未选中状态
+.tab-button {
+  color: white !important;
+  background-color: #6e6178;
+}
+ //tab选中状态
+.tab-button[aria-selected=true] {
+  color: black !important;//text color
+  background-color: white;//back color
+  border-bottom-left-radius: 2px;
+  border-bottom-right-radius: 2px;
+  border: #6e6178;
+}
+
+

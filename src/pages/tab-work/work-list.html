@@ -1,0 +1,87 @@
+<!--
+  Generated template for the WorkListPage page.
+  首页：我的工单页面
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar transparent>
+    <ion-title class="title">工单</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content no-scroll padding>
+
+  <div style="display: flex;margin-top: 15%">
+
+    <div class="myshadow" style="margin-left: 7.5%;">
+      <div class="mydiv" (click)="goMyWorkListPage($event)">
+        <!-- <ion-icon name="orders"></ion-icon> -->
+        <img src="assets/icon/orders.png">
+        <span class="myspan">{{item.orders}}</span>
+      </div>
+      <span class="mytitle">我的工单</span>
+    </div>
+
+    <div style="width: 15%;display: inline-block;">
+      <hr style="width: 1px;height: 100%;color: #a9abb3;">
+    </div>
+
+    <div class="myshadow">
+      <div class="mydiv" (click)="goAudit($event)">
+          <img src="assets/icon/audit.png">
+        <!-- <ion-icon name="audit"></ion-icon> -->
+        <span class="myspan">{{item.audit}}</span>
+      </div>
+      <span class="mytitle">待审核工单</span>
+    </div>
+
+  </div>
+
+  <div style="display: flex;height: 36px;margin-left: 7.5%">
+    <hr class="leftline" >
+    <hr style="background: transparent;width: 5%;margin: 0px">
+    <hr class="rightline" >
+  </div>
+
+  <div style="display: flex;">
+
+    <div class="myshadow" style="margin-left: 7.5%">
+      <div class="mydiv" (click)="goPredoing($event)">
+          <img src="assets/icon/doing.png">
+        <!-- <ion-icon name="doing"></ion-icon> -->
+        <span class="myspan">{{item.doing}}</span>
+      </div>
+      <span class="mytitle">待执行工单</span>
+    </div>
+
+    <div style="width: 15%;display: inline-block;">
+      <hr style="width: 1px;height: 100%;color: #a9abb3;margin-top: -5px">
+    </div>
+
+    <div class="myshadow">
+      <div class="mydiv" (click)="goDone($event)">
+        <!-- <ion-icon name="preparing"></ion-icon> -->
+        <img src="assets/icon/preparing.png">
+        <span class="myspan">{{item.prepare}}</span>
+      </div>
+      <span class="mytitle">执行中工单</span>
+    </div>
+
+
+  </div>
+
+  <br>
+  <br>
+  <br><br><br>
+
+  <button style="display: inline-block;width: 100%;background: transparent">
+    <!-- <ion-icon name="scan" style="width: 13%;height: 13%;margin: 0%" (click)="scan($event)"></ion-icon> -->
+    <img src="assets/icon/scan.png" style="width: 13%;height: 13%;margin: 0%" (click)="scan($event)">
+  </button>
+
+
+</ion-content>

@@ -1,0 +1,97 @@
+<!--
+  Generated template for the MyBugReportListPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>我的报修申请</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+
+  <div>
+    <ion-segment [(ngModel)]="type">
+      <ion-segment-button value="1">
+        未提交
+      </ion-segment-button>
+      <ion-segment-button value="2">
+        已提交
+      </ion-segment-button>
+    </ion-segment>
+  </div>
+
+  <br>
+
+  <div [ngSwitch]="type">
+
+    <div *ngSwitchCase="1">
+      <ion-card *ngFor="let item of list; let i=index" style="background: #f9f9f9" (click)="goDetail($event,i)">
+        <ion-card-header>
+          <span style="margin-left: 5px">{{item.title}}</span>
+          <img src="assets/icon/next.png">
+          <span [ngStyle]="{'color':item.state ===1?'#3639ff':item.state ===2?'#fd39be':'#000000'}" class="myspan">33333</span>
+        </ion-card-header>
+
+        <hr style="color: #000000;margin: 0px 5px 0px 5px;">
+
+        <ion-card-content>
+          <p>
+            <label>设备编号</label>
+            <span>123</span>
+          </p>
+          <p>
+            <label>规格型号</label>
+            <span>123</span>
+          </p>
+          <p>
+            <label>记录时间</label>
+            <span>123</span>
+          </p>
+          <p>
+            <label>工单状态</label>
+            <span [ngStyle]="{'background':item.level===1?'red':item.level===2?'blue':'green'}" style="color: white;padding: 2px">123</span>
+          </p>
+        </ion-card-content>
+      </ion-card>
+    </div>
+
+    <div *ngSwitchCase="2">
+
+      <ion-card *ngFor="let item of list; let i=index" style="background: #f9f9f9" (click)="goDetail($event,i)">
+        <ion-card-header>
+          <span style="margin-left: 5px">{{item.title}}</span>
+          <img src="assets/icon/next.png">
+          <span [ngStyle]="{'color':item.state ===1?'#3639ff':item.state ===2?'#fd39be':'#000000'}" class="myspan">33333</span>
+        </ion-card-header>
+
+        <hr style="color: #000000;margin: 0px 5px 0px 5px;">
+
+        <ion-card-content>
+          <p>
+            <label>设备编号</label>
+            <span>123</span>
+          </p>
+          <p>
+            <label>规格型号</label>
+            <span>123</span>
+          </p>
+          <p>
+            <label>记录时间</label>
+            <span>123</span>
+          </p>
+          <p>
+            <label>工单状态</label>
+            <span [ngStyle]="{'background':item.level===1?'red':item.level===2?'blue':'green'}" style="color: white;padding: 2px">123</span>
+          </p>
+        </ion-card-content>
+      </ion-card>
+    </div>
+  </div>
+
+</ion-content>

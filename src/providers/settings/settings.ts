@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Storage } from '@ionic/storage';
+import { User } from '../user/user';
 
 /**
  * A simple settings/config class for storing key/value pairs with persistence.
@@ -8,6 +9,11 @@ import { Storage } from '@ionic/storage';
 export class Settings {
   private SETTINGS_KEY: string = '_settings';
 
+  private TOKEN: string = 'token';
+  private ACCOUNT: string = 'acount';
+
+  user: User;
+
   settings: any;
 
   _defaults: any;
@@ -15,6 +21,31 @@ export class Settings {
 
   constructor(public storage: Storage, defaults: any) {
     this._defaults = defaults;
+  }
+
+  saveToken(token: any) {
+    this.storage.set(this.TOKEN, token);
+  }
+
+  getToken() {
+    this.storage.get(this.TOKEN).then((value) => {
+      console.log("token is : " + value);
+    })
+  }
+
+  saveUserInfo(user: User) {
+    this.storage.set(this.ACCOUNT, user);
+  }
+
+  getUserInfo() {
+    this.storage.get(this.ACCOUNT).then((value) => {
+      console.log("user info is : " + this.user);
+      return value;
+    })
+  }
+
+  deleteUserInfo() {
+    this.storage.remove(this.ACCOUNT);
   }
 
   load() {

@@ -1,0 +1,31 @@
+page-mine {
+  .item{
+    margin: 0%;
+    background: #4292ec;
+    height: 80px;
+    border-radius: 5px;
+  }
+
+  .item-md.item-block .item-inner{
+    border-bottom: 0;
+  }
+
+  .center-horizontal{
+    position: relative;
+    left:40%;
+    transform: translateX(-50%);
+    transform: translateY(50%);
+  }
+
+  .btn{
+    border-radius: 15px;
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    background: #367ec3;
+    font-size: 11px;
+    color: white;
+  }
+
+}
