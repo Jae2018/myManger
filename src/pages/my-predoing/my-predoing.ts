@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { RepairReportPage } from '../repair-report/repair-report';
+import { RepairOrderPage } from '../repair-order/repair-order';
 
 /**
  * Generated class for the MyPredoingPage page.
@@ -38,7 +38,7 @@ export class MyPredoingPage {
   }
 
   goDetail(){
-    this.navCtrl.push(RepairReportPage);
+    this.navCtrl.push(RepairOrderPage);
   }
 
   ionViewWillUnload(){
