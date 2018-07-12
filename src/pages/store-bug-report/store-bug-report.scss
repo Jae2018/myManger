@@ -1,0 +1,22 @@
+page-store-bug-report {
+  img{
+    width: 18px;
+    height: 18px;
+    float: right;
+  }
+
+  .item{
+    margin: 0%;
+    padding-right: 16px;
+  }
+
+  .item-md.item-block .item-inner{
+    padding-right: 0%;
+  }
+
+  .button{
+    width: 70%;
+    left: 15%;
+  }
+
+}

@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
 /**
- * Generated class for the MinePwdChangePage page.
+ * Generated class for the StoreBugReportPage page.
  *
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
@@ -10,20 +10,20 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
 @IonicPage()
 @Component({
-  selector: 'page-mine-pwd-change',
-  templateUrl: 'mine-pwd-change.html',
+  selector: 'page-store-bug-report',
+  templateUrl: 'store-bug-report.html',
 })
-export class MinePwdChangePage {
+export class StoreBugReportPage {
+
+  item = {};
+  size: number = 0;
+  des: string = "";
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad MinePwdChangePage');
-  }
-
-  commit(event){
-    this.navCtrl.pop();
+    console.log('ionViewDidLoad StoreBugReportPage');
   }
 
 }
