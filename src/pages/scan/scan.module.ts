@@ -9,6 +9,9 @@ import { ScanPage } from './scan';
   imports: [
     IonicPageModule.forChild(ScanPage),
   ],
-  exports:[ScanPage]
+  exports:[ScanPage],
+  entryComponents:[
+    ScanPage
+  ]
 })
 export class ScanPageModule {}
