@@ -7,12 +7,39 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>mine-repair-history</ion-title>
+    <ion-title>我的维修记录</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
-<ion-content padding>
+<ion-content>
+  <ion-card *ngFor="let item of list; let i=index" style="background: #f9f9f9" (click)="goDetail($event,i)">
+    <ion-card-header>
+      <span style="margin-left: 5px">{{item.title}}</span>
+      <img src="assets/icon/next.png">
+      <span [ngStyle]="{'color':item.state ===1?'#3639ff':item.state ===2?'#fd39be':'#000000'}" class="myspan">33333</span>
+    </ion-card-header>
 
+    <hr style="color: #000000;margin: 0px 5px 0px 5px;">
+
+    <ion-card-content>
+      <p>
+        <label>设备编号</label>
+        <span>123</span>
+      </p>
+      <p>
+        <label>规格型号</label>
+        <span>123</span>
+      </p>
+      <p>
+        <label>记录时间</label>
+        <span>123</span>
+      </p>
+      <p>
+        <label>工单状态</label>
+        <span [ngStyle]="{'background':item.level===1?'red':item.level===2?'blue':'green'}" style="color: white;padding: 2px">123</span>
+      </p>
+    </ion-card-content>
+  </ion-card>
 </ion-content>

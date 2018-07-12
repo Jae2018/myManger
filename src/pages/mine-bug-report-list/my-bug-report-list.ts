@@ -1,5 +1,6 @@
 import { Component, ViewChild } from '@angular/core';
 import { IonicPage, NavController, NavParams, Slides, Tabs, Tab } from 'ionic-angular';
+import { MyBugReportPage } from '../mine-bug-report/my-bug-report';
 
 
 /**
@@ -17,9 +18,10 @@ import { IonicPage, NavController, NavParams, Slides, Tabs, Tab } from 'ionic-an
 export class MyBugReportListPage {
 
   list = [];
-  type = 1;
+  type: any;
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
+    this.type = '1';
   }
 
   ionViewDidLoad() {
@@ -42,11 +44,11 @@ export class MyBugReportListPage {
   }
 
   goDetail1(event, index) {
-
+    this.navCtrl.push(MyBugReportPage);
   }
 
   goDetail(event, index) {
-
+    this.navCtrl.push(MyBugReportPage);
   }
 
 }

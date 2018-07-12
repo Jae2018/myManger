@@ -36,26 +36,32 @@ export class MinePage {
     console.log("app is eixit");
   }
 
+  //修改密码
   changePwd(event){
     this.navCtrl.push(MinePwdChangePage);
   }
 
+  //更新
   update(event){
 
   }
 
+  //关于
   aboutus(event){
     this.navCtrl.push(MineAboutUsPage);
   }
 
+  //注销
   doLoginOut(event){
 
   }
 
+  //我的申请
   goMyreport(event){
     this.navCtrl.push(MyBugReportListPage);
   }
 
+  //我的维修
   goMyRepair(event){
     this.navCtrl.push(MineRepairHistoryPage);
   }

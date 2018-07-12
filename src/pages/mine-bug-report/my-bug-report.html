@@ -15,96 +15,94 @@
 
 <ion-content>
   <ion-list>
-    <div class="item">
-      <label style="width: 40%;padding-left: 8px">设备名称</label>
-      <span style="width: 40%;padding-left: 10%">点餐机</span>
-      <span style="width: 20%;padding-right: 8px"></span>
+
+    <div>
+      <label>设备名称</label>
+      <span>点餐机</span>
     </div>
 
     <hr class="divider">
 
-    <div class="item">
-      <label style="width: 40%;padding-left: 8px">设备型号</label>
-      <span style="width: 40%;padding-left: 10%">点餐机</span>
-      <span style="width: 20%;padding-right: 8px"></span>
+    <div>
+      <label>设备编码</label>
+      <span>点餐机</span>
     </div>
 
     <hr class="divider">
 
-    <div class="item">
-      <label style="width: 40%;padding-left: 8px">设备位置</label>
-      <span style="width: 40%;padding-left: 10%">点餐机</span>
-      <span style="width: 20%;padding-right: 8px"></span>
+    <div>
+      <label>设备型号</label>
+      <span>点餐机</span>
     </div>
 
     <hr class="divider">
 
-    <div class="item">
-      <label style="width: 40%;padding-left: 8px">故障描述（语音）</label>
-      <span style="width: 40%;padding-left: 10%">点餐机</span>
-      <span style="width: 20%;padding-right: 8px"></span>
-    </div>
-
-    <hr class="divider">
-    <div class="item" (click)="textDes($event)">
-      <label style="width: 40%;padding-left: 8px">故障描述</label>
-      <span style="width: 40%;padding-left: 10%">{{opinion}}</span>
-      <div style="width: 20%;">
-        <img class="next_arrow" src="assets/icon/next.png">
-      </div>
+    <div>
+      <label>设备位置</label>
+      <span>点餐机</span>
     </div>
 
     <hr class="divider">
 
-    <div class="item" (click)="getImage($event)">
-      <label style="width: 40%;padding-left: 8px">故障图片</label>
-      <span style="width: 40%;padding-left: 10%">{{size}}张</span>
-      <div style="width: 20%;">
-        <img class="next_arrow" src="assets/icon/next.png">
-      </div>
+    <div>
+      <label>故障描述(语音)</label>
+      <span>点餐机</span>
     </div>
 
     <hr class="divider">
 
-    <div class="item">
-      <label style="width: 40%;padding-left: 8px">处理状态</label>
-      <span style="width: 40%;padding-left: 10%">点餐机</span>
-      <span style="width: 20%;padding-right: 8px"></span>
+    <div (click)="textDes($event) ">
+      <label>故障描述</label>
+      <span>{{description}}</span>
+      <img src="assets/icon/next.png">
     </div>
 
     <hr class="divider">
 
-    <div class="item">
-      <label style="width: 40%;padding-left: 8px">审核时间</label>
-      <span style="width: 40%;padding-left: 10%">点餐机</span>
-      <span style="width: 20%;padding-right: 8px"></span>
+    <div (click)="goScanPhoto($event)">
+      <label>故障图片</label>
+      <span>{{size}}张</span>
+      <img ng-show="size===0" src="assets/icon/next.png">
     </div>
 
     <hr class="divider">
 
-    <div class="item" (click)="setOpinion($event)">
-      <label style="width: 40%;padding-left: 8px">处理意见</label>
-      <span style="width: 40%;padding-left: 10%">{{description}}</span>
-      <div style="width: 20%;">
-        <img class="next_arrow" src="assets/icon/next.png">
-      </div>
-    </div>
-
-    <hr class="divider">
-    <div class="item">
-      <label style="width: 40%;padding-left: 8px">发现时间</label>
-      <span style="width: 40%;padding-left: 10%">点餐机</span>
-      <span style="width: 20%;padding-right: 8px"></span>
+    <div>
+      <label>处理状态</label>
+      <span>点餐机</span>
     </div>
 
     <hr class="divider">
 
-    <div class="item">
-      <label style="width: 40%;padding-left: 8px">故障等级</label>
-      <span style="width: 40%;padding-left: 10%">点餐机</span>
-      <span style="width: 20%;padding-right: 8px"></span>
+    <div>
+      <label>审核时间</label>
+      <span>点餐机</span>
     </div>
+
+    <hr class="divider">
+
+    <div (click)="setOpinion($event)">
+      <label>处理意见</label>
+      <span>点餐机</span>
+      <!-- <textarea name="" id="" cols="30" rows="10"></textarea> -->
+      <img src="assets/icon/next.png">
+    </div>
+
+    <hr class="divider">
+
+    <div>
+      <label>发现时间</label>
+      <span>点餐机</span>
+    </div>
+
+    <hr class="divider">
+
+    <div>
+      <label>故障等级</label>
+      <span>点餐机</span>
+    </div>
+
+    <hr class="divider">
 
   </ion-list>
-
 </ion-content>

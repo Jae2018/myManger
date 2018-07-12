@@ -1,9 +1,6 @@
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { ErrorHandler, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { Camera } from '@ionic-native/camera';
-import { SplashScreen } from '@ionic-native/splash-screen';
-import { StatusBar } from '@ionic-native/status-bar';
 import { IonicStorageModule, Storage } from '@ionic/storage';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
@@ -18,7 +15,6 @@ import { MyBugReportListPageModule } from '../pages/mine-bug-report-list/my-bug-
 import { MyDoingPageModule } from '../pages/my-doing/my-doing.module';
 import { MyPredoingPageModule } from '../pages/my-predoing/my-predoing.module';
 import { RepairReportPageModule } from '../pages/repair-report/repair-report.module';
-import { QRScanner } from "@ionic-native/qr-scanner";
 import { RepairOrderPageModule } from '../pages/repair-order/repair-order.module';
 import { ImagePageModule } from '../pages/image/image.module';
 import { EquipmentListPageModule } from '../pages/equipment-list/equipment-list.module';
@@ -27,7 +23,16 @@ import { MyOrderDetailPageModule } from '../pages/my-order-detail/my-order-detai
 import { MinePwdChangePageModule } from '../pages/mine-pwd-change/mine-pwd-change.module';
 import { MineAboutUsPageModule } from '../pages/mine-about-us/mine-about-us.module';
 import { MineRepairHistoryPageModule } from '../pages/mine-repair-history/mine-repair-history.module';
+import { MyBugReportPageModule } from '../pages/mine-bug-report/my-bug-report.module';
+
+import { QRScanner } from "@ionic-native/qr-scanner";
+import { Camera } from '@ionic-native/camera';
+import { SplashScreen } from '@ionic-native/splash-screen';
+import { StatusBar } from '@ionic-native/status-bar';
 import { CallNumber } from '@ionic-native/call-number';
+import { File } from '@ionic-native/file';
+import { Transfer } from '@ionic-native/transfer';
+import { FilePath } from '@ionic-native/file-path';
 
 // The translate loader needs to know where to load i18n files
 // in Ionic's static asset pipeline.
@@ -86,7 +91,7 @@ export function provideSettings(storage: Storage) {
 
     MyBugReportListPageModule,
     MineRepairHistoryPageModule,
-
+    MyBugReportPageModule,
     MinePwdChangePageModule,
     MineAboutUsPageModule,
 
@@ -99,7 +104,10 @@ export function provideSettings(storage: Storage) {
     Api,
     Items,
     User,
+    File,
+    Transfer,
     Camera,
+    FilePath,
     SplashScreen,
     StatusBar,
     GlobalUtils,

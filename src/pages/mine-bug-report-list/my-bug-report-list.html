@@ -30,7 +30,7 @@
 
   <div [ngSwitch]="type">
 
-    <div *ngSwitchCase="1">
+    <div *ngSwitchCase="'1'">
       <ion-card *ngFor="let item of list; let i=index" style="background: #f9f9f9" (click)="goDetail($event,i)">
         <ion-card-header>
           <span style="margin-left: 5px">{{item.title}}</span>
@@ -61,7 +61,7 @@
       </ion-card>
     </div>
 
-    <div *ngSwitchCase="2">
+    <div *ngSwitchCase="'2'">
 
       <ion-card *ngFor="let item of list; let i=index" style="background: #f9f9f9" (click)="goDetail($event,i)">
         <ion-card-header>

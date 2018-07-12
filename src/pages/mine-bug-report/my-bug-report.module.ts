@@ -9,5 +9,8 @@ import { MyBugReportPage } from './my-bug-report';
   imports: [
     IonicPageModule.forChild(MyBugReportPage),
   ],
+  entryComponents:[
+    MyBugReportPage
+  ]
 })
 export class MyBugReportPageModule {}

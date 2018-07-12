@@ -7,12 +7,19 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>图片预览</ion-title>
+    <ion-title>故障图片预览</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
-<ion-content padding>
-
+<ion-content>
+  <ion-card *ngFor="let item of list; let i=index">
+    <img src="{{item.pic}}"/>
+    <ion-card-content>
+      <p>
+        {{item.time}}
+      </p>
+    </ion-card-content>
+  </ion-card>
 </ion-content>
