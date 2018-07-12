@@ -26,4 +26,24 @@ export class StoreBugReportPage {
     console.log('ionViewDidLoad StoreBugReportPage');
   }
 
+  //日期
+  datePicker(){
+
+  }
+
+  //等级
+  levelAlert(){
+
+  }
+
+  //类型
+  typeAlert(){
+
+  }
+
+  //状态
+  stateAlert(){
+
+  }
+
 }
