@@ -39,19 +39,19 @@
       <img src="assets/icon/next.png">
     </ion-item>
 
-    <ion-item>
+    <ion-item (click)="levelAlert($event)">
       <label>故障等级</label>
       {{item.level}}
       <img src="assets/icon/next.png">
     </ion-item>
 
-    <ion-item>
+    <ion-item (click)="typeAlert($event)">
       <label>故障类别</label>
       {{item.type}}
       <img src="assets/icon/next.png">
     </ion-item>
 
-    <ion-item>
+    <ion-item (click)="stateAlert($event)">
       <label>设备状态</label>
       {{item.state}}
       <img src="assets/icon/next.png">
@@ -68,7 +68,7 @@
       <img src="assets/icon/next.png">
     </ion-item>
 
-    <ion-item>
+    <ion-item (click)="takephoto($event)">
       <ion-label fixed>故障图片</ion-label>
       {{size}}张
       <img src="assets/icon/next.png">

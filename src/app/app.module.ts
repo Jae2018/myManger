@@ -26,12 +26,12 @@ import { MineRepairHistoryPageModule } from '../pages/mine-repair-history/mine-r
 import { MyBugReportPageModule } from '../pages/mine-bug-report/my-bug-report.module';
 
 import { QRScanner } from "@ionic-native/qr-scanner";
-import { Camera } from '@ionic-native/camera';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 import { CallNumber } from '@ionic-native/call-number';
+import { Camera } from "@ionic-native/camera";
 import { File } from '@ionic-native/file';
-import { Transfer } from '@ionic-native/transfer';
+import { FileTransfer } from '@ionic-native/file-transfer';
 import { FilePath } from '@ionic-native/file-path';
 import { StoreBugReportPageModule } from '../pages/store-bug-report/store-bug-report.module';
 
@@ -110,9 +110,9 @@ export function provideSettings(storage: Storage) {
     Api,
     Items,
     User,
-    File,
-    Transfer,
     Camera,
+    File,
+    FileTransfer,
     FilePath,
     SplashScreen,
     StatusBar,
