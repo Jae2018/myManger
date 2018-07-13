@@ -16,7 +16,7 @@ page-tabs {
     //for ios
     .ion-ios-tab-#{nth($tabImageName, $i)} {
         @extend .ion-tab-icon-base;
-        content: url("../../assets/icon/icon_#{nth($tabImageName, $i)}_on.png");
+        content: url("../../assets/icon/icon_#{nth($tabImageName, $i)}_on.png");//../../assets/icon/icon_
     }
     .ion-ios-tab-#{nth($tabImageName, $i)}-outline {
         @extend .ion-tab-icon-base;

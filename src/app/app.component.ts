@@ -37,7 +37,7 @@ export class MyApp {
   constructor(private translate: TranslateService, platform: Platform, storage: Storage,
     private config: Config, private statusBar: StatusBar, private splashScreen: SplashScreen) {
     storage.get('firstIn').then((result) => {
-      result = false;
+
       if (result) {
         this.rootPage = MainPage;
       } else {

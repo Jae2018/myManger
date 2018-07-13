@@ -1,4 +1,4 @@
-import { Component, ViewChild, OnInit } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { IonicPage, NavController, LoadingController, Refresher } from 'ionic-angular';
 import { MyWorkListPage } from '../my-work-list/my-work-list';
 import { HttpClient } from '@angular/common/http';
