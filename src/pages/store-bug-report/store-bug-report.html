@@ -35,25 +35,25 @@
 
     <ion-item>
       <label>发生时间</label>
-      {{item.date}}
+      <span>{{time}}</span>
       <img src="assets/icon/next.png">
     </ion-item>
 
     <ion-item (click)="levelAlert($event)">
       <label>故障等级</label>
-      {{item.level}}
+      <span>{{level}}</span>
       <img src="assets/icon/next.png">
     </ion-item>
 
     <ion-item (click)="typeAlert($event)">
       <label>故障类别</label>
-      {{item.type}}
+      <span>{{type}}</span>
       <img src="assets/icon/next.png">
     </ion-item>
 
     <ion-item (click)="stateAlert($event)">
       <label>设备状态</label>
-      {{item.state}}
+      <span>{{state}}</span>
       <img src="assets/icon/next.png">
     </ion-item>
 

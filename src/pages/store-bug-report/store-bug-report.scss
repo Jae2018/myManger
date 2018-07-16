@@ -7,16 +7,25 @@ page-store-bug-report {
 
   .item{
     margin: 0%;
-    padding-right: 16px;
+    padding-right: 10px;
   }
 
   .item-md.item-block .item-inner{
     padding-right: 0%;
   }
 
+  .label-md{
+    margin: 13px 0;
+  }
+
   .button{
     width: 70%;
     left: 15%;
+  }
+
+  span{
+    font-size: 13px;
+    margin-left: 20%;
   }
 
 }

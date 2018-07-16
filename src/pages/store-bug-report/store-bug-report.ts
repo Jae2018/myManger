@@ -19,6 +19,10 @@ export class StoreBugReportPage {
   item = {};
   size: number = 0;
   des: string = "";
+  level: string = "";
+  type: string = "";
+  state: string = "";
+  time:string = "";
   // event = {
   //   month: '2018-08-01',
   //   timeStarts: '12:00',
@@ -31,9 +35,9 @@ export class StoreBugReportPage {
 
   ionViewDidLoad() {
     var date = new Date();
-    console.log(date.toLocaleDateString() + " " + (date.getHours() < 10 ? "0" + date.getHours() : date.getHours())
+    this.time = date.toLocaleDateString() + " " + (date.getHours() < 10 ? "0" + date.getHours() : date.getHours())
       + ":" + (date.getMinutes() < 10 ? "0" + date.getMinutes() : date.getMinutes())
-      + ":" + (date.getSeconds() < 10 ? "0" + date.getSeconds() : date.getSeconds()));
+      + ":" + (date.getSeconds() < 10 ? "0" + date.getSeconds() : date.getSeconds());
 
   }
 
@@ -52,7 +56,7 @@ export class StoreBugReportPage {
       label: '紧急',
       value: '紧急',
       handler: data => {
-        console.log(data.value);
+        this.level = data.value;
         a1.dismiss();
       }
     });
@@ -62,7 +66,7 @@ export class StoreBugReportPage {
       label: '一般',
       value: '一般',
       handler: data => {
-        console.log(data.value);
+        this.level = data.value;
         a1.dismiss();
       }
     });
@@ -72,7 +76,7 @@ export class StoreBugReportPage {
       label: '其他',
       value: '其他',
       handler: data => {
-        console.log(data.value);
+        this.level = data.value;
         a1.dismiss();
       }
     });
@@ -82,27 +86,57 @@ export class StoreBugReportPage {
 
   //类型
   typeAlert(event) {
-    let a2 = this.alert.create();
-    a2.setMode('ios');
-    a2.setTitle('故障类型');
-
-    a2.addInput({
-      type: 'textarea',
-      placeholder: '其他',
+    let a3 = this.alert.create();
+    a3.setMode('ios');
+    a3.setTitle('故障类型');
+    a3.addInput({
+      type: 'radio',
+      label: '电气故障',
+      value: '电气故障',
       handler: data => {
-        console.log(data);
+        this.state = data.value;
+        a3.dismiss();
+      }
+    });
+    a3.addInput({
+      type: 'radio',
+      label: '机械故障',
+      value: '机械故障',
+      handler: data => {
+        this.state = data.value;
+        a3.dismiss();
+      }
+    });
+    a3.addInput({
+      type: 'radio',
+      label: '物料原因故障',
+      value: '物料原因故障',
+      handler: data => {
+        this.state = data.value;
+        a3.dismiss();
+      }
+    });
+    a3.addInput({
+      type: 'radio',
+      label: '能源供给故障',
+      value: '能源供给故障',
+      handler: data => {
+        this.state = data.value;
+        a3.dismiss();
       }
     });
 
-    a2.addButton('取消');
-    a2.addButton({
-      text: '确认',
+    a3.addInput({
+      type: 'radio',
+      label: '其他故障',
+      value: '其他故障',
       handler: data => {
-        console.log('Checkbox data:', data);
-
+        this.state = data.value;
+        a3.dismiss();
       }
     });
-    a2.present();
+
+    a3.present();
   }
 
   //状态
@@ -114,25 +148,53 @@ export class StoreBugReportPage {
       type: 'radio',
       label: '停机待修',
       value: '停机待修',
+      handler: data => {
+        this.state = data.value;
+        a3.dismiss();
+      }
     });
     a3.addInput({
       type: 'radio',
       label: '带病运行',
       value: '带病运行',
+      handler: data => {
+        this.state = data.value;
+        a3.dismiss();
+      }
     });
     a3.addInput({
       type: 'radio',
       label: '其他',
       value: '其他',
-    });
-    a3.addButton('取消');
-    a3.addButton({
-      text: '确认',
       handler: data => {
-        console.log(data);
+        this.state = data.value;
+        a3.dismiss();
       }
     });
+
     a3.present();
+  }
+
+  //描述
+  descrption(){
+    let a2 = this.alert.create();
+    a2.setMode('ios');
+    a2.setTitle('描述');
+
+    a2.addInput({
+      type: 'input',
+      name:'title',
+      placeholder: '其他'
+    });
+
+    a2.addButton('取消');
+    a2.addButton({
+      text: '确认',
+      handler: data => {
+        this.type = data.title;
+      }
+    });
+    a2.present();
   }
 
   //拍照

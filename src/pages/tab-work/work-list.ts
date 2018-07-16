@@ -40,7 +40,7 @@ export class WorkListPage {
 
   ionViewDidEnter() {
     //栈底到栈顶，显示后
-    //  this.getData();
+     this.getData();
   }
 
 

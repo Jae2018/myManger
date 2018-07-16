@@ -34,6 +34,7 @@ import { File } from '@ionic-native/file';
 import { FileTransfer } from '@ionic-native/file-transfer';
 import { FilePath } from '@ionic-native/file-path';
 import { StoreBugReportPageModule } from '../pages/store-bug-report/store-bug-report.module';
+import { LoginPageModule } from '../pages/login/login.module';
 
 // The translate loader needs to know where to load i18n files
 // in Ionic's static asset pipeline.
@@ -77,6 +78,8 @@ export function provideSettings(storage: Storage) {
       pageTransition: 'ios',
     }),
     IonicStorageModule.forRoot(),
+    //login
+    LoginPageModule,
 
     // main subs
     MyWorkListPageModule,
