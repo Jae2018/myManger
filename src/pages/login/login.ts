@@ -37,11 +37,11 @@ export class LoginPage {
 
   // Attempt to login in through our User service
   doLogin() {
-    // let currentIndex = this.navCtrl.getActive().index;
-    // this.navCtrl.push(MainPage).then(() => {
-    //   this.navCtrl.remove(currentIndex);
-    // });
-    this.navCtrl.popToRoot();
+    let currentIndex = this.navCtrl.getActive().index;
+    this.navCtrl.push(MainPage).then(() => {
+      this.navCtrl.remove(currentIndex);
+    });
+    // this.navCtrl.push(MainPage);
   }
 
 }

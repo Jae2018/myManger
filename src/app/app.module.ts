@@ -35,6 +35,7 @@ import { FileTransfer } from '@ionic-native/file-transfer';
 import { FilePath } from '@ionic-native/file-path';
 import { StoreBugReportPageModule } from '../pages/store-bug-report/store-bug-report.module';
 import { LoginPageModule } from '../pages/login/login.module';
+import { Geolocation } from '@ionic-native/geolocation';
 
 // The translate loader needs to know where to load i18n files
 // in Ionic's static asset pipeline.
@@ -122,6 +123,7 @@ export function provideSettings(storage: Storage) {
     GlobalUtils,
     QRScanner,
     CallNumber,
+    Geolocation,
     { provide: Settings, useFactory: provideSettings, deps: [Storage] },
     // Keep this to enable Ionic's runtime error handling during development
     { provide: ErrorHandler, useClass: IonicErrorHandler }
