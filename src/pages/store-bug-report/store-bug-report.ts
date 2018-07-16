@@ -1,6 +1,9 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
 import { Camera, CameraOptions } from '@ionic-native/camera';
+import { Media, MediaObject } from '@ionic-native/media';
+import { File } from '@ionic-native/file';
+import { FileTransfer, FileTransferObject } from '@ionic-native/file-transfer';
 
 /**
  * Generated class for the StoreBugReportPage page.
@@ -22,15 +25,15 @@ export class StoreBugReportPage {
   level: string = "";
   type: string = "";
   state: string = "";
-  time:string = "";
-  // event = {
-  //   month: '2018-08-01',
-  //   timeStarts: '12:00',
-  //   timeEnds: '2018-12-31'
-  // }
+  time: string = "";
+  hasRecord: boolean = false;//显示录音图标
+  public filePath: any; //录音文件的名字
+  public recordData: MediaObject; //录音对象
+  fileTransfer: FileTransferObject;//传输类
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
-    private alert: AlertController, private camera: Camera) {
+    private alert: AlertController, private camera: Camera,
+    private media: Media, private file: File, private transfer: FileTransfer) {
   }
 
   ionViewDidLoad() {
@@ -176,14 +179,14 @@ export class StoreBugReportPage {
   }
 
   //描述
-  descrption(){
+  descrption() {
     let a2 = this.alert.create();
     a2.setMode('ios');
     a2.setTitle('描述');
 
     a2.addInput({
       type: 'input',
-      name:'title',
+      name: 'title',
       placeholder: '其他'
     });
 
@@ -195,6 +198,33 @@ export class StoreBugReportPage {
       }
     });
     a2.present();
+  }
+
+  startRecord() {  //开始录音
+    let date = new Date();
+    //文件URL，文件存放在拓展内存卡中文件夹下，命名为Record.mp3
+    this.filePath = this.file.externalDataDirectory + "Record_" + date.getDate() + date.getHours()
+      + date.getMinutes() + date.getSeconds() + ".mp3";
+    //创建media对象，参数文件名字，上面的filePath也指定了文件存放位置和文件名字
+    this.recordData = this.media.create(this.filePath);
+    //开始录音
+    this.recordData.startRecord();
+  }
+
+  pauseRecord() {
+    //停止录音
+    this.recordData.stopRecord();
+    this.hasRecord = true;
+  }
+
+  //播放录音
+  playRecord() {
+
+  }
+
+  //停止播放
+  stopRecord() {
+
   }
 
   //拍照

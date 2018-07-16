@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { IonicPage, NavController, NavParams, ActionSheetController } from 'ionic-angular';
 import { HttpClient } from '../../../node_modules/@angular/common/http';
 import { StoreBugReportPage } from '../store-bug-report/store-bug-report';
+import { Geolocation } from '@ionic-native/geolocation';
 
 /**
  * Generated class for the StorePage page.
@@ -23,7 +24,8 @@ export class StorePage implements OnInit {
   public item: any;
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
-    public actionSheetCtrl: ActionSheetController, private http: HttpClient) {
+    public actionSheetCtrl: ActionSheetController, private http: HttpClient,
+    private geolocation: Geolocation) {
 
   }
 
@@ -40,6 +42,15 @@ export class StorePage implements OnInit {
     }
   }
 
+  getLocation(){
+    this.geolocation.getCurrentPosition().then((resp) => {
+      // resp.coords.latitude
+      // resp.coords.longitude
+     }).catch((error) => {
+       console.log('Error getting location', error);
+     });
+  }
+
   getStoreList() {
     // this.http.jsonp("",)
   }
@@ -51,12 +62,12 @@ export class StorePage implements OnInit {
         {
           text: '分区1店',
           handler: () => {
-            this.title="分区1店";
+            this.title = "分区1店";
           }
         }, {
           text: '分区2店',
           handler: () => {
-            this.title="分区2店";
+            this.title = "分区2店";
           }
         }
       ]
@@ -64,23 +75,23 @@ export class StorePage implements OnInit {
     actionSheet.present();
   }
 
-  goEquipmentList(event){
+  goEquipmentList(event) {
 
   }
 
-  goReportPage(event){
+  goReportPage(event) {
     this.navCtrl.push(StoreBugReportPage);
   }
 
-  goRepairPage(){
+  goRepairPage() {
 
   }
 
-  goAuditPage(){
+  goAuditPage() {
 
   }
 
-  goAddPage(){
+  goAddPage() {
 
   }
 
