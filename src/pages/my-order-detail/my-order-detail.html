@@ -1,82 +1,108 @@
-<!--维修申报
-  Generated template for the RepairReportPage page.
+<!--
+  Generated template for the MyBugReportPage page.
 
   See http://ionicframework.com/docs/components/#navigation for more info on
   Ionic pages and navigation.
 -->
 <ion-header>
 
-    <ion-navbar>
-      <ion-title>维修单详情</ion-title>
-    </ion-navbar>
+  <ion-navbar>
+    <ion-title>维修单详情</ion-title>
+  </ion-navbar>
 
-  </ion-header>
+</ion-header>
 
 
-  <ion-content>
+<ion-content>
+  <ion-list>
 
-    <ion-list>
-      <ion-item>
-        <label>设备名称</label>
-        <span>点餐机</span>
-      </ion-item>
+    <div>
+      <label>设备名称</label>
+      <span>点餐机</span>
+    </div>
 
-      <ion-item>
-        <label>设备编码</label>
-        <span>点餐机</span>
-      </ion-item>
+    <hr class="divider">
 
-      <ion-item>
-        <label>设备型号</label>
-        <span>点餐机</span>
-      </ion-item>
-      <ion-item>
-        <label>设备位置</label>
-        <span>点餐机</span>
-      </ion-item>
+    <div>
+      <label>设备编码</label>
+      <span>点餐机</span>
+    </div>
 
-      <ion-item>
-        <label>故障描述（语音）</label>
-        <span style="margin-left: 8.5%">点餐机</span>
-      </ion-item>
+    <hr class="divider">
 
-      <ion-item>
-        <label>故障描述</label>
-        <span>点餐机</span>
-        <img src="assets/icon/next.png">
-      </ion-item>
+    <div>
+      <label>设备型号</label>
+      <span>点餐机</span>
+    </div>
 
-      <ion-item>
-        <label>故障图片</label>
-        <span>点餐机</span>
-        <img src="assets/icon/next.png">
-      </ion-item>
+    <hr class="divider">
 
-      <ion-item>
-        <label>处理状态</label>
-        <span>点餐机</span>
-      </ion-item>
+    <div>
+      <label>设备位置</label>
+      <span>点餐机</span>
+    </div>
 
-      <ion-item>
-        <label>审核时间</label>
-        <span>点餐机</span>
-      </ion-item>
+    <hr class="divider">
 
-      <ion-item>
-        <label>处理意见</label>
-        <span>点餐机</span>
-        <img src="assets/icon/next.png">
-      </ion-item>
+    <div>
+      <label>故障描述(语音)</label>
+      <span>点餐机</span>
+    </div>
 
-      <ion-item>
-        <label>发现时间</label>
-        <span>点餐机</span>
-      </ion-item>
+    <hr class="divider">
 
-      <ion-item>
-        <label>故障等级</label>
-        <span>紧急</span>
-      </ion-item>
-    </ion-list>
+    <div (click)="textDes($event) ">
+      <label>故障描述</label>
+      <span>{{description}}</span>
+      <img src="assets/icon/next.png">
+    </div>
 
-  </ion-content>
+    <hr class="divider">
+
+    <div (click)="goScanPhoto($event)">
+      <label>故障图片</label>
+      <span>{{size}}张</span>
+      <img ng-show="size===0" src="assets/icon/next.png">
+    </div>
+
+    <hr class="divider">
+
+    <div>
+      <label>处理状态</label>
+      <span>点餐机</span>
+    </div>
+
+    <hr class="divider">
+
+    <div>
+      <label>审核时间</label>
+      <span>点餐机</span>
+    </div>
+
+    <hr class="divider">
+
+    <div (click)="setOpinion($event)">
+      <label>处理意见</label>
+      <span>点餐机</span>
+      <!-- <textarea name="" id="" cols="30" rows="10"></textarea> -->
+      <img src="assets/icon/next.png">
+    </div>
+
+    <hr class="divider">
+
+    <div>
+      <label>发现时间</label>
+      <span>点餐机</span>
+    </div>
+
+    <hr class="divider">
+
+    <div>
+      <label>故障等级</label>
+      <span>点餐机</span>
+    </div>
+
+    <hr class="divider">
+
+  </ion-list>
+</ion-content>
