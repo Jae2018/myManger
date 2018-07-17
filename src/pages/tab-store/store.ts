@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams, ActionSheetController } from 'ioni
 import { HttpClient } from '../../../node_modules/@angular/common/http';
 import { StoreBugReportPage } from '../store-bug-report/store-bug-report';
 import { Geolocation } from '@ionic-native/geolocation';
+import { AddRepairReportPage } from '../add-repair-report/add-repair-report';
 
 /**
  * Generated class for the StorePage page.
@@ -83,16 +84,9 @@ export class StorePage implements OnInit {
     this.navCtrl.push(StoreBugReportPage);
   }
 
-  goRepairPage() {
-
-  }
-
-  goAuditPage() {
-
-  }
 
   goAddPage() {
-
+    this.navCtrl.push(AddRepairReportPage);
   }
 
 }
