@@ -36,6 +36,8 @@ import { FilePath } from '@ionic-native/file-path';
 import { StoreBugReportPageModule } from '../pages/store-bug-report/store-bug-report.module';
 import { LoginPageModule } from '../pages/login/login.module';
 import { Geolocation } from '@ionic-native/geolocation';
+import { Media } from '@ionic-native/media';
+import { AddRepairReportPageModule } from '../pages/add-repair-report/add-repair-report.module';
 
 // The translate loader needs to know where to load i18n files
 // in Ionic's static asset pipeline.
@@ -105,6 +107,9 @@ export function provideSettings(storage: Storage) {
     MinePwdChangePageModule,
     MineAboutUsPageModule,
 
+    //inspect sub
+    AddRepairReportPageModule,
+
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -122,6 +127,7 @@ export function provideSettings(storage: Storage) {
     StatusBar,
     GlobalUtils,
     QRScanner,
+    Media,
     CallNumber,
     Geolocation,
     { provide: Settings, useFactory: provideSettings, deps: [Storage] },

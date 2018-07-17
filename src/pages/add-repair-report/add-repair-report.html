@@ -1,0 +1,102 @@
+<!--
+  Generated template for the AddRepairReportPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>添加维修记录</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+
+  <div>
+    <ion-segment [(ngModel)]="tab">
+      <ion-segment-button value="'1'">
+        故障信息
+      </ion-segment-button>
+      <ion-segment-button value="'2'">
+        处理意见
+      </ion-segment-button>
+      <ion-segment-button value="'3'">
+        工作量
+      </ion-segment-button>
+      <ion-segment-button value="'4'">
+        更换配件
+      </ion-segment-button>
+    </ion-segment>
+  </div>
+
+  <div [ngSwitch]="tab">
+    <div *ngSwitchCase="'1'">
+      <div>
+        <label>选择设备</label>
+        <span></span>
+        <img src="assets/icon/scan.png">
+      </div>
+      <div>
+        <label>发生时间</label>
+        <span></span>
+        <img src="assets/icon/next.png">
+      </div>
+      <div>
+        <label>故障描述</label>
+        <span></span>
+        <img src="assets/icon/next.png">
+      </div>
+      <div>
+        <label>故障类别</label>
+        <span></span>
+        <img src="assets/icon/next.png">
+      </div>
+      <div>
+        <label>故障原因</label>
+        <span></span>
+        <img src="assets/icon/next.png">
+      </div>
+      <div>
+        <ion-label>是否停机</ion-label>
+        <ion-checkbox checked="isChecked"></ion-checkbox>
+      </div>
+      <div>
+        <ion-label>是否影响生产</ion-label>
+        <ion-checkbox checked="isChecked"></ion-checkbox>
+      </div>
+    </div>
+    <p *ngSwitchCase="'2'">
+      <div>
+        <label>工作描述</label>
+        <span></span>
+        <img src="assets/icon/scan.png">
+      </div>
+      <div>
+        <label>开始时间</label>
+        <span></span>
+        <img src="assets/icon/next.png">
+      </div>
+      <div>
+        <label>结束时间</label>
+        <span></span>
+        <img src="assets/icon/next.png">
+      </div>
+      <div>
+        <label>维修用时</label>
+        <ion-input type="text"></ion-input>
+      </div>
+      <div>
+        <ion-label>备注</ion-label>
+        <ion-input type=""></ion-input>
+      </div>
+    </p>
+    <p *ngSwitchDefault>
+
+    </p>
+
+  </div>
+
+</ion-content>
