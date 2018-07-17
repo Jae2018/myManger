@@ -4,6 +4,7 @@ import { HttpClient } from '../../../node_modules/@angular/common/http';
 import { StoreBugReportPage } from '../store-bug-report/store-bug-report';
 import { Geolocation } from '@ionic-native/geolocation';
 import { AddRepairReportPage } from '../add-repair-report/add-repair-report';
+import { EquipmentListPage } from '../equipment-list/equipment-list';
 
 /**
  * Generated class for the StorePage page.
@@ -17,7 +18,7 @@ import { AddRepairReportPage } from '../add-repair-report/add-repair-report';
   selector: 'page-store',
   templateUrl: 'store.html',
 })
-export class StorePage implements OnInit {
+export class StorePage {
 
   storeId;
   title: string;
@@ -30,12 +31,9 @@ export class StorePage implements OnInit {
 
   }
 
-  ngOnInit() {
+  ionViewDidLoad() {
     this.title = "测试";
     this.num = 3;
-  }
-
-  ionViewDidLoad() {
     console.log('ionViewDidLoad StorePage');
     this.item = {
       title: "测试",
@@ -77,7 +75,7 @@ export class StorePage implements OnInit {
   }
 
   goEquipmentList(event) {
-
+    this.navCtrl.push(EquipmentListPage);
   }
 
   goReportPage(event) {
