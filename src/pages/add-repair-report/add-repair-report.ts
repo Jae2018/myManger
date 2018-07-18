@@ -15,10 +15,13 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class AddRepairReportPage {
 
+  tab: string;
+
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
 
   ionViewDidLoad() {
+    this.tab = "1";
     console.log('ionViewDidLoad AddRepairReportPage');
   }
 

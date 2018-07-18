@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ActionSheetController } from 'ionic-angular';
 import { HttpClient } from '../../../node_modules/@angular/common/http';
 import { StoreBugReportPage } from '../store-bug-report/store-bug-report';
@@ -39,12 +39,15 @@ export class StorePage {
       title: "测试",
       num: 3,
     }
+
+    this.getLocation();
   }
 
   getLocation(){
     this.geolocation.getCurrentPosition().then((resp) => {
       // resp.coords.latitude
       // resp.coords.longitude
+      console.log(resp.coords.latitude);
      }).catch((error) => {
        console.log('Error getting location', error);
      });

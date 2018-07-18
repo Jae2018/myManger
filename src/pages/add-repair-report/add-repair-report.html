@@ -33,70 +33,89 @@
   </div>
 
   <div [ngSwitch]="tab">
+
     <div *ngSwitchCase="'1'">
-      <div>
+
+      <ion-item>
         <label>选择设备</label>
-        <span></span>
-        <img src="assets/icon/scan.png">
-      </div>
-      <div>
+        <span>123</span>
+        <img style="width: 10%;height: 10%;" src="assets/icon/scan.png">
+      </ion-item>
+
+      <ion-item>
         <label>发生时间</label>
-        <span></span>
+        <span>123</span>
         <img src="assets/icon/next.png">
-      </div>
-      <div>
+      </ion-item>
+
+      <ion-item>
         <label>故障描述</label>
         <span></span>
         <img src="assets/icon/next.png">
-      </div>
-      <div>
+      </ion-item>
+
+      <ion-item>
         <label>故障类别</label>
         <span></span>
         <img src="assets/icon/next.png">
-      </div>
-      <div>
+      </ion-item>
+
+      <ion-item>
         <label>故障原因</label>
         <span></span>
         <img src="assets/icon/next.png">
-      </div>
-      <div>
+      </ion-item>
+
+      <ion-item>
         <ion-label>是否停机</ion-label>
-        <ion-checkbox checked="isChecked"></ion-checkbox>
-      </div>
-      <div>
+        <ion-checkbox item-end checked="isChecked"></ion-checkbox>
+      </ion-item>
+
+      <ion-item>
         <ion-label>是否影响生产</ion-label>
-        <ion-checkbox checked="isChecked"></ion-checkbox>
-      </div>
+        <ion-checkbox item-end checked="isChecked2"></ion-checkbox>
+      </ion-item>
+
     </div>
-    <p *ngSwitchCase="'2'">
-      <div>
+
+    <div *ngSwitchCase="'2'">
+
+      <ion-item>
         <label>工作描述</label>
         <span></span>
         <img src="assets/icon/scan.png">
-      </div>
-      <div>
+      </ion-item>
+
+      <ion-item>
         <label>开始时间</label>
         <span></span>
         <img src="assets/icon/next.png">
-      </div>
-      <div>
+      </ion-item>
+
+      <ion-item>
         <label>结束时间</label>
         <span></span>
         <img src="assets/icon/next.png">
-      </div>
-      <div>
+      </ion-item>
+
+      <ion-item>
         <label>维修用时</label>
         <ion-input type="text"></ion-input>
-      </div>
-      <div>
+      </ion-item>
+
+      <ion-item>
         <ion-label>备注</ion-label>
         <ion-input type=""></ion-input>
-      </div>
-    </p>
-    <p *ngSwitchDefault>
+      </ion-item>
 
-    </p>
+    </div>
 
+    <div *ngSwitchCase="'3'">
+      123
+    </div>
+    <div *ngSwitchCase="'4'">
+      123
+    </div>
   </div>
 
 </ion-content>

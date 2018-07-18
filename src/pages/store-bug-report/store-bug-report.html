@@ -22,7 +22,7 @@
 
   <button ion-item (click)="clickMe()">
     选择设备
-    <img item-right src="assets/icon/scan.png">
+    <img style="width: 24px;height: 24px;" item-right src="assets/icon/scan.png">
   </button>
 
 
@@ -30,13 +30,13 @@
 
     <ion-item>
       故障描述(语音)
-      <img src="assets/icon/next.png">
+      <img [hidden]="!hasRecord" src="assets/icon/talk.png" style="margin-right: 10%;width: 24px;height: 24px;">
     </ion-item>
 
     <ion-item>
       <label>发生时间</label>
       <span>{{time}}</span>
-      <img src="assets/icon/next.png">
+      <!-- <img src="assets/icon/next.png"> -->
     </ion-item>
 
     <ion-item (click)="levelAlert($event)">
@@ -78,8 +78,8 @@
 
   <br>
 
-  <button ion-button block>
-    按住说话，描述故障
+  <button ion-button block (tap)="record($event)">
+    {{firstClick?"开始录音":"结束录音"}}
   </button>
 
 </ion-content>

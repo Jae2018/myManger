@@ -30,6 +30,10 @@ export class StoreBugReportPage {
   public filePath: any; //录音文件的名字
   public recordData: MediaObject; //录音对象
   fileTransfer: FileTransferObject;//传输类
+  btn: string = "按住说话，描述故障";
+  firstClick: boolean = false;
+  // pressGesture: Gesture;
+  // private s:Gesture;
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
     private alert: AlertController, private camera: Camera,
@@ -37,11 +41,13 @@ export class StoreBugReportPage {
   }
 
   ionViewDidLoad() {
+
+
     var date = new Date();
     this.time = date.toLocaleDateString() + " " + (date.getHours() < 10 ? "0" + date.getHours() : date.getHours())
       + ":" + (date.getMinutes() < 10 ? "0" + date.getMinutes() : date.getMinutes())
       + ":" + (date.getSeconds() < 10 ? "0" + date.getSeconds() : date.getSeconds());
-
+    this.firstClick = true;
   }
 
   //日期
@@ -97,7 +103,7 @@ export class StoreBugReportPage {
       label: '电气故障',
       value: '电气故障',
       handler: data => {
-        this.state = data.value;
+        this.type = data.value;
         a3.dismiss();
       }
     });
@@ -106,7 +112,7 @@ export class StoreBugReportPage {
       label: '机械故障',
       value: '机械故障',
       handler: data => {
-        this.state = data.value;
+        this.type = data.value;
         a3.dismiss();
       }
     });
@@ -115,7 +121,7 @@ export class StoreBugReportPage {
       label: '物料原因故障',
       value: '物料原因故障',
       handler: data => {
-        this.state = data.value;
+        this.type = data.value;
         a3.dismiss();
       }
     });
@@ -124,7 +130,7 @@ export class StoreBugReportPage {
       label: '能源供给故障',
       value: '能源供给故障',
       handler: data => {
-        this.state = data.value;
+        this.type = data.value;
         a3.dismiss();
       }
     });
@@ -200,6 +206,16 @@ export class StoreBugReportPage {
     a2.present();
   }
 
+  record(event) {
+    if (this.firstClick) {
+      this.startRecord();
+      this.firstClick = false;
+    } else {
+      this.stopRecord();
+      this.firstClick = true;
+    }
+  }
+
   startRecord() {  //开始录音
     let date = new Date();
     //文件URL，文件存放在拓展内存卡中文件夹下，命名为Record.mp3
@@ -209,23 +225,25 @@ export class StoreBugReportPage {
     this.recordData = this.media.create(this.filePath);
     //开始录音
     this.recordData.startRecord();
+
+    console.log('start');
+    this.firstClick = false;
   }
 
-  pauseRecord() {
+  stopRecord() {
     //停止录音
-    this.recordData.stopRecord();
-    this.hasRecord = true;
+    // this.recordData.stopRecord();
+    // this.hasRecord = true;
+
+    console.log('stop');
+    this.firstClick = true;
   }
 
   //播放录音
   playRecord() {
-
+    console.log('start');
   }
 
-  //停止播放
-  stopRecord() {
-
-  }
 
   //拍照
   takephoto(event) {
@@ -246,5 +264,11 @@ export class StoreBugReportPage {
       console.log(err);
     });
   }
+
+  commit(){
+
+  }
+
+
 
 }
