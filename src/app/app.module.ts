@@ -40,6 +40,7 @@ import { Geolocation } from '@ionic-native/geolocation';
 import { Media } from '@ionic-native/media';
 import { Network } from "@ionic-native/network";
 import { NetworkProvider } from '../providers/utils/network-check-tool';
+import { GlobalToolProvider } from '../providers/global-tool/global-tool';
 
 // The translate loader needs to know where to load i18n files
 // in Ionic's static asset pipeline.
@@ -77,10 +78,10 @@ export function provideSettings(storage: Storage) {
       },
     }),
     IonicModule.forRoot(MyApp, {
-      tabsHideOnSubPages: 'true',
-      backButtonText: ' ',//按钮内容
-      backButtonIcon: 'ios-arrow-back',//按钮图标样式
-      pageTransition: 'ios',
+      tabsHideOnSubPages: true,
+      backButtonText: "",//按钮内容
+      backButtonIcon: "ios-arrow-back",//按钮图标样式
+      pageTransition: "ios",
     }),
     IonicStorageModule.forRoot(),
     //login
@@ -123,6 +124,7 @@ export function provideSettings(storage: Storage) {
     Items,
     User,
     NetworkProvider,
+    GlobalUtils,
 
     //plugins
     Camera,
@@ -139,7 +141,8 @@ export function provideSettings(storage: Storage) {
     Network,
     { provide: Settings, useFactory: provideSettings, deps: [Storage] },
     // Keep this to enable Ionic's runtime error handling during development
-    { provide: ErrorHandler, useClass: IonicErrorHandler }
+    { provide: ErrorHandler, useClass: IonicErrorHandler },
+    GlobalToolProvider
   ]
 })
 export class AppModule { }

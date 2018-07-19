@@ -1,10 +1,11 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 // import { TranslateService } from '@ngx-translate/core';
-import { IonicPage, NavController } from 'ionic-angular';
+import { IonicPage, NavController, Tabs } from 'ionic-angular';
 
 import { Tab1Root, Tab2Root, Tab3Root, Tab4Root, Tab5Root } from '..';
 import { Storage } from '@ionic/storage';
 import { LoginPage } from '../login/login';
+import { GlobalUtils } from '../../providers/utils/loading-dialog-global';
 
 @IonicPage()
 @Component({
@@ -13,16 +14,19 @@ import { LoginPage } from '../login/login';
 })
 export class TabsPage {
 
-  constructor(private storge: Storage, private navCtrl: NavController) {
-    storge.get('user').then((result) => {
+  @ViewChild(Tabs)
+  tabs;
+
+  constructor(private storge: Storage, private navCtrl: NavController, public global: GlobalUtils) {
+    this.storge.get('user').then((result) => {
       if (result) {
         console.log('user has login');
       } else {
         //go login page
-        navCtrl.push(LoginPage);
+        this.navCtrl.push(LoginPage);
       }
-    }
-    )
+    })
+    this.global.registerBackButtonAction(this.tabs);
   }
 
   tab1Root: any = Tab1Root;

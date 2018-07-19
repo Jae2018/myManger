@@ -1,10 +1,12 @@
 import { Component, ViewChild } from '@angular/core';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
-import { Config, Nav, Platform, App } from 'ionic-angular';
+import { Nav, Platform, App, Events } from 'ionic-angular';
 import { Storage } from "@ionic/storage";
 
 import { MainPage, FirstRunPage } from '../pages';
+import { Network } from '@ionic-native/network';
+import { NetworkProvider } from '../providers/utils/network-check-tool';
 
 @Component({
   template:
@@ -30,12 +32,15 @@ import { MainPage, FirstRunPage } from '../pages';
 export class MyApp {
   rootPage: any;
   tabsPage: any;
-  lastBack;
 
   @ViewChild(Nav) nav: Nav;
 
-  constructor(private app: App, platform: Platform, storage: Storage,
-    private config: Config, private statusBar: StatusBar, private splashScreen: SplashScreen) {
+  constructor(public app: App, public platform: Platform, public storage: Storage,
+     public statusBar: StatusBar,
+    public splashScreen: SplashScreen,
+    public eventCtrl: Events,
+    public network: Network,
+    public networkProvider: NetworkProvider) {
     //导航页
     storage.get('firstIn').then((result) => {
       if (result) {
@@ -45,6 +50,7 @@ export class MyApp {
         this.rootPage = FirstRunPage;
       }
     });
+
     platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
@@ -58,23 +64,21 @@ export class MyApp {
 
       this.tabsPage = MainPage;
 
+      this.networkProvider.initializeNetworkEvents();
+
+      // Offline event
+      this.eventCtrl.subscribe('network:offline', () => {
+        alert('network:offline ==> ' + this.network.type);
+      });
+
     });
 
-    //返回键逻辑
-    platform.registerBackButtonAction(() => {
-      const overlay = this.app._appRoot._overlayPortal.getActive();
-      const nav = this.app.getActiveNav();
+    // this.global.registerBackButtonAction(tabRef);
 
-      if (overlay && overlay.dismiss) {
-        overlay.dismiss();
-      } else if (nav.canGoBack()) {
-        nav.pop();
-      } else if (Date.now() - this.lastBack < 500) {
-        platform.exitApp();
-      }
-      this.lastBack = Date.now();
-    });
+  }
 
+  initializeApp() {
+    console.log("app start");
   }
 
   // initTranslate() {
@@ -103,9 +107,9 @@ export class MyApp {
   //   });
   // }
 
-  openPage(page) {
-    // Reset the content nav to have just this page
-    // we wouldn't want the back button to show in this scenario
-    this.nav.setRoot(page.component);
-  }
+  // openPage(page) {
+  //   // Reset the content nav to have just this page
+  //   // we wouldn't want the back button to show in this scenario
+  //   this.nav.setRoot(page.component);
+  // }
 }

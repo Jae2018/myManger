@@ -10,7 +10,7 @@ export class GlobalUtils {
   constructor(public app: App, public platform: Platform, public toast: ToastController) { }
 
   //注册方法
-  registerBackButtonAction(tabRef: Tabs): void {
+  public registerBackButtonAction(tabRef: Tabs): void {
 
     //registerBackButtonAction是系统自带的方法
     this.platform.registerBackButtonAction(() => {
