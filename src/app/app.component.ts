@@ -1,7 +1,6 @@
 import { Component, ViewChild } from '@angular/core';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
-// import { TranslateService } from '@ngx-translate/core';
 import { Config, Nav, Platform, App } from 'ionic-angular';
 import { Storage } from "@ionic/storage";
 
@@ -9,7 +8,7 @@ import { MainPage, FirstRunPage } from '../pages';
 
 @Component({
   template:
-  // `<ion-menu [content]="content">
+    // `<ion-menu [content]="content">
     // <ion-header>
     //   <ion-toolbar>
     //     <ion-title>Pages</ion-title>
@@ -24,7 +23,7 @@ import { MainPage, FirstRunPage } from '../pages';
     //   </ion-list>
     // </ion-content>
     // </ion-menu>
-`<ion-nav #content [root]="rootPage"></ion-nav>`
+    `<ion-nav #content [root]="rootPage"></ion-nav>`
   // templateUrl:'app.html'
 
 })
@@ -37,7 +36,7 @@ export class MyApp {
 
   constructor(private app: App, platform: Platform, storage: Storage,
     private config: Config, private statusBar: StatusBar, private splashScreen: SplashScreen) {
-      //导航页
+    //导航页
     storage.get('firstIn').then((result) => {
       if (result) {
         this.rootPage = MainPage;
@@ -49,9 +48,10 @@ export class MyApp {
     platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
-      if(platform.is('android')){
+      if (platform.is('android')) {
+        this.statusBar.overlaysWebView(true);
         this.statusBar.backgroundColorByHexString('#16b2ff');
-      }else{
+      } else {
         this.statusBar.styleDefault();
       }
       this.splashScreen.hide();
@@ -65,11 +65,11 @@ export class MyApp {
       const overlay = this.app._appRoot._overlayPortal.getActive();
       const nav = this.app.getActiveNav();
 
-      if(overlay && overlay.dismiss) {
+      if (overlay && overlay.dismiss) {
         overlay.dismiss();
-      } else if(nav.canGoBack()){
+      } else if (nav.canGoBack()) {
         nav.pop();
-      } else if(Date.now() - this.lastBack < 500) {
+      } else if (Date.now() - this.lastBack < 500) {
         platform.exitApp();
       }
       this.lastBack = Date.now();

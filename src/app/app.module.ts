@@ -24,6 +24,7 @@ import { MinePwdChangePageModule } from '../pages/mine-pwd-change/mine-pwd-chang
 import { MineAboutUsPageModule } from '../pages/mine-about-us/mine-about-us.module';
 import { MineRepairHistoryPageModule } from '../pages/mine-repair-history/mine-repair-history.module';
 import { MyBugReportPageModule } from '../pages/mine-bug-report/my-bug-report.module';
+import { AddRepairReportPageModule } from '../pages/add-repair-report/add-repair-report.module';
 
 import { QRScanner } from "@ionic-native/qr-scanner";
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -37,7 +38,8 @@ import { StoreBugReportPageModule } from '../pages/store-bug-report/store-bug-re
 import { LoginPageModule } from '../pages/login/login.module';
 import { Geolocation } from '@ionic-native/geolocation';
 import { Media } from '@ionic-native/media';
-import { AddRepairReportPageModule } from '../pages/add-repair-report/add-repair-report.module';
+import { Network } from "@ionic-native/network";
+import { NetworkProvider } from '../providers/utils/network-check-tool';
 
 // The translate loader needs to know where to load i18n files
 // in Ionic's static asset pipeline.
@@ -116,9 +118,13 @@ export function provideSettings(storage: Storage) {
     MyApp
   ],
   providers: [
+    //providers
     Api,
     Items,
     User,
+    NetworkProvider,
+
+    //plugins
     Camera,
     File,
     FileTransfer,
@@ -130,6 +136,7 @@ export function provideSettings(storage: Storage) {
     Media,
     CallNumber,
     Geolocation,
+    Network,
     { provide: Settings, useFactory: provideSettings, deps: [Storage] },
     // Keep this to enable Ionic's runtime error handling during development
     { provide: ErrorHandler, useClass: IonicErrorHandler }
