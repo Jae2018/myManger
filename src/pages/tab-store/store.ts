@@ -5,6 +5,7 @@ import { StoreBugReportPage } from '../store-bug-report/store-bug-report';
 import { Geolocation } from '@ionic-native/geolocation';
 import { AddRepairReportPage } from '../add-repair-report/add-repair-report';
 import { EquipmentListPage } from '../equipment-list/equipment-list';
+import { Api } from '../../providers';
 
 /**
  * Generated class for the StorePage page.
@@ -26,7 +27,7 @@ export class StorePage {
   public item: any;
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
-    public actionSheetCtrl: ActionSheetController, private http: HttpClient,
+    public actionSheetCtrl: ActionSheetController, private http: Api,
     private geolocation: Geolocation) {
 
   }
@@ -55,6 +56,7 @@ export class StorePage {
 
   getStoreList() {
     // this.http.jsonp("",)
+
   }
 
   location(event) {

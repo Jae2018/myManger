@@ -39,8 +39,11 @@ import { LoginPageModule } from '../pages/login/login.module';
 import { Geolocation } from '@ionic-native/geolocation';
 import { Media } from '@ionic-native/media';
 import { Network } from "@ionic-native/network";
+import { Device } from '@ionic-native/device';
+
 import { NetworkProvider } from '../providers/utils/network-check-tool';
 import { GlobalToolProvider } from '../providers/global-tool/global-tool';
+import { HttpserviceProvider } from '../providers/httpservice/httpservice';
 
 // The translate loader needs to know where to load i18n files
 // in Ionic's static asset pipeline.
@@ -124,8 +127,9 @@ export function provideSettings(storage: Storage) {
     Api,
     Items,
     User,
-    NetworkProvider,
-    GlobalUtils,
+    NetworkProvider,//net check
+    GlobalUtils,//physic back  btn
+    // HttpserviceProvider,//http
 
     //plugins
     Camera,
@@ -140,10 +144,12 @@ export function provideSettings(storage: Storage) {
     CallNumber,
     Geolocation,
     Network,
+    Device,
     { provide: Settings, useFactory: provideSettings, deps: [Storage] },
     // Keep this to enable Ionic's runtime error handling during development
     { provide: ErrorHandler, useClass: IonicErrorHandler },
-    GlobalToolProvider
+    GlobalToolProvider,
+    HttpserviceProvider,
   ]
 })
 export class AppModule { }

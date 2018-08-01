@@ -4,6 +4,7 @@ import { MyBugReportListPage } from '../mine-bug-report-list/my-bug-report-list'
 import { MinePwdChangePage } from '../mine-pwd-change/mine-pwd-change';
 import { MineAboutUsPage } from '../mine-about-us/mine-about-us';
 import { MineRepairHistoryPage } from '../mine-repair-history/mine-repair-history';
+import { Storage } from "@ionic/storage";
 
 /**
  * Generated class for the MinePage page.
@@ -24,7 +25,7 @@ export class MinePage {
   public pages = [];
   public pages2 = [];
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public storge: Storage) {
 
   }
 
@@ -37,32 +38,32 @@ export class MinePage {
   }
 
   //修改密码
-  changePwd(event){
+  changePwd(event) {
     this.navCtrl.push(MinePwdChangePage);
   }
 
   //更新
-  update(event){
+  update(event) {
 
   }
 
   //关于
-  aboutus(event){
+  aboutus(event) {
     this.navCtrl.push(MineAboutUsPage);
   }
 
   //注销
-  doLoginOut(event){
-
+  doLoginOut(event) {
+    this.storge.remove('user');
   }
 
   //我的申请
-  goMyreport(event){
+  goMyreport(event) {
     this.navCtrl.push(MyBugReportListPage);
   }
 
   //我的维修
-  goMyRepair(event){
+  goMyRepair(event) {
     this.navCtrl.push(MineRepairHistoryPage);
   }
 

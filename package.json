@@ -24,6 +24,7 @@
     "@ionic-native/call-number": "^4.11.0",
     "@ionic-native/camera": "^4.11.0",
     "@ionic-native/core": "4.9.1",
+    "@ionic-native/device": "^4.11.0",
     "@ionic-native/file": "^4.11.0",
     "@ionic-native/file-path": "^4.11.0",
     "@ionic-native/file-transfer": "^4.11.0",

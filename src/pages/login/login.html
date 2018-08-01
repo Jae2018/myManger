@@ -12,6 +12,11 @@
     <ion-input type="password" placeholder="密码"></ion-input>
   </ion-item>
 
+  <ion-item style="border-radius: 0%;">
+    <ion-input type="text" placeholder="验证码" ></ion-input>
+    <img item-end src="data:image/jpg;base64,{{img}}" style="height: auto;width: auto;">
+  </ion-item>
+
   <button ion-button block round (click)="doLogin(event)">
     登录
   </button>
