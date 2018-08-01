@@ -15,49 +15,61 @@
 
 <ion-content>
 
-  <ion-item>
-    <label>备件名称</label>
-    <span>item.title</span>
-  </ion-item>
+  <ion-segment [(ngModel)]="type">
+    <ion-segment-button value="1">
+      设备参数
+    </ion-segment-button>
+    <ion-segment-button value="2">
+      关联设备
+    </ion-segment-button>
+    <ion-segment-button value="3">
+      技术参数
+    </ion-segment-button>
+    <ion-segment-button value="4">
+      维修记录
+    </ion-segment-button>
+  </ion-segment>
 
-  <ion-item>
-    <label>备件编码</label>
-    <span>item.no</span>
-  </ion-item>
+  <div [ngSwitch]="type">
 
-  <ion-item>
-    <label>规格型号</label>
-    <span>item.catogery</span>
-  </ion-item>
+    <div *ngSwitchCase="'1'">
+        <ion-list>
+            <ion-item>
+                <label>备件名称</label>
+                <span>item.title</span>
+              </ion-item>
 
-  <ion-item>
-    <label>当前库存</label>
-    <span>item.left</span>
-  </ion-item>
+              <ion-item>
+                <label>备件编码</label>
+                <span>item.no</span>
+              </ion-item>
 
-  <ion-item>
-    <label>生产厂家</label>
-    <span>item.factory</span>
-  </ion-item>
+              <ion-item>
+                <label>规格型号</label>
+                <span>item.catogery</span>
+              </ion-item>
 
-  <ion-item>
-    <label>备注</label>
-    <span>item.des</span>
-  </ion-item>
+              <ion-item>
+                <label>当前库存</label>
+                <span>item.left</span>
+              </ion-item>
 
-  <ion-item>
-    <label>待定</label>
-    <span>待定</span>
-  </ion-item>
+              <ion-item>
+                <label>生产厂家</label>
+                <span>item.factory</span>
+              </ion-item>
+        </ion-list>
+    </div>
 
-  <ion-item>
-    <label>待定</label>
-    <span>待定</span>
-  </ion-item>
 
-  <ion-item>
-    <label>待定</label>
-    <span>待定</span>
-  </ion-item>
+    <div *ngSwitchCase="'2'">
+      <ion-list>
+        <ion-item *ngFor="let parts of items.partsList">
+          1
+        </ion-item>
+      </ion-list>
+    </div>
+
+  </div>
 
 </ion-content>

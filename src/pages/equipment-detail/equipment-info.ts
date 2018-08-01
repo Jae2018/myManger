@@ -16,9 +16,11 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 export class EquipmentInfoPage {
 
   item = {};
+  type: string;
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
     this.item = navParams.data;
+    this.type = '1';
   }
 
   ionViewDidLoad() {

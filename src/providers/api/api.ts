@@ -15,7 +15,7 @@ export class Api {
   get(endpoint: string, params?: any, reqOpts?: any) {
     if (!reqOpts) {
       reqOpts = {
-        headers : new HttpHeaders().set('Authorization',''),
+        headers: new HttpHeaders().set('Authorization', ''),
       };
     }
 

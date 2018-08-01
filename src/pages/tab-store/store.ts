@@ -60,6 +60,7 @@ export class StorePage {
   location(event) {
     const actionSheet = this.actionSheetCtrl.create({
       title: '请选择店铺',
+      // cssClass:'title',
       buttons: [
         {
           text: '分区1店',

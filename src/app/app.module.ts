@@ -82,6 +82,7 @@ export function provideSettings(storage: Storage) {
       backButtonText: "",//按钮内容
       backButtonIcon: "ios-arrow-back",//按钮图标样式
       pageTransition: "ios",
+      // mode:"ios"
     }),
     IonicStorageModule.forRoot(),
     //login

@@ -18,7 +18,7 @@ import { MyBugReportPage } from '../mine-bug-report/my-bug-report';
 export class MyBugReportListPage {
 
   list = [];
-  type: any;
+  type: string;
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
     this.type = '1';
