@@ -38,7 +38,7 @@ export class RepairReportPage {
     let date = new Date();
     //文件URL，文件存放在拓展内存卡中文件夹下，命名为Record.mp3
     this.filePath = this.file.externalDataDirectory + "Record_" + date.getDate() + date.getHours()
-      + date.getMinutes() + date.getSeconds() + ".mp3";
+      + date.getMinutes() + date.getSeconds() + ".mp4";
     //创建media对象，参数文件名字，上面的filePath也指定了文件存放位置和文件名字
     this.recordData = this.media.create(this.filePath);
     //开始录音
@@ -62,7 +62,7 @@ export class RepairReportPage {
   }
 
   resumeRecord() {
-    //继续播放录音
+    //继续录音
     this.recordData.resumeRecord();
   }
 

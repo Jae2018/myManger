@@ -5,6 +5,7 @@ import { MinePwdChangePage } from '../mine-pwd-change/mine-pwd-change';
 import { MineAboutUsPage } from '../mine-about-us/mine-about-us';
 import { MineRepairHistoryPage } from '../mine-repair-history/mine-repair-history';
 import { Storage } from "@ionic/storage";
+import { User } from '../../models/user';
 
 /**
  * Generated class for the MinePage page.
@@ -24,6 +25,9 @@ export class MinePage {
   public list2 = [];
   public pages = [];
   public pages2 = [];
+  user: User;
+  userNmae;
+  avatorUrl;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public storge: Storage) {
 
@@ -31,6 +35,10 @@ export class MinePage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad MinePage');
+    this.storge.get('user').then((user: User) => {
+      this.userNmae = user.username;
+      this.avatorUrl = user.url ? user.url : 'assets/icon/avatar.png';
+    })
   }
 
   ionViewDidLeave() {

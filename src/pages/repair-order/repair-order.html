@@ -59,8 +59,8 @@
         <span>item.title</span>
       </ion-item>
       <ion-item>
-        <label style="width: 100px;">操作人</label>
-        <span style="margin-left: 28%">item.title</span>
+        <label style="width: 100px;">操&nbsp;作&nbsp;人</label>
+        <span style="margin-left: 26%">item.title</span>
       </ion-item>
       <ion-item>
         <label>操作人电话</label>
@@ -74,52 +74,64 @@
 
     <ion-list *ngSwitchCase="'2'">
       <ion-item>
-        <label>设备名称</label>
+        <label>维修状态</label>
         <span>item.title</span>
       </ion-item>
       <ion-item>
-        <label>设备编码</label>
+        <label>故障原因</label>
         <span>item.title</span>
       </ion-item>
       <ion-item>
-        <label>设备型号</label>
+        <label>故障类别</label>
         <span>item.title</span>
       </ion-item>
       <ion-item>
-        <label>设备位置 </label>
+        <label>维修级别 </label>
         <span>item.title</span>
       </ion-item>
       <ion-item>
-        <label>设备状态 </label>
+        <label>工作描述 </label>
         <span>item.title</span>
       </ion-item>
       <ion-item>
-        <label>发现时间 </label>
+        <label>开始时间 </label>
         <span>item.title</span>
       </ion-item>
       <ion-item>
-        <label>维修单号 </label>
+        <label>结束时间 </label>
         <span>item.title</span>
       </ion-item>
       <ion-item>
-        <label style="width: 100px;">操&nbsp;作&nbsp;人</label>
-        <span style="margin-left: 34%">item.title</span>
-      </ion-item>
-      <ion-item>
-        <label>操作人电话</label>
-        <span style="margin-left: 20%">item.title</span>
-      </ion-item>
-      <ion-item>
-        <label>故障描述 </label>
+        <label>维修用时(小时) </label>
         <span>item.title</span>
       </ion-item>
     </ion-list>
 
-    <ion-list *ngSwitchCase="'3'">
-      <ion-item>
-        <ion-input type="text" placeholder="text"></ion-input>
-      </ion-item>
-    </ion-list>
+    <div *ngSwitchCase="'3'">
+      <div style="justify-content: center;align-items: center;display: flex;width: auto;height: 48px;" (tap)="showWorkerDialog()">
+        <img style="width: 16px;height: 16px;margin: 0%" src="assets/icon/add_work.png">
+        <span style="margin: 0 0 0 8px;padding: 0%">增加人员</span>
+      </div>
+
+      <ion-list *ngIf="showWorks" style="margin-top: 10px">
+        <div  *ngFor="let worker of workerArr; let i=index" style="padding: 10px;display: flex;" (tap)="addWorkInfo(worker)">
+          <img src="assets/icon/list_avatar.png" style="width: 32px;height: 32px;">
+          <div style="margin-left: 8px;margin-right: 8px">
+            <label>{{worker.name}}</label>
+            <p style="display: flex">维修开始时间：
+              <input type="text" [(ngModel)]="worker.startTime">
+            </p>
+            <p style="display: flex">维修完成时间：
+              <input type="text" [(ngModel)]="worker.endTime">
+            </p>
+            <p style="display: flex">维修用时(小时)：
+              <input type="text" [(ngModel)]="worker.hours">
+            </p>
+          </div>
+          <img src="assets/icon/sq-delete.png" style="float: right;width: 32px;height: 32px;">
+        </div>
+      </ion-list>
+    </div>
 
     <ion-list *ngSwitchCase="'4'">
       <ion-item>
@@ -129,6 +141,10 @@
   </div>
 </ion-content>
 
-<ion-footer (click)="cancle($event)">
-  {{type==="1"?"撤单，我不去了":"立即修理"}}
+<ion-footer *ngIf="type==='1'" (tap)="cancle($event)">
+  {{!getOrcancel?'抢单':'撤销，我不去了'}}
+</ion-footer>
+
+<ion-footer *ngIf="type==='2'" (tap)="startOfinish()">
+  {{!startOrfinish?'开始维修':'完成维修'}}
 </ion-footer>

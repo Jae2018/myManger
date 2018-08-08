@@ -1,28 +1,25 @@
 page-login {
-
-  // .content-md{
+  // .content{
   //   background-image: url('../../assets/imgs/bg.jpg');
   //   background-color: transparent;
   //   background-repeat: no-repeat;
   //   background-size: contain;
   // }
-
-  .scroll-content{
+  .scroll-content {
     text-align: center;
-    background-image: url('../assets/imgs/bg.jpg');//../../
+    background-image: url('../assets/imgs/bg.jpg'); //../../
     background-color: transparent;
     background-repeat: no-repeat;
-    background-size: contain;
-  }
+    background-size: 100% 100%;
 
-  img{
+  }
+  img {
     width: auto;
     height: 8%;
     margin-top: 15%;
     margin-bottom: 20%;
   }
-
-  .item{
+  .item {
     min-height: 3.4rem;
     margin: 0%;
     background: #fffffff5;
@@ -31,17 +28,12 @@ page-login {
     width: 70%;
     left: 15%;
   }
-
-  .input-has-focus{}
-
-  .input-wrapper{
+  .input-wrapper {
     padding-left: 24px;
   }
-
-  .button{
+  .button {
     margin-top: 30%;
     width: 70%;
     left: 15%;
   }
-
 }

@@ -24,7 +24,7 @@
       <label style="position: absolute;margin-top: -38px;margin-left: 15%">当前店铺：{{title}}</label>
     </div>
     <div style="margin-top: 25px">
-      <img src="assets/icon/change.png" (click)="location($event)">
+      <img src="assets/icon/change.png" (click)="changeStore()">
     </div>
   </div>
 
@@ -58,7 +58,7 @@
 
     <hr class="divider">
 
-    <div style="display: flex;" (click)="goRepairPage($event)">
+    <div style="display: flex;" (click)="goRepairPage()">
       <div style="width: 40%;display: flex;">
         <img src="assets/icon/order.png" style="width: 36px;height: 36px;margin-left: 16px">
         <label>维修单</label>
@@ -71,7 +71,7 @@
 
     <hr class="divider">
 
-    <div style="display: flex;" (click)="goAuditPage($event)">
+    <div style="display: flex;" (click)="goAuditPage()">
       <div style="width: 40%;display: flex;">
         <img src="assets/icon/repair-audit.png" style="width: 36px;height: 36px;margin-left: 16px">
         <label>维修验证</label>
@@ -84,7 +84,7 @@
 
     <hr class="divider">
 
-    <div style="display: flex;" (click)="goAddPage($event)">
+    <div style="display: flex;" (click)="goAddPage()">
       <div style="width: 40%;display: flex;">
         <img src="assets/icon/add.png" style="width: 36px;height: 36px;margin-left: 16px">
         <label>添加维修记录</label>

@@ -1,12 +1,13 @@
 import { Component, ViewChild } from '@angular/core';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
-import { Nav, Platform, App, Events } from 'ionic-angular';
+import { Nav, Platform, App, Events, ToastController } from 'ionic-angular';
 import { Storage } from "@ionic/storage";
 
 import { MainPage, FirstRunPage } from '../pages';
 import { Network } from '@ionic-native/network';
 import { NetworkProvider } from '../providers/utils/network-check-tool';
+import { LoginPage } from '../pages/login/login';
 
 @Component({
   template:
@@ -36,28 +37,29 @@ export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
   constructor(public app: App, public platform: Platform, public storage: Storage,
-     public statusBar: StatusBar,
+    public statusBar: StatusBar,
     public splashScreen: SplashScreen,
     public eventCtrl: Events,
     public network: Network,
+    public toastCtrl:ToastController,
     public networkProvider: NetworkProvider) {
     //导航页
-    storage.get('firstIn').then((result) => {
-      if (result) {
-        this.rootPage = MainPage;
-      } else {
-        storage.set('firstIn', true);
-        this.rootPage = FirstRunPage;
-      }
-    });
+    // storage.get('user').then((result) => {
+    //   if (result) {
+    //     this.rootPage = MainPage;//LoginPage
+    //   } else {
+    this.rootPage = MainPage;
+    //   }
+    // });
 
     platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
       if (platform.is('android')) {
-        this.statusBar.overlaysWebView(true);
+        console.log('is android');
+        // this.statusBar.overlaysWebView(true);
         this.statusBar.backgroundColorByHexString('#16b2ff');
-      } else {
+      } else if(platform.is('ios')){
         this.statusBar.styleDefault();
       }
       this.splashScreen.hide();
@@ -73,9 +75,8 @@ export class MyApp {
 
     });
 
-    // this.global.registerBackButtonAction(tabRef);
-
   }
+
 
   initializeApp() {
     console.log("app start");

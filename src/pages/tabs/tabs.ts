@@ -18,15 +18,15 @@ export class TabsPage {
   tabs;
 
   constructor(private storge: Storage, private navCtrl: NavController, public global: GlobalUtils) {
-    this.storge.get('user').then((result) => {
-      if (result) {
-        console.log('user has login');
-      } else {
-        //go login page
-        this.navCtrl.push(LoginPage);
-      }
-    })
-    this.global.registerBackButtonAction(this.tabs);
+    // this.storge.get('user').then((result) => {
+    //   if (result) {
+    //     console.log('user has login');
+    //   } else {
+    //     //go login page
+    //     this.navCtrl.push(LoginPage);
+    //   }
+    // })
+    // this.global.registerBackButtonAction(this.tabs);
   }
 
   tab1Root: any = Tab1Root;

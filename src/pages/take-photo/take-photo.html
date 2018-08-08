@@ -1,0 +1,26 @@
+<!--
+  Generated template for the TakePhotoPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>拍照</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+
+  <div id="container">
+    <div class="box" *ngFor="let image of img_data;let i=index">
+      <div class="box_img" (tap)="click(i)">
+        <img src="{{image}}">
+      </div>
+    </div>
+  </div>
+
+</ion-content>

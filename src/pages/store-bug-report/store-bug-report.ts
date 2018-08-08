@@ -4,6 +4,7 @@ import { Camera, CameraOptions } from '@ionic-native/camera';
 import { Media, MediaObject } from '@ionic-native/media';
 import { File } from '@ionic-native/file';
 import { FileTransfer, FileTransferObject } from '@ionic-native/file-transfer';
+import { TakePhotoPage } from '../take-photo/take-photo';
 
 /**
  * Generated class for the StoreBugReportPage page.
@@ -232,7 +233,7 @@ export class StoreBugReportPage {
 
   stopRecord() {
     //停止录音
-    // this.recordData.stopRecord();
+    this.recordData.stopRecord();
     // this.hasRecord = true;
 
     console.log('stop');
@@ -242,33 +243,43 @@ export class StoreBugReportPage {
   //播放录音
   playRecord() {
     console.log('start');
+    this.recordData.play();
   }
 
 
   //拍照
   takephoto(event) {
-    const options: CameraOptions = {
-      quality: 100,
-      destinationType: this.camera.DestinationType.FILE_URI,
-      encodingType: this.camera.EncodingType.JPEG,
-      mediaType: this.camera.MediaType.PICTURE
-    }
+    // const options: CameraOptions = {
+    //   quality: 100,
+    //   destinationType: this.camera.DestinationType.FILE_URI,
+    //   encodingType: this.camera.EncodingType.JPEG,
+    //   mediaType: this.camera.MediaType.PICTURE
+    // }
 
-    this.camera.getPicture(options).then((imageData) => {
-      // imageData is either a base64 encoded string or a file URI
-      // If it's base64 (DATA_URL):
-      let base64Image = 'data:image/jpeg;base64,' + imageData;
-      console.log(base64Image);
-    }, (err) => {
-      // Handle error
-      console.log(err);
-    });
+    // this.camera.getPicture(options).then((imageData) => {
+    //   // imageData is either a base64 encoded string or a file URI
+    //   // If it's base64 (DATA_URL):
+    //   let base64Image = 'data:image/jpeg;base64,' + imageData;
+    //   console.log(base64Image);
+    // }, (err) => {
+    //   // Handle error
+    //   console.log(err);
+    // });
+
+    this.goPhoto();
   }
 
   commit(){
 
   }
 
-
+  goPhoto() {
+    new Promise((resolve, reject) => {
+      this.navCtrl.push(TakePhotoPage, { resolve: resolve });
+    }).then(data => {
+      // 若修改成功返回则在该代码块中将本页的 nickname 修改
+      console.log(data)
+    })
+  }
 
 }

@@ -3,9 +3,9 @@
 
 export class User {
 
-  name: string;
-  pwd: string;
-
-  constructor({name,pwd}){}
+  username: string;
+  password: string;
+  token: string;
+  url: string;
 
 }

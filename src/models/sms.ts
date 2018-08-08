@@ -1,9 +1,9 @@
 
 
-export class Sms {
+export class Sms<T> {
   code;
   msg;
-  data;
+  data:T;
 
   constructor(data) {
   }

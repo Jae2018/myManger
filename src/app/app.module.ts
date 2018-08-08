@@ -44,6 +44,7 @@ import { Device } from '@ionic-native/device';
 import { NetworkProvider } from '../providers/utils/network-check-tool';
 import { GlobalToolProvider } from '../providers/global-tool/global-tool';
 import { HttpserviceProvider } from '../providers/httpservice/httpservice';
+import { TakePhotoPageModule } from '../pages/take-photo/take-photo.module';
 
 // The translate loader needs to know where to load i18n files
 // in Ionic's static asset pipeline.
@@ -99,6 +100,7 @@ export function provideSettings(storage: Storage) {
 
     // store subs
     StoreBugReportPageModule,
+    TakePhotoPageModule,
 
     // mine subs
     RepairReportPageModule,
@@ -148,8 +150,8 @@ export function provideSettings(storage: Storage) {
     { provide: Settings, useFactory: provideSettings, deps: [Storage] },
     // Keep this to enable Ionic's runtime error handling during development
     { provide: ErrorHandler, useClass: IonicErrorHandler },
-    GlobalToolProvider,
-    HttpserviceProvider,
+    // GlobalToolProvider,
+    // HttpserviceProvider,
   ]
 })
 export class AppModule { }

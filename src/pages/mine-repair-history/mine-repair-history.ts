@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { HttpHeaders, HttpClient } from '../../../node_modules/@angular/common/http';
+import { BaseUrl, mineRepair } from '..';
 
 /**
  * Generated class for the MineRepairHistoryPage page.
@@ -17,7 +19,9 @@ export class MineRepairHistoryPage {
 
   list = [];
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController,
+    public navParams: NavParams,
+    private http: HttpClient) {
   }
 
   ionViewDidLoad() {
@@ -26,16 +30,19 @@ export class MineRepairHistoryPage {
   }
 
   getData() {
-    for (var i = 0; i < 5; i++) {
-      this.list.push(
-        {
-          title: "测试数据",
-          content: i,
-          specification: "测试规格",
-          time: "测试时间",
-          orderId: "测试工单ID",
-          state: "测试设备状态"
-        })
-    }
+    let httpHeaders = new HttpHeaders()
+      .set('Content-Type', 'application/json')
+      .set('Cache-Control', 'no-cache')
+      .set('Authorization', 'Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJzYnl3IiwidXNlcklkIjo3Niwicm9sZUlkIjo3MSwiY29tcElkIjo5NCwiZW50VHlwZSI6IjEiLCJleHAiOjE1MzM4MDU5Mjl9.VcFx9dwfe1-NxAXtahCBd_V7fQVEYlCWq65tp3GY2cQGzGgVzjeX-XY4D6syBEUmi8U2LO-StYt4DEy0HhKoqw');
+    // let params = { 'pinpaiID': '88' }
+    let options = {
+      headers: httpHeaders,
+      // params: params
+    };
+    this.http.post(BaseUrl + mineRepair, options).subscribe(res => {
+      console.log(res)
+    }, err => {
+
+    })
   }
 }

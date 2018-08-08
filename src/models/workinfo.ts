@@ -10,10 +10,4 @@ export class WorkInfo {
   //处理中
   inDoing: string;
 
-  constructor(myWork: string, toAudit: string, toPerform: string, inDoing: string) {
-    this.myWork = myWork;
-    this.toAudit = toAudit;
-    this.toPerform = toPerform;
-    this.inDoing = inDoing;
-  };
 }

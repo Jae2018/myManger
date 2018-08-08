@@ -20,7 +20,7 @@
     <div class="myshadow" style="margin-left: 7.5%;">
       <div class="mydiv" (click)="goMyWorkListPage($event)">
         <img src="assets/icon/orders.png">
-        <span class="myspan">{{item.orders}}</span>
+        <span *ngIf="show" class="myspan">{{orders}}</span>
       </div>
       <span class="mytitle">我的工单</span>
     </div>
@@ -31,8 +31,8 @@
 
     <div class="myshadow">
       <div class="mydiv" (click)="goAudit($event)">
-          <img src="assets/icon/audit.png">
-        <span class="myspan">{{item.audit}}</span>
+        <img src="assets/icon/audit.png">
+        <span *ngIf="show2" class="myspan">{{audit}}</span>
       </div>
       <span class="mytitle">待审核工单</span>
     </div>
@@ -40,17 +40,17 @@
   </div>
 
   <div style="display: flex;height: 36px;margin-left: 7.5%">
-    <hr class="leftline" >
+    <hr class="leftline">
     <hr style="background: transparent;width: 5%;margin: 0px">
-    <hr class="rightline" >
+    <hr class="rightline">
   </div>
 
   <div style="display: flex;">
 
     <div class="myshadow" style="margin-left: 7.5%">
       <div class="mydiv" (click)="goPredoing($event)">
-          <img src="assets/icon/doing.png">
-        <span class="myspan">{{item.doing}}</span>
+        <img src="assets/icon/doing.png">
+        <span *ngIf="show3" class="myspan">{{doing}}</span>
       </div>
       <span class="mytitle">待执行工单</span>
     </div>
@@ -62,7 +62,7 @@
     <div class="myshadow">
       <div class="mydiv" (click)="goDone($event)">
         <img src="assets/icon/preparing.png">
-        <span class="myspan">{{item.prepare}}</span>
+        <span *ngIf="show4" class="myspan">{{prepare}}</span>
       </div>
       <span class="mytitle">执行中工单</span>
     </div>
@@ -72,7 +72,9 @@
 
   <br>
   <br>
-  <br><br><br>
+  <br>
+  <br>
+  <br>
 
   <button style="display: inline-block;width: 100%;background: transparent">
     <img src="assets/icon/scan.png" style="width: 13%;height: 13%;margin: 0%" (click)="scan($event)">
