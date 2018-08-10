@@ -4,7 +4,7 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { Nav, Platform, App, Events, ToastController } from 'ionic-angular';
 import { Storage } from "@ionic/storage";
 
-import { MainPage, FirstRunPage } from '../pages';
+import { MainPage } from '../pages';
 import { Network } from '@ionic-native/network';
 import { NetworkProvider } from '../providers/utils/network-check-tool';
 import { LoginPage } from '../pages/login/login';
@@ -41,14 +41,14 @@ export class MyApp {
     public splashScreen: SplashScreen,
     public eventCtrl: Events,
     public network: Network,
-    public toastCtrl:ToastController,
+    public toastCtrl: ToastController,
     public networkProvider: NetworkProvider) {
-    //导航页
+    //start root
     // storage.get('user').then((result) => {
     //   if (result) {
     //     this.rootPage = MainPage;//LoginPage
     //   } else {
-    this.rootPage = MainPage;
+        this.rootPage = MainPage;
     //   }
     // });
 
@@ -59,7 +59,7 @@ export class MyApp {
         console.log('is android');
         // this.statusBar.overlaysWebView(true);
         this.statusBar.backgroundColorByHexString('#16b2ff');
-      } else if(platform.is('ios')){
+      } else if (platform.is('ios')) {
         this.statusBar.styleDefault();
       }
       this.splashScreen.hide();
@@ -70,7 +70,12 @@ export class MyApp {
 
       // Offline event
       this.eventCtrl.subscribe('network:offline', () => {
-        alert('network:offline ==> ' + this.network.type);
+        // alert('network:offline ==> ' + this.network.type);
+        this.toastCtrl.create({
+          message: "网络已断开",
+          duration: 2000,
+          position: 'bottom'
+        })
       });
 
     });
@@ -108,9 +113,4 @@ export class MyApp {
   //   });
   // }
 
-  // openPage(page) {
-  //   // Reset the content nav to have just this page
-  //   // we wouldn't want the back button to show in this scenario
-  //   this.nav.setRoot(page.component);
-  // }
 }

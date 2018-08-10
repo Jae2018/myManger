@@ -7,11 +7,15 @@ page-mine-pwd-change {
 
   ion-footer{
     width: 100%;
-    height: 60px;
+    height: 50px;
     background: #1e70ab;
     color: white;
+
     text-align: center;
-    padding-top: 20px;
+    align-items: center;
+    display: flex;
+
+    justify-content: center;
     font-size: 16px;
   }
 

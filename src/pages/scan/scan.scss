@@ -1,5 +1,4 @@
 page-scan {
-
   .qrscanner {
     background: none;
     &-area {
@@ -9,16 +8,14 @@ page-scan {
       background-size: contain;
     }
   }
-
-  .through-line {
-    left: 25%;
-    width: 50%;
-    height: 2px;
-    background: red;
-    position: absolute;
-    animation: myfirst 2s linear infinite alternate;
-  }
-
+  // .through-line {
+    // left: 25%;
+    // width: 50%;
+    // height: 2px;
+    // background: red;
+    // position: absolute;
+    // animation: myfirst 2s linear infinite alternate;
+  // }
   @keyframes myfirst {
     0% {
       background: red;
@@ -41,7 +38,6 @@ page-scan {
       top: 50%;
     }
   }
-
   .button-bottom {
     width: 128px;
     position: absolute;
@@ -51,7 +47,5 @@ page-scan {
     .icon-camera {
       float: left;
     }
-}
-
-
+  }
 }

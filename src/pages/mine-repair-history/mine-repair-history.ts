@@ -18,6 +18,7 @@ import { BaseUrl, mineRepair } from '..';
 export class MineRepairHistoryPage {
 
   list = [];
+  type = 1;
 
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
@@ -31,13 +32,13 @@ export class MineRepairHistoryPage {
 
   getData() {
     let httpHeaders = new HttpHeaders()
-      .set('Content-Type', 'application/json')
-      .set('Cache-Control', 'no-cache')
+      // .set('Content-Type', 'application/json')
+      // .set('Cache-Control', 'no-cache')
       .set('Authorization', 'Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJzYnl3IiwidXNlcklkIjo3Niwicm9sZUlkIjo3MSwiY29tcElkIjo5NCwiZW50VHlwZSI6IjEiLCJleHAiOjE1MzM4MDU5Mjl9.VcFx9dwfe1-NxAXtahCBd_V7fQVEYlCWq65tp3GY2cQGzGgVzjeX-XY4D6syBEUmi8U2LO-StYt4DEy0HhKoqw');
-    // let params = { 'pinpaiID': '88' }
+    let params = { 'type': this.type }
     let options = {
       headers: httpHeaders,
-      // params: params
+      params: params
     };
     this.http.post(BaseUrl + mineRepair, options).subscribe(res => {
       console.log(res)

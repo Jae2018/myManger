@@ -1,10 +1,10 @@
-import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
-import { Camera, CameraOptions } from '@ionic-native/camera';
+import { Component, ViewChild } from '@angular/core';
+import { IonicPage, NavController, NavParams, AlertController, ModalController } from 'ionic-angular';
 import { Media, MediaObject } from '@ionic-native/media';
 import { File } from '@ionic-native/file';
 import { FileTransfer, FileTransferObject } from '@ionic-native/file-transfer';
 import { TakePhotoPage } from '../take-photo/take-photo';
+import { ScanPage } from '../scan/scan';
 
 /**
  * Generated class for the StoreBugReportPage page.
@@ -27,28 +27,28 @@ export class StoreBugReportPage {
   type: string = "";
   state: string = "";
   time: string = "";
+  address: string;
   hasRecord: boolean = false;//显示录音图标
   public filePath: any; //录音文件的名字
   public recordData: MediaObject; //录音对象
   fileTransfer: FileTransferObject;//传输类
-  btn: string = "按住说话，描述故障";
-  firstClick: boolean = false;
-  // pressGesture: Gesture;
-  // private s:Gesture;
+  firstClick: boolean = true;
+  playClick: boolean = true;
+
+
+  @ViewChild('addrinput') addrinput;
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
-    private alert: AlertController, private camera: Camera,
-    private media: Media, private file: File, private transfer: FileTransfer) {
+    private alert: AlertController, private media: Media,
+    private file: File, private transfer: FileTransfer,
+    private model: ModalController) {
   }
 
   ionViewDidLoad() {
-
-
     var date = new Date();
     this.time = date.toLocaleDateString() + " " + (date.getHours() < 10 ? "0" + date.getHours() : date.getHours())
       + ":" + (date.getMinutes() < 10 ? "0" + date.getMinutes() : date.getMinutes())
       + ":" + (date.getSeconds() < 10 ? "0" + date.getSeconds() : date.getSeconds());
-    this.firstClick = true;
   }
 
   //日期
@@ -141,7 +141,7 @@ export class StoreBugReportPage {
       label: '其他故障',
       value: '其他故障',
       handler: data => {
-        this.state = data.value;
+        this.type = data.value;
         a3.dismiss();
       }
     });
@@ -201,12 +201,13 @@ export class StoreBugReportPage {
     a2.addButton({
       text: '确认',
       handler: data => {
-        this.type = data.title;
+        this.des = data.title;
       }
     });
     a2.present();
   }
 
+  //录音开关
   record(event) {
     if (this.firstClick) {
       this.startRecord();
@@ -217,7 +218,8 @@ export class StoreBugReportPage {
     }
   }
 
-  startRecord() {  //开始录音
+  //开始录音
+  startRecord() {
     let date = new Date();
     //文件URL，文件存放在拓展内存卡中文件夹下，命名为Record.mp3
     this.filePath = this.file.externalDataDirectory + "Record_" + date.getDate() + date.getHours()
@@ -226,60 +228,55 @@ export class StoreBugReportPage {
     this.recordData = this.media.create(this.filePath);
     //开始录音
     this.recordData.startRecord();
-
-    console.log('start');
-    this.firstClick = false;
+    this.hasRecord = false;
   }
 
+  //停止录音
   stopRecord() {
-    //停止录音
     this.recordData.stopRecord();
-    // this.hasRecord = true;
-
-    console.log('stop');
-    this.firstClick = true;
+    this.hasRecord = true;
   }
 
   //播放录音
   playRecord() {
-    console.log('start');
-    this.recordData.play();
+    if (this.playClick) {
+      this.recordData.play();
+      this.playClick = false;
+    } else {
+      this.recordData.stop();
+      this.playClick = true;
+    }
   }
-
 
   //拍照
   takephoto(event) {
-    // const options: CameraOptions = {
-    //   quality: 100,
-    //   destinationType: this.camera.DestinationType.FILE_URI,
-    //   encodingType: this.camera.EncodingType.JPEG,
-    //   mediaType: this.camera.MediaType.PICTURE
-    // }
-
-    // this.camera.getPicture(options).then((imageData) => {
-    //   // imageData is either a base64 encoded string or a file URI
-    //   // If it's base64 (DATA_URL):
-    //   let base64Image = 'data:image/jpeg;base64,' + imageData;
-    //   console.log(base64Image);
-    // }, (err) => {
-    //   // Handle error
-    //   console.log(err);
-    // });
-
     this.goPhoto();
   }
 
-  commit(){
-
+  //去拍照页面
+  goPhoto() {
+    let newsModal = this.model.create(TakePhotoPage);
+    newsModal.onDidDismiss(data => {
+      console.log(data);
+    });
+    newsModal.present();
   }
 
-  goPhoto() {
-    new Promise((resolve, reject) => {
-      this.navCtrl.push(TakePhotoPage, { resolve: resolve });
-    }).then(data => {
-      // 若修改成功返回则在该代码块中将本页的 nickname 修改
-      console.log(data)
+  //扫描回调
+  clickMe() {
+    this.navCtrl.push(ScanPage, { callback: this.getIdStr })
+  }
+
+  //回调方法声明
+  getIdStr = (data) => {
+    return new Promise((resolve, reject) => {
+      resolve();
+      console.log(data);
     })
   }
 
+    //提交数据
+    commit() {
+
+    }
 }

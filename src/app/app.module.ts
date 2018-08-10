@@ -45,6 +45,7 @@ import { NetworkProvider } from '../providers/utils/network-check-tool';
 import { GlobalToolProvider } from '../providers/global-tool/global-tool';
 import { HttpserviceProvider } from '../providers/httpservice/httpservice';
 import { TakePhotoPageModule } from '../pages/take-photo/take-photo.module';
+import { ScanPageModule } from '../pages/scan/scan.module';
 
 // The translate loader needs to know where to load i18n files
 // in Ionic's static asset pipeline.
@@ -91,6 +92,9 @@ export function provideSettings(storage: Storage) {
     IonicStorageModule.forRoot(),
     //login
     LoginPageModule,
+
+    //scan page
+    ScanPageModule,
 
     // main subs
     MyWorkListPageModule,

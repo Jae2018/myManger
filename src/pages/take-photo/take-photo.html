@@ -13,7 +13,7 @@
 </ion-header>
 
 
-<ion-content padding>
+<ion-content>
 
   <div id="container">
     <div class="box" *ngFor="let image of img_data;let i=index">
@@ -24,3 +24,7 @@
   </div>
 
 </ion-content>
+
+<ion-footer style="display: flex;text-align: center;justify-content: center;align-items: center;height: 50px;background: deepskyblue" (tap)="ok()">
+  确认
+</ion-footer>

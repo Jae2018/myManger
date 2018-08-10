@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { IonicPage, NavController, LoadingController, Refresher, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, LoadingController, Refresher, NavParams, ModalController } from 'ionic-angular';
 import { MyWorkListPage } from '../my-work-list/my-work-list';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { MyAuditOrderPage } from '../my-audit-order/my-audit-order';
@@ -7,6 +7,7 @@ import { MyPredoingPage } from '../my-predoing/my-predoing';
 import { BaseUrl, homeOrderinfo } from '..';
 import { Order } from '../../models/order';
 import { Sms } from '../../models/sms';
+import { ScanPage } from '../scan/scan';
 
 /**
  * Generated class for the WorkListPage page.
@@ -34,7 +35,7 @@ export class WorkListPage {
   constructor(public navCtrl: NavController,
     public http: HttpClient,
     public loadingCtrl: LoadingController,
-    private param: NavParams) {
+    private param: NavParams, private model: ModalController) {
 
   }
 
@@ -111,7 +112,12 @@ export class WorkListPage {
   }
 
   scan(event: any) {
-    this.navCtrl.push('ScanPage');
+    // this.navCtrl.push('ScanPage');
+    let newsModal = this.model.create(ScanPage);
+    newsModal.onDidDismiss(data => {
+      console.log(data);
+    });
+    newsModal.present();
   }
 
 }

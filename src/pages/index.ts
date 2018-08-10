@@ -15,11 +15,11 @@ export const Tab5Root = 'MinePage';
 //IP地址
 export const BaseUrl = 'https://www.goodb2b.cn/sale_inte';//基址
 //无
-export const checkCode = '/system/checkcode.action';//验证码，404
+export const checkCodeUrl = '/system/checkcode.action';//验证码，OK
 //username，password
-export const loginUrl = '/system/logon.action';//登录
+export const loginUrl = '/system/logon.action';//登录,OK
 //无
-export const homeOrderinfo = '/repair/personalorderinfo.action';//主页工单条数信息，500，无参数
+export const homeOrderinfo = '/repair/personalorderinfo.action';//主页工单条数信息，ok
 //type：0 1 2 3 四种
 export const homeOrderList = 'repair/personalorderlist.action';//主页工单列表参数：
 //storeId ，  测试：11 12 13
@@ -47,7 +47,7 @@ export const inspect = '/repair/inspectList.action';//巡检
 //type，1 未提交 ；2 已提交
 export const mineReport = '/repair/personalReport.action';//我的上报历史，OK，测试号有一单
 //无
-export const mineRepair = '/repair/personalRepairHistory.action';//我的修理历史，500
+export const mineRepair = '/repair/personalRepairHistory.action';//我的修理历史，OK
 //pinpaiID
 export const parstList = '/repair/replaceList.action';//备件
 // maiId	  	  string	维修单ID

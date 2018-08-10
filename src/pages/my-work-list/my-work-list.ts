@@ -38,7 +38,7 @@ export class MyWorkListPage {
       .set('Content-Type', 'application/json')
       .set('Cache-Control', 'no-cache')
       .set('Authorization', 'Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJzYnl3IiwidXNlcklkIjo3Niwicm9sZUlkIjo3MSwiY29tcElkIjo5NCwiZW50VHlwZSI6IjEiLCJleHAiOjE1MzM4MDU5Mjl9.VcFx9dwfe1-NxAXtahCBd_V7fQVEYlCWq65tp3GY2cQGzGgVzjeX-XY4D6syBEUmi8U2LO-StYt4DEy0HhKoqw');
-    let params = { 'type': '0' }
+    let params = { 'type': this.type }
     let options = {
       headers: httpHeaders,
       params: params

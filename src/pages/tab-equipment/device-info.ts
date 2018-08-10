@@ -50,7 +50,7 @@ export class DeviceInfoPage implements OnInit {
       headers: httpHeaders,
       params: params
     };
-    this.http.post(BaseUrl + parstList, options).subscribe(res => {
+    this.http.post(BaseUrl + parstList, null, options).subscribe(res => {
       console.log(res)
     }, err => {
 

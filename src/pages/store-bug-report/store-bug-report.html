@@ -30,7 +30,7 @@
 
     <ion-item>
       故障描述(语音)
-      <img [hidden]="!hasRecord" src="assets/icon/talk.png" style="margin-right: 10%;width: 24px;height: 24px;">
+      <img [hidden]="!hasRecord" src="assets/icon/talk.png" style="margin-right: 10%;width: 24px;height: 24px;" (tap)="playRecord()">
     </ion-item>
 
     <ion-item>
@@ -58,19 +58,19 @@
     </ion-item>
 
     <ion-item>
-      <ion-label fixed>设备地址</ion-label>
-      {{item.address}}
+      <label>设备地址</label>
+      <input #addrinput type="text" [(ngModel)]="address" style="border: 0ch;margin: 0%;float: right;">
     </ion-item>
 
     <ion-item>
-      <ion-label fixed>故障描述</ion-label>
-      {{des}}
+      <label>故障描述</label>
+      <span>{{des}}</span>
       <img src="assets/icon/next.png">
     </ion-item>
 
     <ion-item (click)="takephoto($event)">
-      <ion-label fixed>故障图片</ion-label>
-      {{size}}张
+      <label>故障图片</label>
+      <span>{{size}}张</span>
       <img src="assets/icon/next.png">
     </ion-item>
 

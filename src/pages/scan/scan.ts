@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, ViewController } from 'ionic-angular';
+import { IonicPage, NavController, ViewController, NavParams } from 'ionic-angular';
 import { QRScanner, QRScannerStatus } from '@ionic-native/qr-scanner';
 
 /**
@@ -18,14 +18,17 @@ export class ScanPage {
   light: boolean;//判断闪光灯
   frontCamera: boolean;//判断摄像头
   isShow: boolean = false;//控制显示背景，避免切换页面卡顿
+  callback;
 
   constructor(
     private navCtrl: NavController,
     private qrScanner: QRScanner,
+    private navParam: NavParams,
     private viewCtrl: ViewController) {
-      //默认为false
-      this.light = false;
-      this.frontCamera = false;
+    //默认为false
+    this.light = false;
+    this.frontCamera = false;
+    this.callback = this.navParam.get('callback');
   }
 
   ionViewDidLoad() {
@@ -35,10 +38,12 @@ export class ScanPage {
           // camera permission was granted
           // start scanning
           let scanSub = this.qrScanner.scan().subscribe((text: string) => {
-            alert(text);
+            console.log(text);
             this.qrScanner.hide(); // hide camera preview
             scanSub.unsubscribe(); // stop scanning
-            this.navCtrl.pop();
+            this.callback(text).then(() => {
+              this.navCtrl.pop();
+            })
           });
 
           // show camera preview
@@ -56,13 +61,11 @@ export class ScanPage {
       .catch((e: any) => console.log('Error is', e));
   }
 
-  ionViewDidEnter(){
+  ionViewDidEnter() {
     //页面可见时才执行
     this.showCamera();
     this.isShow = true;//显示背景
   }
-
-
 
   /**
    * 闪光灯控制，默认关闭

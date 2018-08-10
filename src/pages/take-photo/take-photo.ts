@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ToastController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ToastController, ViewController } from 'ionic-angular';
 import { Camera, CameraOptions } from '../../../node_modules/@ionic-native/camera';
 import { ImagePage } from '../image/image';
 
@@ -20,18 +20,21 @@ export class TakePhotoPage {
 
   img_data = [];
   size: number = 0;
-  resolve: Function;
+  data;
+  // resolve: Function;
 
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
     private camera: Camera,
-    private toast: ToastController) {
-    this.resolve = navParams.get('resolve');
+    private toast: ToastController,
+    private view: ViewController) {
+    // this.resolve = navParams.get('resolve');
+    this.data = this.navParams.get('data');
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad TakePhotoPage');
-    this.img_data.push('../assets/icon/photo.png');
+    this.img_data.push('assets/icon/photo.png');
   }
 
   private initCamera() {
@@ -39,29 +42,22 @@ export class TakePhotoPage {
       quality: 80,
       destinationType: this.camera.DestinationType.FILE_URI,
       encodingType: this.camera.EncodingType.PNG,
-      mediaType: this.camera.MediaType.PICTURE
     }
     return options;
   }
 
   private takePhoto() {
-    if (this.size > 3) {
-      this.toast.create({
-        duration: 2000,
-        message: "照片数最多三张",
-        position: 'bottom'
-      }).present();
-    } else {
       this.camera.getPicture(this.initCamera()).then((imageData) => {
         // imageData is either a base64 encoded string or a file URI
         // If it's base64 (DATA_URL):
         this.size++;
-        let base64Image = 'data:image/jpeg;base64,' + imageData;
-        this.img_data.push('assets/icon/photo.png');
+        // let base64Image = 'data:image/jpeg;base64,' + imageData;
+        this.img_data.push(imageData);
+        console.log('after photo:' + imageData)
+        this.data = imageData;
       }, (err) => {
         // Handle error
       });
-    }
   }
 
   private setPaths() {
@@ -71,16 +67,27 @@ export class TakePhotoPage {
         paths.push(this.img_data[i]);
       }
     }
-    return paths;
+    this.data = paths;
+
   }
 
-  callBackPaths() {
-    this.resolve(this.setPaths());
+
+  ok(){
+    this.view.dismiss(this.data);
+    // this.navCtrl.pop();
   }
 
   click(i) {
     if (i == 0) {
-      this.takePhoto();
+      if( this.size <= 3){
+        this.takePhoto();
+      }else{
+        this.toast.create({
+          duration: 2000,
+          message: "照片数最多三张",
+          position: 'bottom'
+        }).present();
+      }
     } else {
       this.bigImage(i);
     }

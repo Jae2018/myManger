@@ -6,6 +6,7 @@ import { MineAboutUsPage } from '../mine-about-us/mine-about-us';
 import { MineRepairHistoryPage } from '../mine-repair-history/mine-repair-history';
 import { Storage } from "@ionic/storage";
 import { User } from '../../models/user';
+import { LoginPage } from '../login/login';
 
 /**
  * Generated class for the MinePage page.
@@ -27,7 +28,7 @@ export class MinePage {
   public pages2 = [];
   user: User;
   userNmae;
-  avatorUrl;
+  // avatorUrl;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public storge: Storage) {
 
@@ -36,8 +37,9 @@ export class MinePage {
   ionViewDidLoad() {
     console.log('ionViewDidLoad MinePage');
     this.storge.get('user').then((user: User) => {
-      this.userNmae = user.username;
-      this.avatorUrl = user.url ? user.url : 'assets/icon/avatar.png';
+      console.log(user)
+      this.userNmae = user.tel;
+      // this.avatorUrl = user.url ? user.url : 'assets/icon/avatar.png';
     })
   }
 
@@ -63,6 +65,7 @@ export class MinePage {
   //注销
   doLoginOut(event) {
     this.storge.remove('user');
+    this.navCtrl.popTo(LoginPage);
   }
 
   //我的申请

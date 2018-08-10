@@ -59,7 +59,7 @@ export class InspectPage implements OnInit {
       headers: httpHeaders,
       // params: params
     };
-    this.http.post(BaseUrl + inspect, options).subscribe(res => {
+    this.http.post(BaseUrl + inspect, null, options).subscribe(res => {
       console.log(res)
     }, err => {
 

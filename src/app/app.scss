@@ -15,9 +15,13 @@
 // for the .md, .ios, or .wp mode classes. The mode class is
 // automatically applied to the <body> element in the app.
 //导航栏渐变，IOS直接包括状态栏，Android不行
-.toolbar-background {
+.toolbar-background-ios {
   color: -webkit-gradient(linear, 0% 0%, 100% 0%, from(#16b2ff), to(#0e87f9)) !important;
   background: -webkit-gradient(linear, 0% 0%, 100% 0%, from(#16b2ff), to(#0e87f9)) !important;
+}
+.toolbar-background-md {
+  color: #16b2ff !important;
+  background: #16b2ff!important;
 }
 //标题居中，颜色
 .toolbar-title{

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ActionSheetController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ActionSheetController, AlertController } from 'ionic-angular';
 import { HttpClient, HttpHeaders } from '../../../node_modules/@angular/common/http';
 import { StoreBugReportPage } from '../store-bug-report/store-bug-report';
 import { Geolocation } from '@ionic-native/geolocation';
@@ -31,13 +31,13 @@ export class StorePage {
 
   storeId;
   title: string;
-  num: number;
+  num: number = 0;
   public item: any;
 
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
     public actionSheetCtrl: ActionSheetController, private http: HttpClient,
-    private geolocation: Geolocation, private storge: Storage) {
+    private geolocation: Geolocation, private storge: Storage, private alert: AlertController) {
 
   }
 
@@ -72,36 +72,50 @@ export class StorePage {
     };
 
     this.http.post<Sms<Store[]>>("https://www.goodb2b.cn/sale_inte/repair/storelist.action", null, options).subscribe((res) => {
-      this.store = res.data;
-      this.title = this.store[0].storeName;
-      this.num = this.store[0].deviceNo;
-      console.log(this.store);
+      if (res.data.length > 0) {
+        this.store = res.data;
+        this.title = this.store[0].storeName;
+        this.num = this.store[0].deviceNo;
+        console.log(this.store);
+      }
     }, err => {
 
     });
   }
 
   myFunction(i) {
-    this.title = this.store[i].storeName;
-    this.num = this.store[i].deviceNo ? this.store[i].deviceNo : 0;
+    if (this.store.length > 0) {
+      console.log('>>>>>2')
+      this.title = this.store[i].storeName;
+      this.num = this.store[i].deviceNo ? this.store[i].deviceNo : 0;
+    }
   }
 
   changeStore() {
+    if (this.store.length > 0) {
+      var btns = [];
+      for (var i = 0; i < this.store.length; i++) {
+        btns.push({
+          text: this.store[i].storeName,
+          handler: this.myFunction.bind(this, i)
+        })
+      }
 
-    var btns = [];
-    for (var i = 0; i < this.store.length; i++) {
-      btns.push({
-        text: this.store[i].storeName,
-        handler: this.myFunction.bind(this, i)
-      })
+      const actionSheet = this.actionSheetCtrl.create({
+        title: '请选择店铺',
+        // cssClass:'title',
+        buttons: btns
+      });
+      actionSheet.present();
+    } else {
+      this.alert.create({
+        title:'注意',
+        message:'暂无店铺',
+        buttons:[
+          '确认'
+        ]
+      }).present();
     }
-
-    const actionSheet = this.actionSheetCtrl.create({
-      title: '请选择店铺',
-      // cssClass:'title',
-      buttons: btns
-    });
-    actionSheet.present();
   }
 
   goEquipmentList() {

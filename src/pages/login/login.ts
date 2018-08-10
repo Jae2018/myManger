@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, ToastController, Platform } from 'ionic-angular';
 
 import { User } from '../../providers';
-import { MainPage, BaseUrl } from '../';
+import { MainPage, BaseUrl, loginUrl, checkCodeUrl } from '../';
 import { Storage } from '@ionic/storage';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Device } from '@ionic-native/device';
@@ -40,9 +40,9 @@ export class LoginPage {
     private platform: Platform,
     private storge: Storage) {
 
-      this.platform.registerBackButtonAction(()=>{
-        this.showExit();
-      });
+    // this.platform.registerBackButtonAction(() => {
+    //   this.showExit();
+    // });
   }
 
   ionViewDidLoad() {
@@ -53,14 +53,16 @@ export class LoginPage {
 
   private getAccount() {
     this.storge.get('user').then((user) => {
-      console.log(user);
-      this.account = user;
+      if (user) {
+        console.log(user);
+        this.account = user;
+      }
     });
   }
 
   getSms() {
     let httpParams = new HttpParams().set("machineCode", this.uuid);
-    this.http.post(BaseUrl + 'system/checkcode.action', httpParams).subscribe((res: Sms<any>) => {
+    this.http.post(BaseUrl + checkCodeUrl, httpParams).subscribe((res: Sms<any>) => {
       this.img = res.data;
     }, err => {
 
@@ -73,18 +75,23 @@ export class LoginPage {
 
   // Attempt to login in through our User service
   doLogin() {
-    // if (this.account.tel.length == 0 || this.account.password.length == 0) {
-    //   this.toastCtrl.create()
-    // }
+    if (this.account.tel.length == 0 || this.account.password.length == 0) {
+      this.toastCtrl.create({
+        message:'用户名或密码不能为空',
+        duration:2000,
+        position:'bottom'
+      }).present();
+      return
+    }
     let currentIndex = this.navCtrl.getActive().index;
 
     let httpParams = new HttpParams()
       .set("machineCode", this.uuid)
       .set("userCode", this.account.tel)
       .set("password", this.account.password)
-      .set("checkCode", this.checkCode)
-      .set("source", this.device.platform);
-    this.http.post(BaseUrl + 'system/logon.action', httpParams).subscribe((res: Sms<any>) => {
+      .set("checkCode", this.checkCode);
+    // .set("source", this.device.platform);
+    this.http.post(BaseUrl + loginUrl, httpParams).subscribe((res: Sms<any>) => {
       if (res.code == 0) {
         this.account.token = res.data;
         this.storge.set('user', this.account);

@@ -41,7 +41,7 @@ export class GlobalUtils {
       this.toast.create({
         message: '再按一次退出应用',
         duration: 2000,
-        position: 'top'
+        position: 'bottom'
       }).present();
       //标记为true
       this.backButtonPressed = true;
