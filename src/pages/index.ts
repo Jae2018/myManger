@@ -39,7 +39,7 @@ export const storeReport = '/repair/storeReport.action';//店铺故障报修，4
 //pinpaiID
 export const storeList = '/repair/storelist.action';//店铺列表，pinpaiID = 88
 //maiId
-export const personOrderDetail = '/repair/getOrderInfo.action';//个人工单详情，id=2有数据
+export const personOrderDetail = '/repair/getOrderInfo.action';//个人工单详情，提示：程序有问题
 //deviceId
 export const deviceDetail = '/repair/deviceinfo.action';//设备详情
 //无
@@ -58,7 +58,7 @@ export const uploadOrder = '/repair/uploadOrder.action';//提交工单接口，O
 //maiId，维修单ID
 export const cancelOrder = '/repair/cancleRepair.action';//取消订单，OK。
 //maiId
-export const qiangOrder = '/repair/robbingIt.action';//抢单，OK。测试号无单子信息
+export const qiangOrder = '/repair/robbingIt.action';//抢单，提示：程序有问题
 //维修人员
 export const workerList = '';
 //配件列表

@@ -3,6 +3,9 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { HttpHeaders, HttpClient } from '../../../node_modules/@angular/common/http';
 import { BaseUrl, mineRepair } from '..';
 import { Storage } from '../../../node_modules/@ionic/storage';
+import { Api } from '../../providers';
+import { Sms } from '../../models/sms';
+import { History } from '../../models/history';
 
 /**
  * Generated class for the MineRepairHistoryPage page.
@@ -24,7 +27,7 @@ export class MineRepairHistoryPage {
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
     private http: HttpClient,
-    private storge: Storage) {
+    private api: Api) {
   }
 
   ionViewDidLoad() {
@@ -32,26 +35,20 @@ export class MineRepairHistoryPage {
     this.getData();
   }
 
-  getToken() {
-    var token;
-    this.storge.get('user').then(user => {
-      token = user['token']
-    })
-    return token;
-  }
-
   getData() {
     let httpHeaders = new HttpHeaders()
       .set('Content-Type', 'application/x-www-form-urlencoded')
-      .set('Cache-Control', 'no-cache')
-      .set('Authorization', this.getToken());
+      .set('Authorization', this.api.getToken());
+
     let params = { 'type': this.type }
+
     let options = {
       headers: httpHeaders,
       params: params
     };
-    this.http.post(BaseUrl + mineRepair, null, options).subscribe(res => {
-      console.log(res)
+    this.http.post<Sms<History[]>>(BaseUrl + mineRepair, null, options).subscribe(res => {
+      this.list = res.data;
+      console.log(res.data)
     }, err => {
 
     })

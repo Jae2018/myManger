@@ -94,10 +94,14 @@ export class RepairOrderPage {
   }
 
   private setParams() {
+    let header = new HttpHeaders()
+      .set('Content-Type', 'application/x-www-form-urlencoded')
+      .set('Authorization', this.api.getToken());
+
     let params = new HttpParams().set('maiId', this.maiId);
 
     let options = {
-      headers: this.setHeader(),
+      headers: header,
       params: params
     };
     return options;

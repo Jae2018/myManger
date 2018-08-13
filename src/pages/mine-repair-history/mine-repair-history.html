@@ -21,29 +21,30 @@
 <ion-content>
   <ion-card *ngFor="let item of list; let i=index" style="background: #f9f9f9" (click)="goDetail($event,i)">
     <ion-card-header>
-      <span style="margin-left: 5px">{{item.title}}</span>
-      <img src="assets/icon/next.png">
-      <span [ngStyle]="{'color':item.state ===1?'#3639ff':item.state ===2?'#fd39be':'#000000'}" class="myspan">33333</span>
+      <span style="margin-left: 5px">{{item.deviceName}}</span>
+      <span [ngStyle]="{'color':item.state ===1?'#3639ff':item.state ===2?'#fd39be':'#000000'}" class="myspan">共{{item.hour}}小时</span>
     </ion-card-header>
 
     <hr style="color: #000000;margin: 0px 5px 0px 5px;">
 
     <ion-card-content>
       <p>
-        <label>设备编号</label>
-        <span>123</span>
+        <label>维修人员</label>
+        <span>我</span>
       </p>
       <p>
-        <label>规格型号</label>
-        <span>123</span>
+        <label>维修单号</label>
+        <span>{{item.deviceNo}}</span>
+      </p>
+      <div>
+        <img src="assets/icon/next.png" style="float: right;"></div>
+      <p>
+        <label>开始时间</label>
+        <span>{{item.startTime}}</span>
       </p>
       <p>
-        <label>记录时间</label>
-        <span>123</span>
-      </p>
-      <p>
-        <label>工单状态</label>
-        <span [ngStyle]="{'background':item.level===1?'red':item.level===2?'blue':'green'}" style="color: white;padding: 2px">123</span>
+        <label>完成时间</label>
+        <span [ngStyle]="{'background':item.level===1?'red':item.level===2?'blue':'green'}" style="color: white;padding: 2px">{{item.endTime}}</span>
       </p>
     </ion-card-content>
   </ion-card>
