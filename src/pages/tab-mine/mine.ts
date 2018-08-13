@@ -35,16 +35,23 @@ export class MinePage {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad MinePage');
-    this.storge.get('user').then((user: User) => {
+    this.storge.get('account').then((user: User) => {
       console.log(user)
-      this.userNmae = user.tel;
+      this.userNmae = user['tel'];
       // this.avatorUrl = user.url ? user.url : 'assets/icon/avatar.png';
     })
   }
 
   ionViewDidLeave() {
     console.log("app is eixit");
+  }
+
+  getToken() {
+    var token;
+    this.storge.get('account').then(user => {
+      token = user['token']
+    })
+    return token;
   }
 
   //修改密码

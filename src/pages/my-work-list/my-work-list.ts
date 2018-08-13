@@ -1,9 +1,11 @@
-import { Component, OnInit } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { RepairReportPage } from '../repair-report/repair-report';
+import { Component } from '@angular/core';
+import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-angular';
 import { HttpClient, HttpHeaders } from '../../../node_modules/@angular/common/http';
 import { BaseUrl, homeOrderList } from '..';
 import { RepairOrderPage } from '../repair-order/repair-order';
+import { Api } from '../../providers';
+import { Sms } from '../../models/sms';
+import { Order } from '../../models/order';
 
 /**
  * Generated class for the MyWorkListPage page.
@@ -25,61 +27,66 @@ export class MyWorkListPage {
 
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
-    private http: HttpClient) {
-      this.type = navParams.get('type');
+    private http: HttpClient,
+    private api: Api,
+    private loading: LoadingController) {
+    this.type = navParams.get('type');
   }
+
+
 
   ionViewDidLoad() {
     this.getDetail();
   }
 
   getDetail() {
+    let loading = this.loading.create();
+    loading.present();
+
     let httpHeaders = new HttpHeaders()
-      .set('Content-Type', 'application/json')
+      .set('Content-Type', 'application/x-www-form-urlencoded')
       .set('Cache-Control', 'no-cache')
-      .set('Authorization', 'Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJzYnl3IiwidXNlcklkIjo3Niwicm9sZUlkIjo3MSwiY29tcElkIjo5NCwiZW50VHlwZSI6IjEiLCJleHAiOjE1MzM4MDU5Mjl9.VcFx9dwfe1-NxAXtahCBd_V7fQVEYlCWq65tp3GY2cQGzGgVzjeX-XY4D6syBEUmi8U2LO-StYt4DEy0HhKoqw');
+      .set('Authorization', this.api.getToken())
+
     let params = { 'type': this.type }
+
     let options = {
       headers: httpHeaders,
       params: params
     };
-    this.http.post(BaseUrl + homeOrderList, options).subscribe(res => {
-      console.log(res)
+
+    this.http.post<Sms<Order[]>>(BaseUrl + homeOrderList, null, options).subscribe((res) => {
+      this.items = res.data;
+      loading.dismiss();
+      console.log(this.items)
     }, err => {
 
     });
-    //测试数据
-    for (var i = 0; i < 5; i++) {
-      this.items.push(
-        {
-          title: "呵呵",
-          content: "哈哈"
-        }
-      );
-    }
+
   }
 
-  doInfinite(): Promise<any> {
-    console.log('Begin async operation');
+  // doInfinite(): Promise<any> {
+  //   console.log('Begin async operation');
 
-    return new Promise((resolve) => {
-      setTimeout(() => {
-        for (var i = 0; i < 5; i++) {
-          this.items.push(
-            {
-              title: "呵呵",
-              content: "哈哈"
-            }
-          );
-        }
+  //   return new Promise((resolve) => {
+  //     setTimeout(() => {
+  //       for (var i = 0; i < 5; i++) {
+  //         this.items.push(
+  //           {
+  //             title: "呵呵",
+  //             content: "哈哈"
+  //           }
+  //         );
+  //       }
 
-        console.log('Async operation has ended');
-        resolve();
-      }, 1000);
-    })
-  }
+  //       console.log('Async operation has ended');
+  //       resolve();
+  //     }, 1000);
+  //   })
+  // }
 
-  goDetail() {
+  goDetail(i) {
+    this.navParams.data = { maiId: this.items[i].orderId };
     this.navCtrl.push(RepairOrderPage, this.navParams);
   }
 

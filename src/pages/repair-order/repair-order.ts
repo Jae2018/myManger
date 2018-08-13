@@ -1,10 +1,11 @@
-import { Component, ChangeDetectorRef } from '@angular/core';
-import { IonicPage, NavController, NavParams, Platform, AlertController, LoadingController } from 'ionic-angular';
+import { Component } from '@angular/core';
+import { IonicPage, NavController, NavParams, AlertController, LoadingController } from 'ionic-angular';
 import { HttpClient, HttpHeaders, HttpParams } from '../../../node_modules/@angular/common/http';
 import { BaseUrl, personOrderDetail, qiangOrder, cancelOrder, OrderStateChange } from '..';
 import { Sms } from '../../models/sms';
 import { MyWorker } from '../../models/worker';
 import { OrderInfo } from '../../models/orderinfo';
+import { Api } from '../../providers';
 
 /**
  * Generated class for the RepairOrderPage page.
@@ -34,17 +35,18 @@ export class RepairOrderPage {
     public navParams: NavParams,
     public http: HttpClient,
     private alertCtrl: AlertController,
+    private api: Api,
     private loadingCtrl: LoadingController) {
     this.maiId = navParams.get('maiId');
-    if (!this.maiId) {
-      this.maiId = '2';
-    }
+    // if (this.maiId.length == null) {
+    //   this.maiId = '2';
+    // }
+    console.log(this.maiId);
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad RepairOrderPage');
-    this.getOrderBaseInfo(this.maiId);
-    this.getWorkers();
+    this.getOrderBaseInfo();
+    // this.getWorkers();
   }
 
   commit(event) {
@@ -54,14 +56,14 @@ export class RepairOrderPage {
   //抢单或者取消
   cancle(event) {
     if (this.getOrcancel) {//取消
-      this.http.post(BaseUrl + cancelOrder, null, this.setParams(this.maiId)).subscribe(res => {
+      this.http.post(BaseUrl + cancelOrder, null, this.setParams()).subscribe(res => {
         this.getOrcancel = false;
 
       }, err => {
 
       });
     } else {//抢单
-      this.http.post(BaseUrl + qiangOrder, null, this.setParams(this.maiId)).subscribe(res => {
+      this.http.post(BaseUrl + qiangOrder, null, this.setParams()).subscribe(res => {
         this.getOrcancel = true;
 
       }, err => {
@@ -72,10 +74,10 @@ export class RepairOrderPage {
 
   //执行中或完成
   startOfinish() {
-    if(this.startOrfinish){//完成
+    if (this.startOrfinish) {//完成
 
-    }else{//开始维修，执行中
-      this.http.post(BaseUrl + OrderStateChange, null, this.setParams(this.maiId)).subscribe(res => {
+    } else {//开始维修，执行中
+      this.http.post(BaseUrl + OrderStateChange, null, this.setParams()).subscribe(res => {
         this.getOrcancel = true;
 
       }, err => {
@@ -86,18 +88,14 @@ export class RepairOrderPage {
 
   private setHeader() {
     let header = new HttpHeaders()
-      .set('Content-Type', 'application/json')
-      .set('Cache-Control', 'no-cache')
-      .set('Authorization', 'Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJzYnl3IiwidXNlcklkIjo3Niwicm9sZUlkIjo3MSwiY29tcElkIjo5NCwiZW50VHlwZSI6IjEiLCJleHAiOjE1MzM4MDU5Mjl9.VcFx9dwfe1-NxAXtahCBd_V7fQVEYlCWq65tp3GY2cQGzGgVzjeX-XY4D6syBEUmi8U2LO-StYt4DEy0HhKoqw');
+      .set('Content-Type', 'application/x-www-form-urlencoded')
+      .set('Authorization', this.api.getToken());
     return header;
   }
 
-  private setParams(maiId) {
-    let params = new HttpParams();
-    if(maiId){
-      params.set('maiId', maiId);
-    }
-    params.set('','');
+  private setParams() {
+    let params = new HttpParams().set('maiId', this.maiId);
+
     let options = {
       headers: this.setHeader(),
       params: params
@@ -106,12 +104,15 @@ export class RepairOrderPage {
   }
 
   //维修单故障信息
-  getOrderBaseInfo(maiId) {
-    this.http.post(BaseUrl + personOrderDetail, null, this.setParams(maiId)).subscribe((res: Sms<OrderInfo[]>) => {
-
-
+  getOrderBaseInfo() {
+    let load = this.loadingCtrl.create()
+    load.present()
+    this.http.post<Sms<any>>(BaseUrl + personOrderDetail, null, this.setParams()).subscribe((res) => {
+      console.log(res);
+      load.dismiss()
     }, err => {
-
+      load.dismiss()
+      console.log(err)
     });
   }
 
@@ -136,7 +137,7 @@ export class RepairOrderPage {
       name: "123",
       userId: "224"
     }];
-    // this.showWorkerDialog(list);
+    this.showWorkerDialog();
   }
 
   //员工列表弹窗

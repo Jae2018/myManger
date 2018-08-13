@@ -1,8 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { EquipmentListPage } from '../equipment-list/equipment-list';
 import { HttpHeaders, HttpClient } from '../../../node_modules/@angular/common/http';
-import { BaseUrl, parstList, inspect } from '..';
+import { BaseUrl, inspect } from '..';
+// import { Storage } from '../../../node_modules/@ionic/storage';
+import { Api } from '../../providers';
 
 /**
  * Generated class for the InspectPage page.
@@ -16,32 +18,17 @@ import { BaseUrl, parstList, inspect } from '..';
   selector: 'page-inspect',
   templateUrl: 'inspect.html',
 })
-export class InspectPage implements OnInit {
+export class InspectPage {
 
   public list = [];
 
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
-    private http: HttpClient) {
+    private http: HttpClient,
+    // private storge: Storage,
+    private api: Api) {
 
 
-  }
-
-  ngOnInit() {
-    this.list.push(
-      {
-        title: "巡检测试计划1",
-        date: "2018-08-15",
-        time: "12:10:12",
-        state: "1天前"
-      },
-      {
-        title: "巡检测试计划2",
-        date: "2018-08-15",
-        time: "12:12:32",
-        state: "1天前"
-      }
-    );
   }
 
   ionViewDidLoad() {
@@ -51,14 +38,13 @@ export class InspectPage implements OnInit {
 
   getData() {
     let httpHeaders = new HttpHeaders()
-      .set('Content-Type', 'application/json')
-      .set('Cache-Control', 'no-cache')
-      .set('Authorization', 'Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJzYnl3IiwidXNlcklkIjo3Niwicm9sZUlkIjo3MSwiY29tcElkIjo5NCwiZW50VHlwZSI6IjEiLCJleHAiOjE1MzM4MDU5Mjl9.VcFx9dwfe1-NxAXtahCBd_V7fQVEYlCWq65tp3GY2cQGzGgVzjeX-XY4D6syBEUmi8U2LO-StYt4DEy0HhKoqw');
-    // let params = { 'pinpaiID': '88' }
+      .set('Content-Type', 'application/x-www-form-urlencoded')
+      .set('Authorization', this.api.getToken());
+
     let options = {
       headers: httpHeaders,
-      // params: params
     };
+
     this.http.post(BaseUrl + inspect, null, options).subscribe(res => {
       console.log(res)
     }, err => {

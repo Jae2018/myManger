@@ -22,7 +22,7 @@ export class AddRepairReportPage {
 
   ionViewDidLoad() {
     this.tab = "1";
-    console.log('ionViewDidLoad AddRepairReportPage');
+    console.log('ionViewDidLoad AddRepairReportPage');//x-www-form-urlencoded
   }
 
 }

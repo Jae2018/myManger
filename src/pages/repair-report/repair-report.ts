@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { Media, MediaObject } from '@ionic-native/media';
 import { File } from '@ionic-native/file';
 import { FileTransfer, FileTransferObject } from '@ionic-native/file-transfer';
+import { Storage } from '../../../node_modules/@ionic/storage';
 
 /**
  * Generated class for the RepairReportPage page.
@@ -25,13 +26,21 @@ export class RepairReportPage {
   fileTransfer: FileTransferObject;//下载
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
-    private media: Media, private file: File, private transfer: FileTransfer) {
+    private media: Media, private file: File, private transfer: FileTransfer, private storge: Storage) {
 
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad RepairReportPage');
     this.fileTransfer = this.transfer.create();
+  }
+
+  getToken() {
+    var token;
+    this.storge.get('user').then(user => {
+      token = user['token']
+    })
+    return token;
   }
 
   startRecord() {  //开始录音
@@ -56,7 +65,7 @@ export class RepairReportPage {
     this.recordData.play();
   }
 
-  stopPlay(){
+  stopPlay() {
     //停止播放录音
     this.recordData.stop();
   }

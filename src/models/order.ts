@@ -1,8 +1,13 @@
 
 
 export class Order {
-  audit: number;
-  doing: number;
-  orders: number;
-  prepare: number;
+  orderId;
+  area: any
+  date: any
+  level: any
+  name: any
+  id: any
+  store: any
+  storeId: any
+  type: any
 }

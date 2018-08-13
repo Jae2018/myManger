@@ -48,7 +48,7 @@ export class MyApp {
     //   if (result) {
     //     this.rootPage = MainPage;//LoginPage
     //   } else {
-        this.rootPage = MainPage;
+        this.rootPage = LoginPage;
     //   }
     // });
 

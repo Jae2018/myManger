@@ -15,43 +15,43 @@
 
 <ion-content>
 
-  <ion-card *ngFor="let item of items; let i=index" style="background: #f9f9f9" (click)="goDetail($event,i)">
+  <ion-card *ngFor="let item of items; let i=index" style="background: #f9f9f9" (click)="goDetail(i)">
     <ion-card-header>
-      <span style="margin-left: 5px">{{item.title}}</span>
+      <span style="margin-left: 5px">{{item.name}}</span>
       <ion-icon name="ios-arrow-forward"></ion-icon>
-      <span [ngStyle]="{'color':item.state ===1?'#3639ff':item.state ===2?'#fd39be':'#000000'}" class="myspan">33333</span>
+      <span [ngStyle]="{'color':item.type ===2?'#3639ff':item.type ===3?'#fd39be':'#000000'}" class="myspan">{{item.type ===2?'新故障':item.type ===3?'等待维修':'已停机'}}</span>
     </ion-card-header>
 
     <hr style="color: #000000;margin: 0px 5px 0px 5px;">
 
     <ion-card-content>
       <p>
-        <label>设备编号</label>
-        <span>123</span>
+        <label>设备地址</label>
+        <span>{{item.area}}</span>
       </p>
       <p>
-        <label>规格型号</label>
-        <span>123</span>
+        <label>设备店铺</label>
+        <span>{{item.store}}</span>
       </p>
       <p>
         <label>发现时间</label>
-        <span>123</span>
+        <span>{{item.date}}</span>
       </p>
       <p>
         <label>维修单号</label>
-        <span>123</span>
+        <span>{{item.orderId}}</span>
       </p>
       <p>
         <label>故障等级</label>
-        <span [ngStyle]="{'background':item.level===1?'red':item.level===2?'blue':'green'}" style="color: white;padding: 2px">123</span>
+        <span [ngStyle]="{'background':item.level===1?'red':item.level===2?'blue':'green'}" style="color: white;padding: 2px">{{item.level===1?'紧急':item.level===2?'一般':'一般'}}</span>
       </p>
     </ion-card-content>
   </ion-card>
-
+<!--
   <ion-infinite-scroll (ionInfinite)="$event.waitFor(doInfinite())">
     <ion-infinite-scroll-content loadingText="加载中..." loadingSpinner="bubbles">
 
     </ion-infinite-scroll-content>
-  </ion-infinite-scroll>
+  </ion-infinite-scroll> -->
 
 </ion-content>

@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { MyBugReportPage } from '../mine-bug-report/my-bug-report';
 import { HttpHeaders, HttpClient } from '../../../node_modules/@angular/common/http';
 import { BaseUrl, mineReport } from '..';
+import { Storage } from '../../../node_modules/@ionic/storage';
 
 
 /**
@@ -22,7 +23,7 @@ export class MyBugReportListPage {
   list = [];
   type: string;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private http: HttpClient) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private http: HttpClient, private storge: Storage) {
     this.type = '1';
   }
 
@@ -31,11 +32,19 @@ export class MyBugReportListPage {
     this.getData();
   }
 
+  getToken() {
+    var token;
+    this.storge.get('user').then(user => {
+      token = user['token']
+    })
+    return token;
+  }
+
   getData() {
     let httpHeaders = new HttpHeaders()
-      // .set('Content-Type', 'application/json')
-      // .set('Cache-Control', 'no-cache')
-      .set('Authorization', 'Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJzYnl3IiwidXNlcklkIjo3Niwicm9sZUlkIjo3MSwiY29tcElkIjo5NCwiZW50VHlwZSI6IjEiLCJleHAiOjE1MzM4MDU5Mjl9.VcFx9dwfe1-NxAXtahCBd_V7fQVEYlCWq65tp3GY2cQGzGgVzjeX-XY4D6syBEUmi8U2LO-StYt4DEy0HhKoqw');
+      .set('Content-Type', 'application/x-www-form-urlencoded')
+      .set('Cache-Control', 'no-cache')
+      .set('Authorization', this.getToken());
     let params = { 'type': this.type };
     let options = {
       headers: httpHeaders,

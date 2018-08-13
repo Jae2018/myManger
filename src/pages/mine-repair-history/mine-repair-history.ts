@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { HttpHeaders, HttpClient } from '../../../node_modules/@angular/common/http';
 import { BaseUrl, mineRepair } from '..';
+import { Storage } from '../../../node_modules/@ionic/storage';
 
 /**
  * Generated class for the MineRepairHistoryPage page.
@@ -18,11 +19,12 @@ import { BaseUrl, mineRepair } from '..';
 export class MineRepairHistoryPage {
 
   list = [];
-  type = 1;
+  type = '1';
 
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
-    private http: HttpClient) {
+    private http: HttpClient,
+    private storge: Storage) {
   }
 
   ionViewDidLoad() {
@@ -30,20 +32,29 @@ export class MineRepairHistoryPage {
     this.getData();
   }
 
+  getToken() {
+    var token;
+    this.storge.get('user').then(user => {
+      token = user['token']
+    })
+    return token;
+  }
+
   getData() {
     let httpHeaders = new HttpHeaders()
-      // .set('Content-Type', 'application/json')
-      // .set('Cache-Control', 'no-cache')
-      .set('Authorization', 'Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJzYnl3IiwidXNlcklkIjo3Niwicm9sZUlkIjo3MSwiY29tcElkIjo5NCwiZW50VHlwZSI6IjEiLCJleHAiOjE1MzM4MDU5Mjl9.VcFx9dwfe1-NxAXtahCBd_V7fQVEYlCWq65tp3GY2cQGzGgVzjeX-XY4D6syBEUmi8U2LO-StYt4DEy0HhKoqw');
+      .set('Content-Type', 'application/x-www-form-urlencoded')
+      .set('Cache-Control', 'no-cache')
+      .set('Authorization', this.getToken());
     let params = { 'type': this.type }
     let options = {
       headers: httpHeaders,
       params: params
     };
-    this.http.post(BaseUrl + mineRepair, options).subscribe(res => {
+    this.http.post(BaseUrl + mineRepair, null, options).subscribe(res => {
       console.log(res)
     }, err => {
 
     })
+
   }
 }

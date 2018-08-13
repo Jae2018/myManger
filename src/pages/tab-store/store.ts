@@ -1,19 +1,14 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ActionSheetController, AlertController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ActionSheetController, AlertController, LoadingController } from 'ionic-angular';
 import { HttpClient, HttpHeaders } from '../../../node_modules/@angular/common/http';
 import { StoreBugReportPage } from '../store-bug-report/store-bug-report';
-import { Geolocation } from '@ionic-native/geolocation';
+// import { Geolocation } from '@ionic-native/geolocation';
 import { AddRepairReportPage } from '../add-repair-report/add-repair-report';
 import { EquipmentListPage } from '../equipment-list/equipment-list';
-import { Storage } from "@ionic/storage";
-import { HttpClientModule } from "@angular/common/http";
-// import { Api } from '../../providers';
-import { BaseUrl, token } from '../index';
-// import { Bean } from '../../models/bean';
-// import { Store } from '../../models/store';
-import { User } from '../../models/user';
+import { BaseUrl, storeList } from '../index';
 import { Store } from '../../models/store';
 import { Sms } from '../../models/sms';
+import { Api } from '../../providers';
 
 /**
  * Generated class for the StorePage page.
@@ -30,22 +25,23 @@ import { Sms } from '../../models/sms';
 export class StorePage {
 
   storeId;
+  store: Store[];
   title: string;
   num: number = 0;
   public item: any;
 
 
-  constructor(public navCtrl: NavController, public navParams: NavParams,
-    public actionSheetCtrl: ActionSheetController, private http: HttpClient,
-    private geolocation: Geolocation, private storge: Storage, private alert: AlertController) {
+  constructor(public navCtrl: NavController,
+    public navParams: NavParams,
+    private actionSheetCtrl: ActionSheetController,
+    private http: HttpClient,
+    public loadingCtrl: LoadingController,
+    private api: Api,
+    private alert: AlertController) {
 
   }
 
   ionViewDidLoad() {
-    // this.storge.get('user').then((user: User) => {
-    //   this.token = user.token;
-    //   console.log(this.token);
-    // });
     // this.getLocation();
     this.getStoreList();
   }
@@ -59,24 +55,25 @@ export class StorePage {
   //     console.log('Error getting location', error);
   //   });
   // }
-  store: Store[];
 
   getStoreList() {
+    let loading = this.loadingCtrl.create();
+    loading.present();
+
     let httpHeaders = new HttpHeaders()
-      .set('Content-Type', 'application/json')
-      .set('Cache-Control', 'no-cache')
-      .set('Authorization', 'Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJzYnl3IiwidXNlcklkIjo3Niwicm9sZUlkIjo3MSwiY29tcElkIjo5NCwiZW50VHlwZSI6IjEiLCJleHAiOjE1MzM4MDU5Mjl9.VcFx9dwfe1-NxAXtahCBd_V7fQVEYlCWq65tp3GY2cQGzGgVzjeX-XY4D6syBEUmi8U2LO-StYt4DEy0HhKoqw');
+      .set('Content-Type', 'application/x-www-form-urlencoded')
+      .set('Authorization', this.api.getToken());
 
     let options = {
       headers: httpHeaders
     };
 
-    this.http.post<Sms<Store[]>>("https://www.goodb2b.cn/sale_inte/repair/storelist.action", null, options).subscribe((res) => {
+    this.http.post<Sms<Store[]>>(BaseUrl + storeList, null, options).subscribe((res) => {
       if (res.data.length > 0) {
         this.store = res.data;
         this.title = this.store[0].storeName;
         this.num = this.store[0].deviceNo;
-        console.log(this.store);
+        loading.dismiss()
       }
     }, err => {
 
@@ -85,7 +82,6 @@ export class StorePage {
 
   myFunction(i) {
     if (this.store.length > 0) {
-      console.log('>>>>>2')
       this.title = this.store[i].storeName;
       this.num = this.store[i].deviceNo ? this.store[i].deviceNo : 0;
     }
@@ -97,7 +93,7 @@ export class StorePage {
       for (var i = 0; i < this.store.length; i++) {
         btns.push({
           text: this.store[i].storeName,
-          handler: this.myFunction.bind(this, i)
+          handler: this.myFunction.bind(this, i)//注意bind方法
         })
       }
 
@@ -109,9 +105,9 @@ export class StorePage {
       actionSheet.present();
     } else {
       this.alert.create({
-        title:'注意',
-        message:'暂无店铺',
-        buttons:[
+        title: '注意',
+        message: '暂无店铺',
+        buttons: [
           '确认'
         ]
       }).present();

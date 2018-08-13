@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { Storage } from '../../../node_modules/@ionic/storage';
 
 /**
  * Generated class for the EquipmentInfoPage page.
@@ -18,13 +19,21 @@ export class EquipmentInfoPage {
   item = {};
   type: string;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private storge: Storage) {
     this.item = navParams.data;
     this.type = '1';
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad EquipmentInfoPage');
+  }
+
+  getToken() {
+    var token;
+    this.storge.get('user').then(user => {//x-www-form-urlencoded
+      token = user['token']
+    })
+    return token;
   }
 
 }

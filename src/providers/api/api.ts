@@ -1,7 +1,6 @@
 import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Storage } from "@ionic/storage";
-
 /**
  * Api is a generic REST Api handler. Set your API url first.
  */
@@ -10,17 +9,31 @@ export class Api {
   url: string = 'http://192.168.1.67:8080/sale_inte';
   public access_token: string = '';
   httpOptions;
+  httpHeaders;
 
   constructor(public http: HttpClient, public storge: Storage) {
   }
 
-  getToken(){
-    this.httpOptions = {
-      headers: new HttpHeaders({
-        // 'Content-Type': 'application/json',
-        // 'Authorization': this.storge.get('token').
-      })
-    };
+  setToken(token){
+    this.access_token = 'Bearer '+token;
+  }
+
+  getToken() {
+    return this.access_token;
+  }
+
+  setHeader() {
+    if (Object.keys(this.httpHeaders).length == 0) {
+      this.httpHeaders = new HttpHeaders()
+        .set('Content-Type', 'application/json')
+        .set('Cache-Control', 'no-cache')
+        .set('Authorization', this.getToken());
+    }
+    return this.httpHeaders;
+  }
+
+  setParams(){
+
   }
 
   get(endpoint: string, params?: any, reqOpts?: any) {
@@ -45,11 +58,15 @@ export class Api {
     return this.http.post(this.url + '/' + endpoint, body, reqOpts);
   }
 
-  getSms(device){
-    this.http.post('',device,{})
+  getSms(device) {
+    this.http.post('', device, {})
   }
 
-  login(){
+  getCheckCode(){
+
+  }
+
+  login(uuid) {
 
   }
 

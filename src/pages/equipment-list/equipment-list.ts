@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { EquipmentInfoPage } from '../equipment-detail/equipment-info';
 import { HttpClient, HttpHeaders } from '../../../node_modules/@angular/common/http';
 import { BaseUrl } from '..';
+import { Storage } from '../../../node_modules/@ionic/storage';
 
 /**
  * Generated class for the EquipmentListPage page.
@@ -22,7 +23,8 @@ export class EquipmentListPage {
 
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
-    private http: HttpClient) {
+    private http: HttpClient,
+    private storge: Storage) {
   }
 
   ionViewDidLoad() {
@@ -30,12 +32,19 @@ export class EquipmentListPage {
     this.getData();
   }
 
+  getToken() {
+    var token;
+    this.storge.get('user').then(user => {
+      token = user['token']
+    })
+    return token;
+  }
 
   getData() {
     let httpHeaders = new HttpHeaders()
-      .set('Content-Type', 'application/json')
+      .set('Content-Type', 'application/x-www-form-urlencoded')
       .set('Cache-Control', 'no-cache')
-      .set('Authorization', 'Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJzYnl3IiwidXNlcklkIjo3Niwicm9sZUlkIjo3MSwiY29tcElkIjo5NCwiZW50VHlwZSI6IjEiLCJleHAiOjE1MzM4MDU5Mjl9.VcFx9dwfe1-NxAXtahCBd_V7fQVEYlCWq65tp3GY2cQGzGgVzjeX-XY4D6syBEUmi8U2LO-StYt4DEy0HhKoqw');
+      .set('Authorization', this.getToken());
     let params = { 'storeId': '11' }
     let options = {
       headers: httpHeaders,

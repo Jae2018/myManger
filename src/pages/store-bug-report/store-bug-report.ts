@@ -2,9 +2,12 @@ import { Component, ViewChild } from '@angular/core';
 import { IonicPage, NavController, NavParams, AlertController, ModalController } from 'ionic-angular';
 import { Media, MediaObject } from '@ionic-native/media';
 import { File } from '@ionic-native/file';
-import { FileTransfer, FileTransferObject } from '@ionic-native/file-transfer';
+import { FileTransfer, FileTransferObject, FileUploadOptions } from '@ionic-native/file-transfer';
 import { TakePhotoPage } from '../take-photo/take-photo';
 import { ScanPage } from '../scan/scan';
+import { HttpClient, HttpHeaders, HttpParams } from '../../../node_modules/@angular/common/http';
+import { BaseUrl, storeReport } from '..';
+import { Storage } from '../../../node_modules/@ionic/storage';
 
 /**
  * Generated class for the StoreBugReportPage page.
@@ -34,13 +37,15 @@ export class StoreBugReportPage {
   fileTransfer: FileTransferObject;//传输类
   firstClick: boolean = true;
   playClick: boolean = true;
-
+  photos = [];//照片
+  date;
 
   @ViewChild('addrinput') addrinput;
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
     private alert: AlertController, private media: Media,
-    private file: File, private transfer: FileTransfer,
+    private file: File, private storge: Storage,
+    private http: HttpClient,
     private model: ModalController) {
   }
 
@@ -220,10 +225,10 @@ export class StoreBugReportPage {
 
   //开始录音
   startRecord() {
-    let date = new Date();
+    this.date = new Date();
     //文件URL，文件存放在拓展内存卡中文件夹下，命名为Record.mp3
-    this.filePath = this.file.externalDataDirectory + "Record_" + date.getDate() + date.getHours()
-      + date.getMinutes() + date.getSeconds() + ".mp3";
+    this.filePath = this.file.externalDataDirectory + "Record_" + this.date.getDate() + this.date.getHours()
+      + this.date.getMinutes() + this.date.getSeconds() + ".mp3";
     //创建media对象，参数文件名字，上面的filePath也指定了文件存放位置和文件名字
     this.recordData = this.media.create(this.filePath);
     //开始录音
@@ -258,6 +263,7 @@ export class StoreBugReportPage {
     let newsModal = this.model.create(TakePhotoPage);
     newsModal.onDidDismiss(data => {
       console.log(data);
+      this.photos.push(data);//存入照片路径
     });
     newsModal.present();
   }
@@ -275,8 +281,58 @@ export class StoreBugReportPage {
     })
   }
 
-    //提交数据
-    commit() {
+  getToken() {
+    var token;
+    this.storge.get('user').then(user => {
+      token = user['token']
+    })
+    return token;
+  }
+
+  //提交数据
+  commit() {
+    // this.fileTransfer = this.transfer.create();
+
+    if (this.state.length == 0) {
 
     }
+
+    let httpHeaders = new HttpHeaders()
+      .set('Content-Type', 'application/x-www-form-urlencoded')
+      .set('Cache-Control', 'no-cache')
+      .set('Authorization', this.getToken())
+    // let params = new HttpParams().set('', '');
+    let options: FileUploadOptions = {
+      headers: httpHeaders,
+      // params: params,
+    };
+
+    // this.fileTransfer.upload('this.path', BaseUrl + storeReport, options)
+    //   .then((data) => {
+    //     console.log(data);
+
+    //   }, (err) => {
+    //     console.log(err);
+    //   });
+
+    var formData = new FormData();
+    formData.append('deviceId', '2');
+    formData.append('happenTime', this.date.getDate() + this.date.getHours()
+      + this.date.getMinutes() + this.date.getSeconds());
+    formData.append('deviceState', this.state);
+    if (this.photos.length > 0) {
+      for (var i = 0; i < this.photos.length; i++) {
+        formData.append('files', this.photos[i], 'image' + i + 'jpeg');
+      }
+    }
+    if (this.filePath.length > 0) {
+      formData.append('files', this.filePath, 'audio');
+    }
+
+    this.http.post(BaseUrl + storeReport, formData, options).subscribe(res => {
+      console.log(res)
+    }, err => {
+      console.log(err)
+    })
+  }
 }

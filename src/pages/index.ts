@@ -21,20 +21,20 @@ export const loginUrl = '/system/logon.action';//登录,OK
 //无
 export const homeOrderinfo = '/repair/personalorderinfo.action';//主页工单条数信息，ok
 //type：0 1 2 3 四种
-export const homeOrderList = 'repair/personalorderlist.action';//主页工单列表参数：
+export const homeOrderList = '/repair/personalorderlist.action';//主页工单列表参数：
 //storeId ，  测试：11 12 13
-export const storeDeviceList = '/repair/deviceList.action';//店铺所有设备列表，404，
-// happenTime		string	发生时间
-// bugLevel	  	string	故障级别
-// reportId	  	string	维修人员ID
-// bugType	  	string	故障类型
-// bugReason		string	故障原因
-// deviceAdd		string	设备位置
-// deviceState	int	    设备状态; 0: 停机维修; 1: 带病运行; 2: 其他
-// decription		string	问题描述
-// img	      	bytes	  图片
-// voice	    	bytes	  语音
-// deviceId	  	string	设备ID
+export const storeDeviceList = '/repair/deviceList.action';//店铺所有设备列表，
+// deviceId	    是	string	设备ID
+// happenTime	  是	string	发生时间
+// bugLevel	    否	string	故障级别
+// reportId	    否	string	维修人员ID
+// bugType	    否	string	故障类型
+// bugReason	  否	string	故障原因
+// deviceAdd	  否	string	设备位置
+// deviceState	是	int	    设备状态; 0: 停机维修; 1: 带病运行; 2: 其他
+// decription	  否	string	问题描述
+// img	        否	bytes	  图片
+// voice	      否	bytes	  语音
 export const storeReport = '/repair/storeReport.action';//店铺故障报修，404
 //pinpaiID
 export const storeList = '/repair/storelist.action';//店铺列表，pinpaiID = 88
@@ -60,11 +60,11 @@ export const cancelOrder = '/repair/cancleRepair.action';//取消订单，OK。
 //maiId
 export const qiangOrder = '/repair/robbingIt.action';//抢单，OK。测试号无单子信息
 //维修人员
-export const workerList ='';
+export const workerList = '';
 //配件列表
-export const partsArr ='';
+export const partsArr = '';
 //维修单状态变更
-export const OrderStateChange ='';
+export const OrderStateChange = '';
 
-//测试账号：sbyw  123456
-export const token = "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJzYnl3IiwidXNlcklkIjo3Niwicm9sZUlkIjo3MSwiY29tcElkIjo5NCwiZW50VHlwZSI6IjEiLCJleHAiOjE1MzM4MDU5Mjl9.VcFx9dwfe1-NxAXtahCBd_V7fQVEYlCWq65tp3GY2cQGzGgVzjeX-XY4D6syBEUmi8U2LO-StYt4DEy0HhKoqw";//测试token
+//5504  token过期
+export const token: string = '';

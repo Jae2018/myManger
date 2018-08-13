@@ -2,12 +2,12 @@ import { Component, ViewChild } from '@angular/core';
 import { IonicPage, NavController, LoadingController, Refresher, NavParams, ModalController } from 'ionic-angular';
 import { MyWorkListPage } from '../my-work-list/my-work-list';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { MyAuditOrderPage } from '../my-audit-order/my-audit-order';
-import { MyPredoingPage } from '../my-predoing/my-predoing';
 import { BaseUrl, homeOrderinfo } from '..';
-import { Order } from '../../models/order';
 import { Sms } from '../../models/sms';
 import { ScanPage } from '../scan/scan';
+import { Api } from '../../providers/api/api';
+import { OrderTpye } from '../../models/ordertpye';
+
 
 /**
  * Generated class for the WorkListPage page.
@@ -35,23 +35,17 @@ export class WorkListPage {
   constructor(public navCtrl: NavController,
     public http: HttpClient,
     public loadingCtrl: LoadingController,
-    private param: NavParams, private model: ModalController) {
+    private param: NavParams,
+    private model: ModalController,
+    private api: Api) {
 
   }
 
   ionViewDidLoad() {
-    // console.log('ionViewDidLoad WorkListPage');
-    // this.item = {
-    //   orders: 3,//我的工单
-    //   audit: 6,//申报
-    //   doing: 4,//正在执行
-    //   prepare: 5,//待执行
-    // };
     this.show = false;
     this.show2 = false;
     this.show3 = false;
     this.show4 = false;
-    this.getData();
   }
 
   ionViewDidEnter() {
@@ -59,19 +53,19 @@ export class WorkListPage {
     this.getData();
   }
 
-
-
   getData() {
+    let loading = this.loadingCtrl.create();
+    loading.present();
+
     let httpHeaders = new HttpHeaders()
-      .set('Content-Type', 'application/json')
-      .set('Cache-Control', 'no-cache')
-      .set('Authorization', 'Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJzYnl3IiwidXNlcklkIjo3Niwicm9sZUlkIjo3MSwiY29tcElkIjo5NCwiZW50VHlwZSI6IjEiLCJleHAiOjE1MzM4MDU5Mjl9.VcFx9dwfe1-NxAXtahCBd_V7fQVEYlCWq65tp3GY2cQGzGgVzjeX-XY4D6syBEUmi8U2LO-StYt4DEy0HhKoqw');
+      .set('Content-Type', 'application/x-www-form-urlencoded')
+      .set('Authorization', this.api.getToken());
 
     let options = {
       headers: httpHeaders
     };
 
-    this.http.post<Sms<Order>>(BaseUrl + homeOrderinfo, null, options).subscribe(res => {
+    this.http.post<Sms<OrderTpye>>(BaseUrl + homeOrderinfo, null, options).subscribe(res => {
       this.orders = res.data.orders;
       this.audit = res.data.audit;
       this.doing = res.data.doing;
@@ -80,9 +74,19 @@ export class WorkListPage {
       this.show2 = this.audit > 0;
       this.show3 = this.doing > 0;
       this.show4 = this.prepare > 0;
-    }, error => {
-      console.error(error);
+      loading.dismiss();
+    }, err => {
+      //
     });
+    // let headers = new Headers();
+    // headers.set('Content-Type', 'application/x-www-form-urlencoded');
+    // headers.set('Authorization', this.api.getToken());
+    // let options = new RequestOptions({
+    //   headers: headers
+    // });
+    // this.http.post(BaseUrl + homeOrderinfo, null, options).map(res => { res.json() }).subscribe(data => {
+    //   console.log(data)
+    // })
 
   }
 

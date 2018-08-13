@@ -4,6 +4,7 @@ import { FileTransfer, FileTransferObject } from '../../../node_modules/@ionic-n
 import { Media, MediaObject } from '../../../node_modules/@ionic-native/media';
 import { File } from '@ionic-native/file';
 import { TakePhotoPage } from '../take-photo/take-photo';
+import { Storage } from '../../../node_modules/@ionic/storage';
 
 /**
  * Generated class for the StoreRepairOrdersPage page.
@@ -24,12 +25,20 @@ export class StoreRepairOrdersPage {
   public recordData: MediaObject; //录音对象
   fileTransfer: FileTransferObject;//下载
 
-  constructor(public navCtrl: NavController, public navParams: NavParams,
+  constructor(public navCtrl: NavController, public navParams: NavParams, private storge: Storage,
     private media: Media, private file: File, private transfer: FileTransfer) {
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad StoreRepairOrdersPage');
+  }
+
+  getToken() {
+    var token;
+    this.storge.get('user').then(user => {
+      token = user['token']
+    })
+    return token;
   }
 
   startRecord() {  //开始录音
