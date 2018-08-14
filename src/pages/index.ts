@@ -13,7 +13,7 @@ export const Tab4Root = 'InspectPage';
 export const Tab5Root = 'MinePage';
 
 //IP地址
-export const BaseUrl = 'https://www.goodb2b.cn/sale_inte';//基址
+export const BaseUrl = 'https://192.168.1.67:9876/sale_inte';//基址http://192.168.1.67:9876/sale_inte    ； https://www.goodb2b.cn/sale_inte
 //无
 export const checkCodeUrl = '/system/checkcode.action';//验证码，OK
 //username，password
@@ -21,7 +21,7 @@ export const loginUrl = '/system/logon.action';//登录,OK
 //无
 export const homeOrderinfo = '/repair/personalorderinfo.action';//主页工单条数信息，ok
 //type：0 1 2 3 四种
-export const homeOrderList = '/repair/personalorderlist.action';//主页工单列表参数：
+export const homeOrderList = '/repair/personalorderlist.action';//主页工单列表参数：ok
 //storeId ，  测试：11 12 13
 export const storeDeviceList = '/repair/deviceList.action';//店铺所有设备列表，
 // deviceId	    是	string	设备ID
@@ -36,8 +36,8 @@ export const storeDeviceList = '/repair/deviceList.action';//店铺所有设备�
 // img	        否	bytes	  图片
 // voice	      否	bytes	  语音
 export const storeReport = '/repair/storeReport.action';//店铺故障报修，404
-//pinpaiID
-export const storeList = '/repair/storelist.action';//店铺列表，pinpaiID = 88
+//无参  或者 pinpaiID
+export const storeList = '/repair/storelist.action';//店铺列表，ok
 //maiId
 export const personOrderDetail = '/repair/getOrderInfo.action';//个人工单详情，提示：程序有问题
 //deviceId
@@ -49,7 +49,7 @@ export const mineReport = '/repair/personalReport.action';//我的上报历史�
 //无
 export const mineRepair = '/repair/personalRepairHistory.action';//我的修理历史，OK
 //pinpaiID
-export const parstList = '/repair/replaceList.action';//备件
+export const parstList = '/repair/replaceList.action';//备件,404
 // maiId	  	  string	维修单ID
 // bugReason		string	故障原因	处理意见
 // repairLevel	string	维修级别

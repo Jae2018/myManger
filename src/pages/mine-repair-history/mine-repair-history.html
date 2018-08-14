@@ -9,16 +9,32 @@
   <ion-navbar>
     <ion-title>我的维修记录</ion-title>
   </ion-navbar>
-  <p></p>
-  <div style="display: flex">
-    <div>
 
-    </div>
-  </div>
 </ion-header>
 
 
 <ion-content>
+  <div style="height: 14%;background: #16b2ff;display: flex;padding: 10px 32px 10px 32px;text-align: center">
+
+    <div style="height: auto;width: 33%;" (tap)="changeDate()">
+      <label>维修日期
+        <img src="assets/icon/down.png" style="float:none;">
+      </label>
+      <p style="font-size: 20px">{{date}}</p>
+    </div>
+
+    <div style="height: auto;width: 33%;padding: 2px">
+      <label>总工时(小时)</label>
+      <p style="font-size: 20px">{{totalHours}}</p>
+    </div>
+
+    <div style="float: right;height: auto;width: 33%;padding: 2px">
+      <label>总单数</label>
+      <p style="font-size: 20px">{{orderNum}}</p>
+    </div>
+  </div>
+  <br>
+  <br>
   <ion-card *ngFor="let item of list; let i=index" style="background: #f9f9f9" (click)="goDetail($event,i)">
     <ion-card-header>
       <span style="margin-left: 5px">{{item.deviceName}}</span>
@@ -37,7 +53,8 @@
         <span>{{item.deviceNo}}</span>
       </p>
       <div>
-        <img src="assets/icon/next.png" style="float: right;"></div>
+        <img src="assets/icon/next.png" style="float: right;">
+      </div>
       <p>
         <label>开始时间</label>
         <span>{{item.startTime}}</span>

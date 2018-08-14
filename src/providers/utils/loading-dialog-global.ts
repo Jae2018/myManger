@@ -1,5 +1,7 @@
 import { App, Platform, ToastController, Tabs, NavController } from "ionic-angular";
 import { Injectable } from "@angular/core";
+import { LoginPage } from "../../pages/login/login";
+import { WorkListPage } from "../../pages/tab-work/work-list";
 
 @Injectable()
 export class GlobalUtils {
@@ -16,16 +18,24 @@ export class GlobalUtils {
     this.platform.registerBackButtonAction(() => {
       //获取NavController
       let activeNav: NavController = this.app.getActiveNavs()[0];
+
       //如果可以返回上一页，则执行pop
       if (activeNav.canGoBack()) {
         activeNav.pop();
       } else {
         if (tabRef == null || tabRef._selectHistory[tabRef._selectHistory.length - 1] === tabRef.getByIndex(0).id) {
-          //执行退出
-          this.showExit();
+          if (activeNav.getByIndex(0).component == LoginPage || activeNav.getByIndex(0).component == WorkListPage) {
+            //执行退出
+            this.showExit();
+          } else {
+            activeNav.pop();
+          }
         } else {
           //选择首页第一个的标签
           tabRef.select(0);
+        }
+        if (tabRef != null && tabRef._getSelectedTabIndex() != 0) {
+
         }
       }
     });

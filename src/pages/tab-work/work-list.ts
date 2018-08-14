@@ -77,6 +77,7 @@ export class WorkListPage {
       loading.dismiss();
     }, err => {
       //
+      loading.dismiss();
     });
     // let headers = new Headers();
     // headers.set('Content-Type', 'application/x-www-form-urlencoded');
