@@ -8,7 +8,6 @@ import { MainPage } from '../pages';
 import { Network } from '@ionic-native/network';
 import { NetworkProvider } from '../providers/utils/network-check-tool';
 import { LoginPage } from '../pages/login/login';
-import { TakePhotoPage } from '../pages/take-photo/take-photo';
 
 @Component({
   template:
@@ -49,7 +48,7 @@ export class MyApp {
     //   if (result) {
     //     this.rootPage = MainPage;//LoginPage
     //   } else {
-        this.rootPage = TakePhotoPage;
+        this.rootPage = LoginPage;
     //   }
     // });
 

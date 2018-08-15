@@ -2,7 +2,7 @@ import { Component, ViewChild } from '@angular/core';
 import { IonicPage, NavController, NavParams, AlertController, ModalController } from 'ionic-angular';
 import { Media, MediaObject } from '@ionic-native/media';
 import { File } from '@ionic-native/file';
-import { FileTransferObject, FileUploadOptions } from '@ionic-native/file-transfer';
+import { FileTransferObject, FileUploadOptions, FileTransfer } from '@ionic-native/file-transfer';
 import { TakePhotoPage } from '../take-photo/take-photo';
 import { ScanPage } from '../scan/scan';
 import { HttpClient, HttpHeaders, HttpParams } from '../../../node_modules/@angular/common/http';
@@ -45,7 +45,7 @@ export class StoreBugReportPage {
   constructor(public navCtrl: NavController, public navParams: NavParams,
     private alert: AlertController, private media: Media,
     private file: File, private api: Api,
-    private http: HttpClient,
+    private http: HttpClient, private up: FileTransfer,
     private model: ModalController) {
   }
 
@@ -54,11 +54,6 @@ export class StoreBugReportPage {
     this.time = this.date.toLocaleDateString() + " " + (this.date.getHours() < 10 ? "0" + this.date.getHours() : this.date.getHours())
       + ":" + (this.date.getMinutes() < 10 ? "0" + this.date.getMinutes() : this.date.getMinutes())
       + ":" + (this.date.getSeconds() < 10 ? "0" + this.date.getSeconds() : this.date.getSeconds());
-  }
-
-  //日期
-  datePicker() {
-
   }
 
   //等级
@@ -261,9 +256,10 @@ export class StoreBugReportPage {
   //去拍照页面
   goPhoto() {
     let newsModal = this.model.create(TakePhotoPage);
-    newsModal.onDidDismiss(data => {
+    newsModal.onDidDismiss(data => {//拍照回调
       console.log(data);
-      this.photos.push(data);//存入照片路径
+      this.photos = data;//存入照片路径
+      this.size = this.photos.length;
     });
     newsModal.present();
   }
@@ -273,11 +269,11 @@ export class StoreBugReportPage {
     this.navCtrl.push(ScanPage, { callback: this.getIdStr })
   }
 
-  //回调方法声明
+  //扫描回调方法声明
   getIdStr = (data) => {
     return new Promise((resolve, reject) => {
       resolve();
-      console.log(data);
+      console.log('qrcode ==> ' + data);
     })
   }
 
@@ -287,12 +283,13 @@ export class StoreBugReportPage {
 
     }
 
+
     let httpHeaders = new HttpHeaders()
       .set('Content-Type', 'application/x-www-form-urlencoded')
       .set('Authorization', this.api.getToken())
     let params = new HttpParams().set('deviceId', '1')
-    .set('happentime',this.date.getDate() + this.date.getHours() + this.date.getMinutes() + this.date.getSeconds())
-    .set('deviceState',this.state);//TODO
+      .set('happentime', this.date.getDate() + this.date.getHours() + this.date.getMinutes() + this.date.getSeconds())
+      .set('deviceState', this.state);//TODO
     let options: FileUploadOptions = {
       headers: httpHeaders,
       params: params,
@@ -314,6 +311,22 @@ export class StoreBugReportPage {
       this.navCtrl.pop();
     }, err => {
       console.log(err)
-    })
+    });
+
+    // this.up.create().upload('', BaseUrl + storeReport, options).then(data => {
+
+    // }, err => {
+
+    // })
+  }
+
+  //日期
+  datePicker() {
+    let options: FileUploadOptions = {
+      fileKey: 'file',
+      fileName: 'name.jpg',
+      headers: {}
+    }
+    this.up.create().upload
   }
 }

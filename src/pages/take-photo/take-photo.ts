@@ -21,6 +21,8 @@ export class TakePhotoPage {
   img_data = [];
   size: number = 0;
   data;
+  data2;
+  data3;
   // resolve: Function;
 
   constructor(public navCtrl: NavController,
@@ -34,54 +36,60 @@ export class TakePhotoPage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad TakePhotoPage');
-    this.img_data.push('assets/icon/photo.png');
   }
 
   private initCamera() {
     const options: CameraOptions = {
       quality: 80,
-      destinationType: this.camera.DestinationType.FILE_URI,
+      destinationType: this.camera.DestinationType.DATA_URL,
       encodingType: this.camera.EncodingType.PNG,
     }
     return options;
   }
 
   private takePhoto() {
+    this.size++;
+    if (this.size <= 3) {
       this.camera.getPicture(this.initCamera()).then((imageData) => {
         // imageData is either a base64 encoded string or a file URI
         // If it's base64 (DATA_URL):
-        this.size++;
-        // let base64Image = 'data:image/jpeg;base64,' + imageData;
-        this.img_data.push(imageData);
-        console.log('after photo:' + imageData)
-        this.data = imageData;
+        if (this.size == 1) {
+          this.data = 'data:image/jpeg;base64,' + imageData;
+        } else if (this.size == 2) {
+          this.data2 = 'data:image/jpeg;base64,' + imageData;
+        } else if (this.size == 3) {
+          this.data3 = 'data:image/jpeg;base64,' + imageData;
+        }
       }, (err) => {
         // Handle error
       });
-  }
-
-  private setPaths() {
-    var paths = [];
-    if (this.img_data.length > 1) {
-      for (var i = 0; i < this.img_data.length; i++) {
-        paths.push(this.img_data[i]);
-      }
+    } else {
+      this.toast.create({
+        duration: 2000,
+        message: "照片数最多三张",
+        position: 'bottom'
+      }).present();
     }
-    this.data = paths;
-
   }
 
-
-  ok(){
-    this.view.dismiss(this.data);
-    // this.navCtrl.pop();
+  ok() {
+    if (this.data != null) {
+      this.img_data.push(this.data);
+    }
+    if (this.data2 != null) {
+      this.img_data.push(this.data2);
+    }
+    if (this.data3 != null) {
+      this.img_data.push(this.data3);
+    }
+    this.view.dismiss(this.img_data);
   }
 
   click(i) {
     if (i == 0) {
-      if( this.size <= 3){
+      if (this.size <= 3) {
         this.takePhoto();
-      }else{
+      } else {
         this.toast.create({
           duration: 2000,
           message: "照片数最多三张",
@@ -94,6 +102,6 @@ export class TakePhotoPage {
   }
 
   bigImage(index) {
-    this.navCtrl.push(ImagePage, { 'url': this.img_data[index] });
+    this.navCtrl.push(ImagePage, { url: this.img_data[index] });
   }
 }
