@@ -86,7 +86,7 @@ export class MyWorkListPage {
   // }
 
   goDetail(i) {
-    this.navParams.data = { maiId: this.items[i].orderId };
+    this.navParams.data = { maiId: this.items[i].id };
     this.navCtrl.push(RepairOrderPage, this.navParams);
   }
 

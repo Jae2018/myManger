@@ -84,6 +84,7 @@ export class RepairReportPage {
     const url = 'http://www.example.com/file.pdf';
     this.fileTransfer.download(url, this.file.dataDirectory + 'file.pdf').then((entry) => {
       console.log('download complete: ' + entry.toURL());
+
     }, (error) => {
       // handle error
     });

@@ -1,9 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { EquipmentInfoPage } from '../equipment-detail/equipment-info';
 import { HttpClient, HttpHeaders } from '../../../node_modules/@angular/common/http';
-import { BaseUrl } from '..';
-import { Storage } from '../../../node_modules/@ionic/storage';
+import { BaseUrl, storeDeviceList } from '..';
+import { Api } from '../../providers';
 
 /**
  * Generated class for the EquipmentListPage page.
@@ -20,11 +20,14 @@ import { Storage } from '../../../node_modules/@ionic/storage';
 export class EquipmentListPage {
 
   public list = [];
+  id;
 
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
     private http: HttpClient,
-    private storge: Storage) {
+    private api: Api) {
+      this.id = navParams.get('storeId');
+      console.log(this.id)
   }
 
   ionViewDidLoad() {
@@ -32,28 +35,20 @@ export class EquipmentListPage {
     this.getData();
   }
 
-  getToken() {
-    var token;
-    this.storge.get('user').then(user => {
-      token = user['token']
-    })
-    return token;
-  }
-
   getData() {
     let httpHeaders = new HttpHeaders()
       .set('Content-Type', 'application/x-www-form-urlencoded')
-      .set('Cache-Control', 'no-cache')
-      .set('Authorization', this.getToken());
-    let params = { 'storeId': '11' }
+      .set('Authorization', this.api.getToken());
+    let params = { 'storeId': this.id }
     let options = {
       headers: httpHeaders,
       params: params
     };
-    this.http.post(BaseUrl + '/repair/deviceList.action', null, options).subscribe((res) => {
+    this.http.post(BaseUrl + storeDeviceList, null, options).subscribe((res) => {
       console.log(res)
+      this.list = res['data']
     }, err => {
-
+      console.log(err)
     })
 
   }

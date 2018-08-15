@@ -28,12 +28,4 @@ export class EquipmentInfoPage {
     console.log('ionViewDidLoad EquipmentInfoPage');
   }
 
-  getToken() {
-    var token;
-    this.storge.get('user').then(user => {//x-www-form-urlencoded
-      token = user['token']
-    })
-    return token;
-  }
-
 }

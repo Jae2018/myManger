@@ -2,12 +2,12 @@ import { Component, ViewChild } from '@angular/core';
 import { IonicPage, NavController, NavParams, AlertController, ModalController } from 'ionic-angular';
 import { Media, MediaObject } from '@ionic-native/media';
 import { File } from '@ionic-native/file';
-import { FileTransfer, FileTransferObject, FileUploadOptions } from '@ionic-native/file-transfer';
+import { FileTransferObject, FileUploadOptions } from '@ionic-native/file-transfer';
 import { TakePhotoPage } from '../take-photo/take-photo';
 import { ScanPage } from '../scan/scan';
 import { HttpClient, HttpHeaders, HttpParams } from '../../../node_modules/@angular/common/http';
 import { BaseUrl, storeReport } from '..';
-import { Storage } from '../../../node_modules/@ionic/storage';
+import { Api } from '../../providers';
 
 /**
  * Generated class for the StoreBugReportPage page.
@@ -25,10 +25,10 @@ export class StoreBugReportPage {
 
   item = {};
   size: number = 0;
-  des: string = "";
-  level: string = "";
+  des: string = "123";
+  level: string = "1";
   type: string = "";
-  state: string = "";
+  state: string = "1";
   time: string = "";
   address: string;
   hasRecord: boolean = false;//显示录音图标
@@ -44,16 +44,16 @@ export class StoreBugReportPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
     private alert: AlertController, private media: Media,
-    private file: File, private storge: Storage,
+    private file: File, private api: Api,
     private http: HttpClient,
     private model: ModalController) {
   }
 
   ionViewDidLoad() {
-    var date = new Date();
-    this.time = date.toLocaleDateString() + " " + (date.getHours() < 10 ? "0" + date.getHours() : date.getHours())
-      + ":" + (date.getMinutes() < 10 ? "0" + date.getMinutes() : date.getMinutes())
-      + ":" + (date.getSeconds() < 10 ? "0" + date.getSeconds() : date.getSeconds());
+    this.date = new Date();
+    this.time = this.date.toLocaleDateString() + " " + (this.date.getHours() < 10 ? "0" + this.date.getHours() : this.date.getHours())
+      + ":" + (this.date.getMinutes() < 10 ? "0" + this.date.getMinutes() : this.date.getMinutes())
+      + ":" + (this.date.getSeconds() < 10 ? "0" + this.date.getSeconds() : this.date.getSeconds());
   }
 
   //日期
@@ -225,7 +225,7 @@ export class StoreBugReportPage {
 
   //开始录音
   startRecord() {
-    this.date = new Date();
+
     //文件URL，文件存放在拓展内存卡中文件夹下，命名为Record.mp3
     this.filePath = this.file.externalDataDirectory + "Record_" + this.date.getDate() + this.date.getHours()
       + this.date.getMinutes() + this.date.getSeconds() + ".mp3";
@@ -281,56 +281,37 @@ export class StoreBugReportPage {
     })
   }
 
-  getToken() {
-    var token;
-    this.storge.get('user').then(user => {
-      token = user['token']
-    })
-    return token;
-  }
-
   //提交数据
   commit() {
-    // this.fileTransfer = this.transfer.create();
-
     if (this.state.length == 0) {
 
     }
 
     let httpHeaders = new HttpHeaders()
       .set('Content-Type', 'application/x-www-form-urlencoded')
-      .set('Cache-Control', 'no-cache')
-      .set('Authorization', this.getToken())
-    // let params = new HttpParams().set('', '');
+      .set('Authorization', this.api.getToken())
+    let params = new HttpParams().set('deviceId', '1')
+    .set('happentime',this.date.getDate() + this.date.getHours() + this.date.getMinutes() + this.date.getSeconds())
+    .set('deviceState',this.state);//TODO
     let options: FileUploadOptions = {
       headers: httpHeaders,
-      // params: params,
+      params: params,
     };
 
-    // this.fileTransfer.upload('this.path', BaseUrl + storeReport, options)
-    //   .then((data) => {
-    //     console.log(data);
-
-    //   }, (err) => {
-    //     console.log(err);
-    //   });
-
     var formData = new FormData();
-    formData.append('deviceId', '2');
-    formData.append('happenTime', this.date.getDate() + this.date.getHours()
-      + this.date.getMinutes() + this.date.getSeconds());
-    formData.append('deviceState', this.state);
     if (this.photos.length > 0) {
       for (var i = 0; i < this.photos.length; i++) {
         formData.append('files', this.photos[i], 'image' + i + 'jpeg');
       }
     }
-    if (this.filePath.length > 0) {
+
+    if (this.filePath != null && this.filePath.length > 0) {
       formData.append('files', this.filePath, 'audio');
     }
 
     this.http.post(BaseUrl + storeReport, formData, options).subscribe(res => {
       console.log(res)
+      this.navCtrl.pop();
     }, err => {
       console.log(err)
     })

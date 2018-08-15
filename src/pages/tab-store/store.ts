@@ -73,6 +73,7 @@ export class StorePage {
         this.store = res.data;
         this.title = this.store[0].storeName;
         this.num = this.store[0].deviceNo;
+        this.storeId = this.store[0].shopId;
         loading.dismiss()
       }
     }, err => {
@@ -84,6 +85,7 @@ export class StorePage {
     if (this.store.length > 0) {
       this.title = this.store[i].storeName;
       this.num = this.store[i].deviceNo ? this.store[i].deviceNo : 0;
+      this.storeId = this.store[i].shopId;
     }
   }
 
@@ -115,7 +117,9 @@ export class StorePage {
   }
 
   goEquipmentList() {
-    this.navCtrl.push(EquipmentListPage);
+    this.navParams.data = { storeId: this.storeId };
+    console.log('store page ==>'+this.storeId)
+    this.navCtrl.push(EquipmentListPage, this.navParams);
   }
 
   public goRepairPage() {

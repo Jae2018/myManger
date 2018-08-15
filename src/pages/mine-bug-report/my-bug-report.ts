@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
 // import { Camera, CameraOptions } from '@ionic-native/camera';
 import { ImagePage } from '../image/image';
-import { Storage } from '../../../node_modules/@ionic/storage';
+import { Api } from '../../providers';
 
 /**
  * Generated class for the MyBugReportPage page.
@@ -23,20 +23,12 @@ export class MyBugReportPage {
   public size: number;//照片数量
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
-    public alertCtrl: AlertController, private storge: Storage) {//, public camera: Camera
+    public alertCtrl: AlertController, private api: Api) {//, public camera: Camera
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad MyBugReportPage');
     this.size = 0;
-  }
-
-  getToken() {
-    var token;
-    this.storge.get('user').then(user => {//x-www-form-urlencoded
-      token = user['token']
-    })
-    return token;
   }
 
   //故障描述

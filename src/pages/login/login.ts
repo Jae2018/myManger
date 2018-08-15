@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, ToastController, Platform } from 'ionic-angular';
+import { IonicPage, NavController, ToastController } from 'ionic-angular';
 
 import { User, Api } from '../../providers';
 import { MainPage, BaseUrl, loginUrl, checkCodeUrl } from '../';
@@ -35,7 +35,6 @@ export class LoginPage {
     public http: HttpClient,
     public toastCtrl: ToastController,
     public device: Device,
-    private platform: Platform,
     private storge: Storage,
     private api: Api) {
 

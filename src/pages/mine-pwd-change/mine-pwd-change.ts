@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { Api } from '../../providers';
 
 /**
  * Generated class for the MinePwdChangePage page.
@@ -15,14 +16,17 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class MinePwdChangePage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController,
+    public navParams: NavParams,
+    private api: Api) {
+
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad MinePwdChangePage');
   }
 
-  commit(event){
+  commit(event) {
     this.navCtrl.pop();
   }
 
