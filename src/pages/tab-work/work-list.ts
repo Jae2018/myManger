@@ -116,13 +116,15 @@ export class WorkListPage {
     this.navCtrl.push(MyWorkListPage, this.param);
   }
 
-  scan(event: any) {
-    // this.navCtrl.push('ScanPage');
-    let newsModal = this.model.create(ScanPage);
-    newsModal.onDidDismiss(data => {
-      console.log(data);
-    });
-    newsModal.present();
+  scan() {
+    this.navCtrl.push('ScanPage', { callback: this.getIdStr });
   }
 
+  //扫描回调方法声明
+  getIdStr = (data) => {
+    return new Promise((resolve, reject) => {
+      resolve();
+      console.log('qrcode ==> ' + data);
+    })
+  }
 }

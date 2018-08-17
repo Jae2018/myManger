@@ -64,14 +64,6 @@ export class MyBugReportPage {
   setOpinion(event) {
     const prompt = this.alertCtrl.create({
       title: '处理意见',
-      // message: "Enter a name for this new album you're so keen on adding",
-      // inputs: [
-      //   {
-      //     name: 'title',
-      //     placeholder: '例如：修复',
-      //     max: 30,
-      //   },
-      // ],
       buttons: [
         {
           text: '确定',

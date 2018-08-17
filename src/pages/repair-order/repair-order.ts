@@ -60,7 +60,7 @@ export class RepairOrderPage {
         this.getOrcancel = false;
 
       }, err => {
-
+        console.log(err)
       });
     } else {//抢单
       this.http.post(BaseUrl + qiangOrder, null, this.setParams()).subscribe(res => {

@@ -52,7 +52,7 @@ export class InspectPage {
     })
   }
 
-  goDetail(event, index) {
+  goDetail(index) {
     this.navParams = index;
     this.navCtrl.push(EquipmentListPage, this.navParams);
   }

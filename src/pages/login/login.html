@@ -14,8 +14,8 @@
 
   <div style="border-radius: 5px;width: 70%;margin-left: 15%;margin-top: 20px;height: 50px;" >
     <!-- <input type="text" placeholder="验证码" [(ngModel)]="checkCode"></input> -->
-    <input type="text" placeholder="验证码" [(ngModel)]="checkCode" style="width: auto;height: 48px;padding-left: 8px">
-    <img src="data:image/jpg;base64,{{img}}" style="height: 48px;width: 85px;float: right;margin:0" (click)="refreshCode()">
+    <input type="text" placeholder="验证码" [(ngModel)]="checkCode" style="width: 70%;height: 48px;padding-left: 8px">
+    <img src="data:image/jpg;base64,{{img}}" style="height: 48px;width: 30%;float: right;margin:0;min-width: 60px;" (click)="refreshCode()">
   </div>
 
   <button ion-button block round (click)="doLogin()">

@@ -32,15 +32,13 @@ export class StoreBugReportPage {
   time: string = "";
   address: string;
   hasRecord: boolean = false;//显示录音图标
-  public filePath: any; //录音文件的名字
-  public recordData: MediaObject; //录音对象
+  filePath: any; //录音文件的名字
+  recordData: MediaObject; //录音文件
   fileTransfer: FileTransferObject;//传输类
   firstClick: boolean = true;
   playClick: boolean = true;
   photos = [];//照片
   date;
-
-  @ViewChild('addrinput') addrinput;
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
     private alert: AlertController, private media: Media,

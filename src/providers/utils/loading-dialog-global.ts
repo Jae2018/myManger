@@ -1,7 +1,5 @@
 import { App, Platform, ToastController, Tabs, NavController } from "ionic-angular";
 import { Injectable } from "@angular/core";
-import { LoginPage } from "../../pages/login/login";
-import { WorkListPage } from "../../pages/tab-work/work-list";
 
 @Injectable()
 export class GlobalUtils {
@@ -24,18 +22,11 @@ export class GlobalUtils {
         activeNav.pop();
       } else {
         if (tabRef == null || tabRef._selectHistory[tabRef._selectHistory.length - 1] === tabRef.getByIndex(0).id) {
-          if (activeNav.getByIndex(0).component == LoginPage || activeNav.getByIndex(0).component == WorkListPage) {
-            //执行退出
-            this.showExit();
-          } else {
-            activeNav.pop();
-          }
+          //执行退出
+          this.showExit();
         } else {
           //选择首页第一个的标签
           tabRef.select(0);
-        }
-        if (tabRef != null && tabRef._getSelectedTabIndex() != 0) {
-
         }
       }
     });

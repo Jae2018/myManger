@@ -13,7 +13,7 @@ export const Tab4Root = 'InspectPage';
 export const Tab5Root = 'MinePage';
 
 //IP地址
-export const BaseUrl = 'http://192.168.1.67:9876/sale_inte';//基址http://192.168.1.67:9876/sale_inte    ； https://www.goodb2b.cn/sale_inte
+export const BaseUrl = 'https://www.goodb2b.cn/sale_inte';//基址http://192.168.1.67:9876/sale_inte    ； https://www.goodb2b.cn/sale_inte
 //无
 export const checkCodeUrl = '/system/checkcode.action';//验证码，OK
 //username，password
@@ -23,7 +23,7 @@ export const homeOrderinfo = '/repair/personalorderinfo.action';//主页工单�
 //type：0 1 2 3 四种
 export const homeOrderList = '/repair/personalorderlist.action';//主页工单列表参数：ok
 //storeId ，  测试：11 12 13
-export const storeDeviceList = '/repair/deviceList.action';//店铺所有设备列表，
+export const storeDeviceList = '/repair/devicelist.action';//店铺所有设备列表，
 // deviceId	    是	string	设备ID
 // happenTime	  是	string	发生时间
 // bugLevel	    否	string	故障级别

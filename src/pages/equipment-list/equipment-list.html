@@ -17,18 +17,19 @@
 
   <ion-card *ngFor="let item of list; let i=index" (click)="doClick($event,i)">
     <ion-card-header>
-      {{item.title}}
+      {{item.deviceName}}
     </ion-card-header>
 
     <hr style="padding: 0%;margin-top: 0%;margin-bottom: 0%">
 
     <ion-card-content>
-      <p>备件编号：{{item.no}}</p>
+      <p>备件编号：{{item.deviceNO}}</p>
       <p>
-        配件规格：{{item.catogery}}
+        配件规格：{{item.category}}
         <img style="float: right;width: 18px;height: 18px;" src="assets/icon/next.png">
       </p>
-      <p>当前库存：{{item.left}}个</p>
+      <p>使用门店：{{store}}</p>
+      <p>安装位置：{{item.area}}</p>
     </ion-card-content>
   </ion-card>
 

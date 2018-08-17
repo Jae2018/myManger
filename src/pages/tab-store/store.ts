@@ -117,8 +117,7 @@ export class StorePage {
   }
 
   goEquipmentList() {
-    this.navParams.data = { storeId: this.storeId };
-    console.log('store page ==>'+this.storeId)
+    this.navParams.data = { storeId: this.storeId, store: this.title };
     this.navCtrl.push(EquipmentListPage, this.navParams);
   }
 

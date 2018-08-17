@@ -21,12 +21,14 @@ export class EquipmentListPage {
 
   public list = [];
   id;
+  store;
 
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
     private http: HttpClient,
     private api: Api) {
       this.id = navParams.get('storeId');
+      this.store = navParams.get('store');
       console.log(this.id)
   }
 
