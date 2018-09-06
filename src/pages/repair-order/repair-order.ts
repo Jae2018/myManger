@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, AlertController, LoadingController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, AlertController, LoadingController, ToastController } from 'ionic-angular';
 import { HttpClient, HttpHeaders, HttpParams } from '../../../node_modules/@angular/common/http';
-import { BaseUrl, personOrderDetail, qiangOrder, cancelOrder, OrderStateChange } from '..';
+import { BaseUrl, personOrderDetail, qiangOrder, cancelOrder, OrderStateChange, uploadOrder } from '..';
 import { Sms } from '../../models/sms';
 import { MyWorker } from '../../models/worker';
 import { OrderInfo } from '../../models/orderinfo';
@@ -31,11 +31,16 @@ export class RepairOrderPage {
   workerArr = [];//工作人员
   parts = [];//配件
 
+  bugReason = "1";
+  repairLevel = "1";
+  descrption = "1";
+
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
     public http: HttpClient,
     private alertCtrl: AlertController,
     private api: Api,
+    private toast: ToastController,
     private loadingCtrl: LoadingController) {
     this.maiId = navParams.get('maiId');
     // if (this.maiId.length == null) {
@@ -50,7 +55,48 @@ export class RepairOrderPage {
   }
 
   commit(event) {
-    this.navCtrl.pop();
+
+    let load = this.loadingCtrl.create();
+    load.present();
+
+    let header = new HttpHeaders()
+      .set('Content-Type', 'application/x-www-form-urlencoded')
+      .set('Authorization', this.api.getToken());
+
+    let params = new HttpParams()
+      .set('maiId', this.maiId)
+      .set('bugReason', this.bugReason)
+      .set('repairLevel', this.repairLevel)
+      .set('descrption', this.descrption);
+
+    let options = {
+      headers: header,
+      params: params
+    }
+
+    this.http.post<Sms<any>>(BaseUrl + uploadOrder, null, options).subscribe(res => {
+      // if (this.checkTokenOutDate(res.code)) {
+      //   this.goLogin(navCtrl);
+      //   return
+      // } else {
+        // }
+        setTimeout(() => {
+          this.showToast('提交成功');
+          load.dismiss();
+          this.navCtrl.pop();
+      }, 2000);
+    }, err => {
+      this.navCtrl.pop();
+      load.dismiss();
+    })
+  }
+
+  showToast(msg) {
+    this.toast.create({
+      duration: 2000,
+      message: msg,
+      position: 'bottom'
+    }).present();
   }
 
   //抢单或者取消
@@ -84,13 +130,6 @@ export class RepairOrderPage {
 
       });
     }
-  }
-
-  private setHeader() {
-    let header = new HttpHeaders()
-      .set('Content-Type', 'application/x-www-form-urlencoded')
-      .set('Authorization', this.api.getToken());
-    return header;
   }
 
   private setParams() {

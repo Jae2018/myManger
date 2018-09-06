@@ -27,9 +27,9 @@ export class EquipmentListPage {
     public navParams: NavParams,
     private http: HttpClient,
     private api: Api) {
-      this.id = navParams.get('storeId');
-      this.store = navParams.get('store');
-      console.log(this.id)
+    this.id = navParams.get('storeId');
+    this.store = navParams.get('store');
+    console.log(this.id)
   }
 
   ionViewDidLoad() {
@@ -57,7 +57,7 @@ export class EquipmentListPage {
 
   doClick(event, index) {
     console.log("equipment");
-    this.navParams = this.list[index];
-    this.navCtrl.push(EquipmentInfoPage, this.navParams);
+    // this.navParams = this.list[index];
+    this.navCtrl.push(EquipmentInfoPage, { data: this.list[index] });
   }
 }
