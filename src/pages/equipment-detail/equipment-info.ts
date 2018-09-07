@@ -26,7 +26,6 @@ export class EquipmentInfoPage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad EquipmentInfoPage');
-
   }
 
 }

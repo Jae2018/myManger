@@ -13,7 +13,7 @@ export const Tab4Root = 'InspectPage';
 export const Tab5Root = 'MinePage';
 
 //IP地址
-export const BaseUrl = 'https://www.goodb2b.cn/sale_inte';//基址http://192.168.1.67:9876/sale_inte    ； https://www.goodb2b.cn/sale_inte
+export const BaseUrl = 'https://www.goodb2b.cn/test/sale_inte';//基址https://www.goodb2b.cn/test/sale_inte    ； https://www.goodb2b.cn/sale_inte
 //无
 export const checkCodeUrl = '/system/checkcode.action';//验证码，OK
 //username，password

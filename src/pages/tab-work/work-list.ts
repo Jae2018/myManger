@@ -74,6 +74,7 @@ export class WorkListPage {
       this.show2 = this.audit > 0;
       this.show3 = this.doing > 0;
       this.show4 = this.prepare > 0;
+      console.log(res)
       loading.dismiss();
     }, err => {
       //
