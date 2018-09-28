@@ -53,7 +53,8 @@ export class MineRepairHistoryPage {
       this.list = res.data['list'];
       this.totalHours = res.data['totalHours'];
       this.orderNum = res.data['orderNum'];
-      console.log(res.data)
+      console.log(res)
+      console.log(res.data['list'])
     }, err => {
 
     })

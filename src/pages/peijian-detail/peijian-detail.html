@@ -1,0 +1,68 @@
+<!--
+  Generated template for the PeijianDetailPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+  <ion-navbar no-border-bottom>
+    <ion-title>
+      维修记录
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content>
+  <div>
+    <ion-segment [(ngModel)]="type">
+      <ion-segment-button value="1">
+        我的工单
+      </ion-segment-button>
+      <ion-segment-button value="2">
+        故障信息
+      </ion-segment-button>
+    </ion-segment>
+  </div>
+
+  <div [ngSwitch]="type">
+    <ion-list *ngSwitchCase="'1'">
+
+      <ion-item>
+        <label>结束时间 </label>
+        <span><input class="u-input-failureCause" type="date" placeholder="yyyy-MM-dd HH:mm:ss" value="" [(ngModel)]="datas"></span>
+      </ion-item>
+      <ion-item>
+          <label>结束时间 </label>
+          <span><input class="u-input-failureCause" type="time" placeholder="yyyy-MM-dd HH:mm:ss" value="" [(ngModel)]="times"></span>
+        </ion-item>
+    </ion-list>
+
+    <ion-list *ngSwitchCase="'2'">
+
+      <div style="justify-content: center;align-items: center;display: flex;width: auto;height: 48px;" (tap)="addParts()">
+        <!-- (tap)="getParts($event)" -->
+        <img style="width: 16px;height: 16px;margin: 0%" src="assets/icon/add_work.png">
+        <span style="margin: 0 0 0 8px;padding: 0%">增加配件</span>
+      </div>
+      <ion-list *ngIf="showParts" style="margin-top: 10px;">
+        <div *ngFor="let parts of partsArr; let i=index" style="padding: 10px;width: 100%">
+          <img src="assets/icon/list_avatar.png" style="width: 32px;height: 32px;">
+          <div style="margin-left: 8px;margin-right: 8px;display:inline-grid;">
+            <label>{{parts.partName}}</label>
+            <p style="display: flex">备件个数：
+              <input type="number" [(ngModel)]="parts.number">
+            </p>
+          </div>
+          <img src="assets/icon/sq-delete.png" style="float: right;width: 32px;height: 32px;" (click)="deletePeijians(i)">
+        </div>
+      </ion-list>
+    </ion-list>
+  </div>
+</ion-content>
+<ion-footer *ngIf="type==='1'" (tap)="overOder()">
+  结束维修
+</ion-footer>
+<ion-footer *ngIf="type==='2'" (tap)="pushBeijian()">
+    提交
+</ion-footer>

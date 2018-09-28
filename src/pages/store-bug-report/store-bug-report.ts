@@ -25,12 +25,13 @@ export class StoreBugReportPage {
 
   item = {};
   size: number = 0;
-  des: string = "123";
-  level: string = "1";
+  des: string = "";
+  level: string = "";
   type: string = "";
-  state: string = "1";
+  state: string = "";
   time: string = "";
   address: string;
+  decription:string;
   hasRecord: boolean = false;//显示录音图标
   filePath: any; //录音文件的名字
   recordData: MediaObject; //录音文件
@@ -47,7 +48,7 @@ export class StoreBugReportPage {
     private model: ModalController) {
   }
 
-  ionViewDidLoad() {
+  ionViewDidLoad() {//即页面加载完成是执行，相当于$(document).ready(function(){})
     this.date = new Date();
     this.time = this.date.toLocaleDateString() + " " + (this.date.getHours() < 10 ? "0" + this.date.getHours() : this.date.getHours())
       + ":" + (this.date.getMinutes() < 10 ? "0" + this.date.getMinutes() : this.date.getMinutes())
@@ -286,8 +287,8 @@ export class StoreBugReportPage {
       .set('Content-Type', 'application/x-www-form-urlencoded')
       .set('Authorization', this.api.getToken())
     let params = new HttpParams().set('deviceId', '1')
-      .set('happentime', this.date.getDate() + this.date.getHours() + this.date.getMinutes() + this.date.getSeconds())
-      .set('deviceState', this.state);//TODO
+      .set('happentime', this.date.getDate() + this.date.getHours() + this.date.getMinutes() + this.date.getSeconds())//发生时间
+      .set('deviceState', this.state);//TODO 设备状态
     let options: FileUploadOptions = {
       headers: httpHeaders,
       params: params,

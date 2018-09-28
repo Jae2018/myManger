@@ -43,7 +43,7 @@ export class MyBugReportListPage {
       .set('Authorization', this.api.getToken());
 
     let params = { 'type': this.type };
-
+    console.log(this.type)
     let options = {
       headers: httpHeaders,
       params: params

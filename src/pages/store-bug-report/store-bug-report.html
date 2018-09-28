@@ -64,8 +64,9 @@
 
     <ion-item>
       <label>故障描述</label>
-      <span>{{des}}</span>
-      <img src="assets/icon/next.png">
+      <input #addrinput type="text" [(ngModel)]="decription" style="border: 0ch;margin: 0%;float: right;">
+      <!-- <span>{{des}}</span> -->
+      <!-- <img src="assets/icon/next.png"> -->
     </ion-item>
 
     <ion-item (click)="takephoto($event)">

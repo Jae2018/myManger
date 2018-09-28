@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams,Events } from 'ionic-angular';
 import { MyBugReportListPage } from '../mine-bug-report-list/my-bug-report-list';
 import { MinePwdChangePage } from '../mine-pwd-change/mine-pwd-change';
 import { MineAboutUsPage } from '../mine-about-us/mine-about-us';
@@ -30,7 +30,7 @@ export class MinePage {
   userNmae;
   // avatorUrl;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public storge: Storage) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public storge: Storage,private events:Events) {
 
   }
 
@@ -72,7 +72,8 @@ export class MinePage {
   //注销
   doLoginOut(event) {
     this.storge.remove('user');
-    this.navCtrl.popTo(LoginPage);
+    this.events.publish('toLogin');
+    // this.navCtrl.pop();
   }
 
   //我的申请
@@ -82,7 +83,7 @@ export class MinePage {
 
   //我的维修
   goMyRepair(event) {
-    this.navCtrl.push(MineRepairHistoryPage);
+    this.navCtrl.push(MineRepairHistoryPage);  
   }
 
 }

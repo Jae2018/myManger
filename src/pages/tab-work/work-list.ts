@@ -66,10 +66,10 @@ export class WorkListPage {
     };
 
     this.http.post<Sms<OrderTpye>>(BaseUrl + homeOrderinfo, null, options).subscribe(res => {
-      this.orders = res.data.orders;
-      this.audit = res.data.audit;
-      this.doing = res.data.doing;
-      this.prepare = res.data.prepare;
+      this.orders = res.data.orders;//我的工单
+      this.audit = res.data.audit;//审核
+      this.doing = res.data.doing;//正在执行
+      this.prepare = res.data.prepare;//准备执行
       this.show = this.orders > 0;
       this.show2 = this.audit > 0;
       this.show3 = this.doing > 0;
@@ -99,19 +99,19 @@ export class WorkListPage {
   }
 
   //待审核
-  goAudit(event) {
-    this.param.data = { type: 1 };
-    this.navCtrl.push(MyWorkListPage, this.param);
-  }
+  // goAudit(event) {
+  //   this.param.data = { type: 1 };
+  //   this.navCtrl.push(MyWorkListPage, this.param);
+  // }
 
   //待执行
-  goPredoing(event) {
+  goDone(event) {
     this.param.data = { type: 2 };
     this.navCtrl.push(MyWorkListPage, this.param);
   }
 
-  //已完成
-  goDone(event) {
+  //执行中
+  goPredoing(event){
     // this.navCtrl.push()
     this.param.data = { type: 3 };
     this.navCtrl.push(MyWorkListPage, this.param);

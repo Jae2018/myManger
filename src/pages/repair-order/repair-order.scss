@@ -45,4 +45,13 @@ page-repair-order {
   span{
     margin-left: 25%;
   }
+  .u-input-failureCause{
+    border: none;
+    text-overflow: ellipsis;
+  }
+  .u-text-btn{
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-top: 15px;
+  }
 }

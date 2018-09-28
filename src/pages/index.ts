@@ -23,7 +23,7 @@ export const homeOrderinfo = '/repair/personalorderinfo.action';//主页工单�
 //type：0 1 2 3 四种
 export const homeOrderList = '/repair/personalorderlist.action';//主页工单列表参数：ok
 //storeId ，  测试：11 12 13
-export const storeDeviceList = '/repair/devicelist.action';//店铺所有设备列表，
+export const storeDeviceList = '/repair/devicelist.action';//店铺所有设备列表，ok
 // deviceId	    是	string	设备ID
 // happenTime	  是	string	发生时间
 // bugLevel	    否	string	故障级别
@@ -39,7 +39,7 @@ export const storeReport = '/repair/report.action';//店铺故障报修
 //无参  或者 pinpaiID
 export const storeList = '/repair/storelist.action';//店铺列表，ok
 //maiId
-export const personOrderDetail = '/repair/getOrderInfo.action';//个人工单详情，提示：程序有问题
+export const personOrderDetail = '/repair/getOrderInfo.action';//个人工单详情,0k
 //deviceId
 export const deviceDetail = '/repair/deviceinfo.action';//设备详情
 //无
@@ -58,13 +58,25 @@ export const uploadOrder = '/repair/uploadOrder.action';//提交工单接口，O
 //maiId，维修单ID
 export const cancelOrder = '/repair/cancleRepair.action';//取消订单，OK。
 //maiId
-export const qiangOrder = '/repair/robbingIt.action';//抢单，提示：程序有问题
+export const qiangOrder = '/repair/robbingIt.action';//抢单,ok
 //维修人员
-export const workerList = '';
+export const workerList = '/repair/queryWorkers.action';//维修人员列表,ok
+//上传维修人员
+export const pushWorkers = '/repair/addWorkers.action';//添加维修人员,ok
 //配件列表
-export const partsArr = '';
+export const partsArr = '/repair/replaceList.action';
+//配件上传
+export const pushPartsArr = '/repair/addMaintainHisSpare.action';
 //维修单状态变更
-export const OrderStateChange = '';
+export const OrderStateChange = '/repair/orderState.action';
 
 //5504  token过期
 export const token: string = '';
+//修改密码
+export const mima='/system/editPwd.action';//ok
+//维修单对应的维修记录
+export const myOrderHostery='/repair/repairHistoryList.action'//ok
+//结束维修
+export const overOrder='/repair/maiHisEnd.action'
+//维修开始
+export const atartOrder='/repair/maiHisEnd.action'

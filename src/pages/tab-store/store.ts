@@ -69,6 +69,7 @@ export class StorePage {
     };
 
     this.http.post<Sms<Store[]>>(BaseUrl + storeList, null, options).subscribe((res) => {
+      console.log(res);
       if (res.data.length > 0) {
         this.store = res.data;
         this.title = this.store[0].storeName;

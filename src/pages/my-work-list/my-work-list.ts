@@ -6,6 +6,7 @@ import { RepairOrderPage } from '../repair-order/repair-order';
 import { Api } from '../../providers';
 import { Sms } from '../../models/sms';
 import { Order } from '../../models/order';
+import { Storage } from "@ionic/storage";
 
 /**
  * Generated class for the MyWorkListPage page.
@@ -24,12 +25,16 @@ export class MyWorkListPage {
   items = [];
   state: any;
   type;
+  Storge;
 
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
     private http: HttpClient,
     private api: Api,
+    private storge:Storage,
     private loading: LoadingController) {
+
+      // this.storge.set();
     this.type = navParams.get('type');
   }
 
@@ -49,14 +54,15 @@ export class MyWorkListPage {
       .set('Authorization', this.api.getToken())
 
     let params = { 'type': this.type }
-
+    console.log(params);
     let options = {
       headers: httpHeaders,
-      params: params
+      params: params 
     };
 
     this.http.post<Sms<Order[]>>(BaseUrl + homeOrderList, null, options).subscribe((res) => {
-      this.items = res.data;
+      this.items = res.data; 
+      
       loading.dismiss();
       console.log(this.items)
     }, err => {

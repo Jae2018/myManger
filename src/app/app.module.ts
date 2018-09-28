@@ -25,6 +25,7 @@ import { MineAboutUsPageModule } from '../pages/mine-about-us/mine-about-us.modu
 import { MineRepairHistoryPageModule } from '../pages/mine-repair-history/mine-repair-history.module';
 import { MyBugReportPageModule } from '../pages/mine-bug-report/my-bug-report.module';
 import { AddRepairReportPageModule } from '../pages/add-repair-report/add-repair-report.module';
+import { PeijianDetailPageModule } from '../pages/peijian-detail/peijian-detail.module';
 
 import { QRScanner } from "@ionic-native/qr-scanner";
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -109,7 +110,7 @@ export function provideSettings(storage: Storage) {
     TakePhotoPageModule,
 
     // mine subs
-    RepairReportPageModule,
+    RepairReportPageModule, 
     RepairOrderPageModule,
     ImagePageModule,
     EquipmentListPageModule,
@@ -124,6 +125,8 @@ export function provideSettings(storage: Storage) {
 
     //inspect sub
     AddRepairReportPageModule,
+    //repair-list-detail
+    PeijianDetailPageModule,
 
   ],
   bootstrap: [IonicApp],
